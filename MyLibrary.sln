@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLibrary", "WpfLibrary\Wp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlLibrary", "XmlLibrary\XmlLibrary.csproj", "{9050AFB5-BCC8-4FB6-B578-527782A76FFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestExtensions", "UnitTestExtensions\UnitTestExtensions.csproj", "{8A22878A-D9C3-4483-A89F-E753D5930424}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9050AFB5-BCC8-4FB6-B578-527782A76FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9050AFB5-BCC8-4FB6-B578-527782A76FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9050AFB5-BCC8-4FB6-B578-527782A76FFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A22878A-D9C3-4483-A89F-E753D5930424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A22878A-D9C3-4483-A89F-E753D5930424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A22878A-D9C3-4483-A89F-E753D5930424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A22878A-D9C3-4483-A89F-E753D5930424}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
