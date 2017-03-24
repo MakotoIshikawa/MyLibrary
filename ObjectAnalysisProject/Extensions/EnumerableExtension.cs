@@ -13,12 +13,12 @@ namespace ObjectAnalysisProject.Extensions {
 		/// オブジェクトのコピーを格納する DataTableを返します。
 		/// </summary>
 		/// <typeparam name="T">ソース シーケンス内のオブジェクトの型。</typeparam>
-		/// <param name="source">ソース IEnumerable シーケンス。</param>
+		/// <param name="this">ソース IEnumerable シーケンス。</param>
 		/// <param name="options">DataTable 読み込みオプションを指定する LoadOption 列挙体。</param>
 		/// <returns>オブジェクト型の入力シーケンスを格納する DataTable。</returns>
-		public static DataTable ToDataTable<T>(this IEnumerable<T> source, LoadOption? options = null) {
+		public static DataTable ToDataTable<T>(this IEnumerable<T> @this, LoadOption? options = null) {
 			var table = new DataTable(typeof(T).Name);
-			table.Shred(source, options);
+			table.Shred(@this, options);
 			return table;
 		}
 

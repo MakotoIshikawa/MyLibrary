@@ -16,15 +16,15 @@ namespace ExtensionsLibrary.Extensions {
 		/// 追加方法とエンコーディングを指定して、
 		/// 新しいテキスト ファイルに書き込みを行う StreamWriter を作成します。
 		/// </summary>
-		/// <param name="tmpFile"></param>
+		/// <param name="this">FileInfo</param>
 		/// <param name="append">
 		/// データをファイルに追加する場合は true、ファイルを上書きする場合は false。
 		/// <para>指定されたファイルが存在しない場合、このパラメーターは無効であり、コンストラクターは新しいファイルを作成します。</para>
 		/// </param>
 		/// <param name="encoding">使用する文字エンコーディング</param>
 		/// <returns>新しい StreamWriter を返します。</returns>
-		public static StreamWriter CreateText(this FileInfo tmpFile, bool append, Encoding encoding) {
-			return new StreamWriter(tmpFile.FullName, append, encoding);
+		public static StreamWriter CreateText(this FileInfo @this, bool append, Encoding encoding) {
+			return new StreamWriter(@this.FullName, append, encoding);
 		}
 
 		#endregion

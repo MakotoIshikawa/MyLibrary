@@ -212,12 +212,12 @@ namespace XmlLibrary.Extensions {
 		/// 指定されたオブジェクトと等しい値を持つ、指定された型のオブジェクトを返します。
 		/// </summary>
 		/// <typeparam name="T">返すオブジェクトの型</typeparam>
-		/// <param name="value">System.IConvertible インターフェイスを実装するオブジェクト。</param>
+		/// <param name="this">System.IConvertible インターフェイスを実装するオブジェクト。</param>
 		/// <returns>型が T であり、value と等価の値を持つオブジェクト。
 		/// または value が null で、T が値型ではない場合は、null 参照。
 		/// </returns>
-		public static T ChangeType<T>(this object value) where T : IConvertible {
-			return (value.GetType() is T) ? (T)value : (T)Convert.ChangeType(value, typeof(T));
+		public static T ChangeType<T>(this object @this) where T : IConvertible {
+			return (@this.GetType() is T) ? (T)@this : (T)Convert.ChangeType(@this, typeof(T));
 		}
 
 		#endregion
@@ -247,11 +247,11 @@ namespace XmlLibrary.Extensions {
 		/// <summary>
 		/// 指定した名前と内容を持つ XElement クラスの新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="name">要素名を格納する XName。</param>
+		/// <param name="this">要素名を格納する XName。</param>
 		/// <param name="content">要素の内容。</param>
 		/// <returns>XElement クラスの新しいインスタンスを返します。</returns>
-		public static XElement CreateXElement(this XName name, string content) {
-			return XElement.Parse($"<{name}>{content}</{name}>");
+		public static XElement CreateXElement(this XName @this, string content) {
+			return XElement.Parse($"<{@this}>{content}</{@this}>");
 		}
 
 		#endregion

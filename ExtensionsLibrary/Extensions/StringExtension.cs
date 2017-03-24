@@ -36,7 +36,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="word">検索する文字列</param>
 		/// <returns>その文字列が見つかった場合は、true。
 		/// 見つからなかった場合は false。</returns>
-		public static bool HasString(this String @this, String word) {
+		public static bool HasString(this string @this, string word) {
 			if (@this.IsEmpty() || word.IsEmpty()) {
 				return false;
 			}
@@ -76,11 +76,11 @@ namespace ExtensionsLibrary.Extensions {
 		/// <summary>
 		/// short? 型に変換します。
 		/// </summary>
-		/// <param name="s">文字列</param>
+		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
-		public static short? ToNullableShort(this string s) {
+		public static short? ToNullableShort(this string @this) {
 			short result;
-			if (short.TryParse(s, out result)) {
+			if (short.TryParse(@this, out result)) {
 				return result;
 			}
 			return null;
@@ -93,11 +93,11 @@ namespace ExtensionsLibrary.Extensions {
 		/// <summary>
 		/// int? 型に変換します。
 		/// </summary>
-		/// <param name="s">文字列</param>
+		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
-		public static int? ToNullableInt(this string s) {
+		public static int? ToNullableInt(this string @this) {
 			int result;
-			if (int.TryParse(s, out result)) {
+			if (int.TryParse(@this, out result)) {
 				return result;
 			}
 			return null;
@@ -110,11 +110,11 @@ namespace ExtensionsLibrary.Extensions {
 		/// <summary>
 		/// long? 型に変換します。
 		/// </summary>
-		/// <param name="s">文字列</param>
+		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
-		public static long? ToNullableLong(this string s) {
+		public static long? ToNullableLong(this string @this) {
 			long result;
-			if (long.TryParse(s, out result)) {
+			if (long.TryParse(@this, out result)) {
 				return result;
 			}
 			return null;
@@ -127,11 +127,11 @@ namespace ExtensionsLibrary.Extensions {
 		/// <summary>
 		/// uint? 型に変換します。
 		/// </summary>
-		/// <param name="s">文字列</param>
+		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
-		public static uint? ToNullableUint(this string s) {
+		public static uint? ToNullableUint(this string @this) {
 			uint result;
-			if (uint.TryParse(s, out result)) {
+			if (uint.TryParse(@this, out result)) {
 				return result;
 			}
 			return null;
@@ -144,11 +144,11 @@ namespace ExtensionsLibrary.Extensions {
 		/// <summary>
 		/// float? 型に変換します。
 		/// </summary>
-		/// <param name="s">文字列</param>
+		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
-		public static float? ToNullableFloat(this string s) {
+		public static float? ToNullableFloat(this string @this) {
 			float result;
-			if (float.TryParse(s, out result)) {
+			if (float.TryParse(@this, out result)) {
 				return result;
 			}
 			return null;
@@ -161,11 +161,11 @@ namespace ExtensionsLibrary.Extensions {
 		/// <summary>
 		/// double? 型に変換します。
 		/// </summary>
-		/// <param name="s">文字列</param>
+		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
-		public static double? ToNullableDouble(this string s) {
+		public static double? ToNullableDouble(this string @this) {
 			double result;
-			if (double.TryParse(s, out result)) {
+			if (double.TryParse(@this, out result)) {
 				return result;
 			}
 			return null;
@@ -178,11 +178,11 @@ namespace ExtensionsLibrary.Extensions {
 		/// <summary>
 		/// decimal? 型に変換します。
 		/// </summary>
-		/// <param name="s">文字列</param>
+		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
-		public static decimal? ToNullableDecimal(this string s) {
+		public static decimal? ToNullableDecimal(this string @this) {
 			decimal result;
-			if (decimal.TryParse(s, out result)) {
+			if (decimal.TryParse(@this, out result)) {
 				return result;
 			}
 			return null;
@@ -195,11 +195,11 @@ namespace ExtensionsLibrary.Extensions {
 		/// <summary>
 		/// bool? 型に変換します。
 		/// </summary>
-		/// <param name="s">文字列</param>
+		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
-		public static bool? ToNullableBool(this string s) {
+		public static bool? ToNullableBool(this string @this) {
 			bool result;
-			if (bool.TryParse(s, out result)) {
+			if (bool.TryParse(@this, out result)) {
 				return result;
 			}
 			return null;
@@ -210,24 +210,26 @@ namespace ExtensionsLibrary.Extensions {
 		#endregion
 
 		#region 繰り返し文字列生成
+
 		/// <summary>
 		/// 繰り返し文字列生成
 		/// </summary>
-		/// <param name="s">文字列</param>
+		/// <param name="this">文字列</param>
 		/// <param name="repeat">個数</param>
 		/// <returns>生成文字列</returns>
-		public static string Repeat(this string s, int repeat) {
-			if (s.IsEmpty()) {
-				return s;
+		public static string Repeat(this string @this, int repeat) {
+			if (@this.IsEmpty()) {
+				return @this;
 			}
 
 			var sb = new StringBuilder();
 			for (int i = 0; i < repeat; i++) {
-				sb.Append(s);
+				sb.Append(@this);
 			}
 
 			return sb.ToString();
 		}
+
 		#endregion
 
 		#region Stream生成

@@ -18,22 +18,22 @@ namespace ObjectAnalysisProject.Extensions {
 		/// データテーブルのデータ行を新しいフォームに射影します。
 		/// </summary>
 		/// <typeparam name="TResult">selector によって返される値の型。</typeparam>
-		/// <param name="table">データテーブル</param>
+		/// <param name="this">データテーブル</param>
 		/// <param name="selector">各要素に適用する変換関数。</param>
 		/// <returns>source の各要素に対して変換関数を呼び出した結果として得られる要素を含む IEnumerable(T)</returns>
-		public static IEnumerable<TResult> Select<TResult>(this DataTable table, Func<DataRow, int, TResult> selector) {
-			return table.Select().Select(selector);
+		public static IEnumerable<TResult> Select<TResult>(this DataTable @this, Func<DataRow, int, TResult> selector) {
+			return @this.Select().Select(selector);
 		}
 
 		/// <summary>
 		/// データテーブルのデータ行を新しいフォームに射影します。
 		/// </summary>
 		/// <typeparam name="TResult">selector によって返される値の型。</typeparam>
-		/// <param name="table">データテーブル</param>
+		/// <param name="this">データテーブル</param>
 		/// <param name="selector">各要素に適用する変換関数。</param>
 		/// <returns>source の各要素に対して変換関数を呼び出した結果として得られる要素を含む IEnumerable(T)</returns>
-		public static IEnumerable<TResult> Select<TResult>(this DataTable table, Func<DataRow, TResult> selector) {
-			return table.Select().Select(selector);
+		public static IEnumerable<TResult> Select<TResult>(this DataTable @this, Func<DataRow, TResult> selector) {
+			return @this.Select().Select(selector);
 		}
 
 		#endregion
@@ -43,21 +43,21 @@ namespace ObjectAnalysisProject.Extensions {
 		/// <summary>
 		/// 述語に基づいて値のデータテーブルのデータ行をフィルター処理します。
 		/// </summary>
-		/// <param name="table">データテーブル</param>
+		/// <param name="this">データテーブル</param>
 		/// <param name="predicate">各要素が条件を満たしているかどうかをテストする関数。</param>
 		/// <returns>条件を満たす、入力シーケンスの要素を含む IEnumerable(DataRow)</returns>
-		public static IEnumerable<DataRow> Where(this DataTable table, Func<DataRow, bool> predicate) {
-			return table.Select().Where(predicate);
+		public static IEnumerable<DataRow> Where(this DataTable @this, Func<DataRow, bool> predicate) {
+			return @this.Select().Where(predicate);
 		}
 
 		/// <summary>
 		/// 述語に基づいて値のデータテーブルのデータ行をフィルター処理します。
 		/// </summary>
-		/// <param name="table">データテーブル</param>
+		/// <param name="this">データテーブル</param>
 		/// <param name="predicate">各要素が条件を満たしているかどうかをテストする関数。</param>
 		/// <returns>条件を満たす、入力シーケンスの要素を含む IEnumerable(DataRow)</returns>
-		public static IEnumerable<DataRow> Where(this DataTable table, Func<DataRow, int, bool> predicate) {
-			return table.Select().Where(predicate);
+		public static IEnumerable<DataRow> Where(this DataTable @this, Func<DataRow, int, bool> predicate) {
+			return @this.Select().Where(predicate);
 		}
 
 		#endregion
@@ -67,31 +67,31 @@ namespace ObjectAnalysisProject.Extensions {
 		/// <summary>
 		/// 列インデックスを指定して、
 		/// データテーブルから列データの列挙を取得します。</summary>
-		/// <param name="table">データテーブル</param>
+		/// <param name="this">データテーブル</param>
 		/// <param name="columnIndex">列インデックス</param>
 		/// <returns>列データの列挙を返します。</returns>
-		public static IEnumerable<Object> GetColumns(this DataTable table, int columnIndex) {
-			return table.Select(row => row[columnIndex]);
+		public static IEnumerable<Object> GetColumns(this DataTable @this, int columnIndex) {
+			return @this.Select(row => row[columnIndex]);
 		}
 
 		/// <summary>
 		/// 列の名前を指定して、
 		/// データテーブルから列データの列挙を取得します。</summary>
-		/// <param name="table">データテーブル</param>
+		/// <param name="this">データテーブル</param>
 		/// <param name="columnName">列名</param>
 		/// <returns>列データの列挙を返します。</returns>
-		public static IEnumerable<Object> GetColumns(this DataTable table, string columnName) {
-			return table.Select(row => row[columnName]);
+		public static IEnumerable<Object> GetColumns(this DataTable @this, string columnName) {
+			return @this.Select(row => row[columnName]);
 		}
 
 		/// <summary>
 		/// 列スキーマを指定して、
 		/// データテーブルから列データの列挙を取得します。</summary>
-		/// <param name="table">データテーブル</param>
+		/// <param name="this">データテーブル</param>
 		/// <param name="column">列スキーマ</param>
 		/// <returns>列データの列挙を返します。</returns>
-		public static IEnumerable<Object> GetColumns(this DataTable table, DataColumn column) {
-			return table.Select(row => row[column]);
+		public static IEnumerable<Object> GetColumns(this DataTable @this, DataColumn column) {
+			return @this.Select(row => row[column]);
 		}
 
 		#endregion
@@ -122,9 +122,9 @@ namespace ObjectAnalysisProject.Extensions {
 		/// <summary>
 		/// テーブルのスキーマを拡張します。</summary>
 		/// <typeparam name="T">データ型</typeparam>
-		/// <param name="table">データテーブル</param>
+		/// <param name="this">データテーブル</param>
 		/// <param name="source">列挙子</param>
-		private static void ExtendSchema<T>(this DataTable table, IEnumerable<T> source) {
+		private static void ExtendSchema<T>(this DataTable @this, IEnumerable<T> source) {
 			var members = source.SelectMany(i =>
 				i.GetMembers().Select(m => new {
 					Name = m.Item1,
@@ -133,7 +133,7 @@ namespace ObjectAnalysisProject.Extensions {
 			).Distinct();
 
 			members.ForEach(m => {
-				table.AddColumn(m.Name, m.Type);
+				@this.AddColumn(m.Name, m.Type);
 			});
 		}
 
@@ -175,43 +175,43 @@ namespace ObjectAnalysisProject.Extensions {
 
 		/// <summary>
 		/// テーブルにデータを読み込みます。</summary>
-		/// <param name="table">データテーブル</param>
+		/// <param name="this">データテーブル</param>
 		/// <param name="dataRows">行データ</param>
 		/// <param name="options">
 		/// 配列値を既存の行にある対応する値に適用する方法を決定するために使用します。
 		/// null を指定できます。</param>
-		public static void LoadData(this DataTable table, IEnumerable<object[]> dataRows, LoadOption? options = null) {
-			if (table == null) {
+		public static void LoadData(this DataTable @this, IEnumerable<object[]> dataRows, LoadOption? options = null) {
+			if (@this == null) {
 				throw new ArgumentNullException("table", "テーブルが null です。");
 			}
 
 			try {
-				table.BeginLoadData();
+				@this.BeginLoadData();
 
 				foreach (var values in dataRows) {
-					table.LoadDataRow(values, options);
+					@this.LoadDataRow(values, options);
 				}
 			} finally {
-				table.EndLoadData();
+				@this.EndLoadData();
 			}
 		}
 
 		/// <summary>
 		/// 特定の行を検索し、更新します。
 		/// 一致する行が見つからない場合は、指定した値を使用して新しい行が作成されます。</summary>
-		/// <param name="table"></param>
+		/// <param name="this"></param>
 		/// <param name="values">新しい行の作成に使用する値の配列。</param>
 		/// <param name="options">配列値を既存の行にある対応する値に適用する方法を決定するために使用します。</param>
 		/// <returns>新しい System.Data.DataRow。</returns>
-		private static DataRow LoadDataRow(this DataTable table, object[] values, LoadOption? options = null) {
-			if (table == null) {
+		private static DataRow LoadDataRow(this DataTable @this, object[] values, LoadOption? options = null) {
+			if (@this == null) {
 				throw new ArgumentNullException("table", "テーブルが null です。");
 			}
 
 			if (options.HasValue) {
-				return table.LoadDataRow(values, options.Value);
+				return @this.LoadDataRow(values, options.Value);
 			} else {
-				return table.LoadDataRow(values, true);
+				return @this.LoadDataRow(values, true);
 			}
 		}
 
@@ -224,14 +224,14 @@ namespace ObjectAnalysisProject.Extensions {
 		/// 列インデックスをキーとするインスタンス値の配列を取得します。
 		/// </summary>
 		/// <typeparam name="T">データ型</typeparam>
-		/// <param name="instance">インスタンス</param>
+		/// <param name="this">インスタンス</param>
 		/// <param name="columns">列コレクション</param>
 		/// <returns>列をキーとするインスタンス値の配列を返します。</returns>
-		private static object[] ConvertInsertedArray<T>(this T instance, DataColumnCollection columns) {
+		private static object[] ConvertInsertedArray<T>(this T @this, DataColumnCollection columns) {
 			var length = columns.Count;
 			var values = new object[length];
 
-			var members = instance.GetMembers()
+			var members = @this.GetMembers()
 			.Select(m => new {
 				Index = columns[m.Item1].Ordinal,
 				Value = m.Item3
