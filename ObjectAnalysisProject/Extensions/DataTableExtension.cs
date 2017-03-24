@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows.Forms;
 using ExtensionsLibrary.Extensions;
 
 namespace ObjectAnalysisProject.Extensions {
@@ -12,37 +11,6 @@ namespace ObjectAnalysisProject.Extensions {
 	/// </summary>
 	public static partial class DataTableExtension {
 		#region メソッド
-
-		#region データ追加
-
-		/// <summary>
-		/// DataGridView の列コレクションを指定して、
-		/// データテーブルに列を追加します。</summary>
-		/// <param name="this">データテーブル</param>
-		/// <param name="columns">列コレクション</param>
-		public static void AddColumns(this DataTable @this, DataGridViewColumnCollection columns) {
-			foreach (var col in columns.Cast<DataGridViewColumn>()) {
-				@this.Columns.Add(col.Name, col.ValueType != null ? col.ValueType : typeof(Object));
-			}
-		}
-
-		/// <summary>
-		/// DataGridView の行コレクションを指定して、
-		/// データテーブルに行データを追加します。</summary>
-		/// <param name="this">データテーブル</param>
-		/// <param name="rows">行コレクション</param>
-		public static void AddRows(this DataTable @this, DataGridViewRowCollection rows) {
-			foreach (var row in rows.Cast<DataGridViewRow>()) {
-				try {
-					var r = (DataRowView)row.DataBoundItem;
-					@this.Rows.Add(r.Row);
-				} catch (Exception) {
-					continue;
-				}
-			}
-		}
-
-		#endregion
 
 		#region Select
 
@@ -94,7 +62,7 @@ namespace ObjectAnalysisProject.Extensions {
 
 		#endregion
 
-		#region 列データ列挙取得	GetColumns(+2)
+		#region 列データ列挙取得	GetColumns(+2 オーバーロード)
 
 		/// <summary>
 		/// 列インデックスを指定して、
