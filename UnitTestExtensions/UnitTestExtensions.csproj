@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Data\UserInfo.cs" />
     <Compile Include="UnitTestCommonFeatures.cs" />
     <Compile Include="UnitTestObjectAnalysis.cs" />
     <Compile Include="UnitTestWpf.cs" />

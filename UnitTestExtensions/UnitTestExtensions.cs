@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text;
-using CommonFeaturesLibrary.Extensions;
 using ExtensionsLibrary.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ObjectAnalysisProject.Extensions;
+using UnitTestExtensions.Data;
 
 namespace UnitTestExtensions {
 	[TestClass]
@@ -13,14 +12,6 @@ namespace UnitTestExtensions {
 		#region メソッド
 
 		#region DataTableExtension
-
-		class UserInfo {
-			public string 姓 { get; set; }
-			public string 名 { get; set; }
-			public string 姓名 => this.姓 + this.名;
-			public DateTime 生年月日 { get; set; }
-			public string 住所 { get; set; }
-		}
 
 		[TestMethod]
 		[Owner(nameof(ExtensionsLibrary))]
@@ -30,21 +21,63 @@ namespace UnitTestExtensions {
 				new UserInfo { 姓="斎藤", 名="一郎", 生年月日=new DateTime(1980,2,1), 住所="東京都" },
 				new UserInfo { 姓="鈴木", 名="次郎", 生年月日=new DateTime(1990,5,5), 住所="埼玉県" },
 				new UserInfo { 姓="田中", 名="三郎", 生年月日=new DateTime(1975,4,20), 住所="千葉県" },
-			};
+			}.ToList();
 
 			var tbl = items.ToDataTable();
+			Assert.IsNotNull(tbl);
 
 			var rows = tbl.GetRows().ToList();
+			{
+				// 期待値
+				var expected = 3;
+
+				// 実際値
+				var actual = rows.Count;
+
+				Assert.AreEqual(expected, actual);
+			}
+
 			var cols = tbl.GetColumns().ToList();
+			{
+				// 期待値
+				var expected = 5;
 
-			var collection = tbl.ConvertCollection<UserInfo>().ToArray();
+				// 実際値
+				var actual = cols.Count;
 
-			Assert.IsTrue(items.SequenceEqual(collection));
+				Assert.AreEqual(expected, actual);
+			}
+
+			var collection = tbl.ConvertCollection<UserInfo>();
+
+			var ret = items.SequenceEqual(collection);
+			Assert.IsTrue(ret);
 		}
 
 		#endregion
 
 		#region DateTimeExtension
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.DateTimeExtension))]
+		public void 日付判定() {
+			var tim1 = DateTime.Now;
+			var tim2 = DateTime.Today;
+
+			Assert.IsFalse(tim1.IsDay());
+			Assert.IsTrue(tim2.IsDay());
+
+			{
+				// 期待値
+				var expected = tim2.ToMilliSecondString();
+
+				// 実際値
+				var actual = tim1.Date.ToMilliSecondString();
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
 
 		#endregion
 
