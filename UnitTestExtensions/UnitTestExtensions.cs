@@ -124,6 +124,35 @@ namespace UnitTestExtensions {
 			Assert.IsFalse(new FileInfo("aaaaa.html").IsSharePointIcon());
 		}
 
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.FileInfoExtension))]
+		public void ファイル名取得() {
+			var name = "abcdef";
+			{
+				var file = new FileInfo($@"C:\work\{name}.JPG");
+
+				// 期待値
+				var expected = name;
+
+				// 実際値
+				var actual = file.GetNameWithoutExtension();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var file = new FileInfo($@"C:\work\{name}.exe.zip");
+
+				// 期待値
+				var expected = name;
+
+				// 実際値
+				var actual = file.GetNameWithoutExtension();
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
 		#endregion
 
 		#region GenericsExtension
@@ -140,6 +169,62 @@ namespace UnitTestExtensions {
 
 		#region StringExtension
 
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.StringExtension))]
+		public void 文字列連結() {
+			{
+				var strs = new[] { "abcd", "efgh", "ijkl", };
+
+				// 期待値
+				var expected = $"{strs[0]}{strs[1]}{strs[2]}";
+
+				// 実際値
+				var actual = strs.Join();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var strs = "abcdefghijkl";
+
+				// 期待値
+				var expected = strs;
+
+				// 実際値
+				var actual = strs.Join();
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.StringExtension))]
+		public void 繰り返し文字列生成() {
+			{
+				var str = "_/";
+
+				// 期待値
+				var expected = $"{str}{str}{str}";
+
+				// 実際値
+				var actual = str.Repeat(3);
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var chr = '0';
+
+				// 期待値
+				var expected = $"{chr}{chr}{chr}";
+
+				// 実際値
+				var actual = chr.Repeat(3);
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
 		#endregion
 
 		#region TupleExtension
@@ -151,6 +236,20 @@ namespace UnitTestExtensions {
 		#endregion
 
 		#region UriExtension
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.UriExtension))]
+		public void URLファイル種別判定() {
+			Assert.IsTrue(new Uri(@"http://www.hogohogo.com/aaaaa.JPG").IsImage());
+			Assert.IsTrue(new Uri(@"http://www.hogohogo.com/aaaaa.jpg").IsSharePointIcon());
+			Assert.IsTrue(new Uri(@"http://www.hogohogo.com/aaaaa.JPEG").IsImage());
+			Assert.IsTrue(new Uri(@"http://www.hogohogo.com/aaaaa.jpeg").IsSharePointIcon());
+			Assert.IsTrue(new Uri(@"http://www.hogohogo.com/aaaaa.xlsm").IsSharePointIcon());
+			Assert.IsTrue(new Uri(@"http://www.hogohogo.com/aaaaa.docm").IsSharePointIcon());
+			Assert.IsTrue(new Uri(@"http://www.hogohogo.com/aaaaa.htm").IsSharePointIcon());
+			Assert.IsFalse(new Uri(@"http://www.hitachi.co.jp/New/cnews/month/2015/08/0825.html").IsSharePointIcon());
+		}
 
 		#endregion
 

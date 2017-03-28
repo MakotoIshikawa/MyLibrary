@@ -26,6 +26,71 @@ namespace ExtensionsLibrary.Extensions {
 			return Path.GetFileNameWithoutExtension(@this.OriginalString);
 		}
 
+		#region 拡張子変更
+
+		/// <summary>
+		/// イメージファイルかどうかを判定します。
+		/// </summary>
+		/// <param name="this">FileInfo</param>
+		/// <returns>イメージファイルであれば true を返します。</returns>
+		public static bool IsImage(this Uri @this) {
+			return @this.ContainsAtExtension(
+				"gif",
+				"jpg", "jpeg", "jpe", "jfif",
+				"png",
+				"bmp", "dib", "rle",
+				"tif", "tiff", "nsk",
+				"cgm",
+				"pct", "pic", "pict",
+				"pcx",
+				"ico"
+			);
+		}
+
+		/// <summary>
+		/// SharePoint の icon に対応しているファイルかどうかを判定します。
+		/// </summary>
+		/// <param name="this">FileInfo</param>
+		/// <returns>SharePoint の icon に対応しているファイルであれば true を返します。</returns>
+		public static bool IsSharePointIcon(this Uri @this) {
+			return @this.ContainsAtExtension(
+				"ASP", "ASPX",
+				"CSS",
+				"DOC", "DOCM", "DOCX",
+				"GEN",
+				"GIF",
+				"HTM",
+				"INI",
+				"JPEG", "JPG",
+				"JS",
+				"LOG",
+				"PDF",
+				"PPT", "PPTM", "PPTX",
+				"PUB",
+				"RTF",
+				"STP",
+				"TIF", "TIFF",
+				"TXT", "WMA",
+				"XLS", "XLSM", "XLSX",
+				"XML",
+				"XPS",
+				"XSD", "XSL",
+				"ZIP"
+			);
+		}
+
+		/// <summary>
+		/// 拡張子を判定ます。
+		/// </summary>
+		/// <param name="this">FileInfo</param>
+		/// <param name="exts">拡張子の配列</param>
+		/// <returns>該当する拡張子があれば true を返します。それ以外は false</returns>
+		public static bool ContainsAtExtension(this Uri @this, params string[] exts) {
+			return @this?.GetFileName().ContainsAtExtension(exts) ?? false;
+		}
+
+		#endregion
+
 		#endregion
 	}
 }

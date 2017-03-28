@@ -109,7 +109,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="separator">区切り記号として使用する文字列</param>
 		/// <returns>values のメンバーから成る、separator 文字列で区切られた文字列。
 		/// values にメンバーがない場合、メソッドは String.Emptyを返します。</returns>
-		public static string Join<T>(this IEnumerable<T> @this, string separator = "") {
+		public static string Join<T>(this IEnumerable<T> @this, string separator = null) {
 			return string.Join(separator, @this);
 		}
 
@@ -122,7 +122,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="selector">各要素に適用する変換関数</param>
 		/// <param name="separator">区切り記号として使用する文字列</param>
 		/// <returns>連結したシーケンスを返します。</returns>
-		public static string Join<TSource, TResult>(this IEnumerable<TSource> @this, Func<TSource, TResult> selector, string separator = "") {
+		public static string Join<TSource, TResult>(this IEnumerable<TSource> @this, Func<TSource, TResult> selector, string separator = null) {
 			return @this.Select(selector).Join(separator);
 		}
 

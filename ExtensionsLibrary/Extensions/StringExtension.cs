@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace ExtensionsLibrary.Extensions {
 	/// <summary>
@@ -222,12 +223,21 @@ namespace ExtensionsLibrary.Extensions {
 				return @this;
 			}
 
-			var sb = new StringBuilder();
-			for (int i = 0; i < repeat; i++) {
-				sb.Append(@this);
+			return Enumerable.Repeat(@this, repeat).Join();
+		}
+
+		/// <summary>
+		/// 繰り返し文字列生成
+		/// </summary>
+		/// <param name="this">文字列</param>
+		/// <param name="repeat">個数</param>
+		/// <returns>生成文字列</returns>
+		public static string Repeat(this char @this, int repeat) {
+			if (@this == char.MinValue) {
+				return string.Empty;
 			}
 
-			return sb.ToString();
+			return Enumerable.Repeat(@this, repeat).Join();
 		}
 
 		#endregion
@@ -278,7 +288,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">連結する文字列を格納しているコレクション</param>
 		/// <param name="separator">区切り記号として使用する文字列</param>
 		/// <returns>separator 文字列で区切られた文字列を返します。</returns>
-		public static string Join(this IEnumerable<string> @this, string separator = "") {
+		public static string Join(this IEnumerable<string> @this, string separator = null) {
 			if (!(@this?.Any() ?? false)) {
 				return null;
 			}
@@ -421,6 +431,31 @@ namespace ExtensionsLibrary.Extensions {
 				}
 				return result;
 			}
+		}
+
+		#endregion
+
+		#region ファイルパス判定
+
+		/// <summary>
+		/// 指定したファイルパス文字列の
+		/// 拡張子を判定ます。
+		/// </summary>
+		/// <param name="this">ファイル名</param>
+		/// <param name="exts">拡張子の配列</param>
+		/// <returns>該当する拡張子があれば true を返します。それ以外は false</returns>
+		public static bool ContainsAtExtension(this string @this, params string[] exts) {
+			if (@this.IsEmpty()) {
+				return false;
+			}
+
+			if (!(exts?.Any() ?? false)) {
+				return false;
+			}
+
+			var gp = exts.Join("|");
+			var rx = new Regex($@"\.({gp})$", RegexOptions.IgnoreCase);
+			return rx.IsMatch(@this);
 		}
 
 		#endregion

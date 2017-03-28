@@ -45,6 +45,7 @@
     <Compile Include="Extensions\EnumerableExtension.cs" />
     <Compile Include="Extensions\FileInfoExtension.cs" />
     <Compile Include="Extensions\GenericsExtension.cs" />
+    <Compile Include="Extensions\ListAddExtension.cs" />
     <Compile Include="Extensions\ListExtension.cs" />
     <Compile Include="Extensions\ObjectExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />

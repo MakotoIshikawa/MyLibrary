@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -37,7 +39,13 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">FileInfo</param>
 		/// <returns>拡張子なしのファイル名を返します。</returns>
 		public static string GetNameWithoutExtension(this FileInfo @this) {
-			return @this.Name.Remove(@this.Name.IndexOf(@this.Extension), @this.Extension.Length);
+			var name = @this.FullName;
+
+			do {
+				name = Path.GetFileNameWithoutExtension(name);
+			} while (name.HasString("."));
+
+			return name;
 		}
 
 		#endregion
@@ -118,9 +126,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="exts">拡張子の配列</param>
 		/// <returns>該当する拡張子があれば true を返します。それ以外は false</returns>
 		public static bool ContainsAtExtension(this FileInfo @this, params string[] exts) {
-			var gp = exts.Join("|");
-			var rx = new Regex($@"\.({gp})$", RegexOptions.IgnoreCase);
-			return rx.IsMatch(@this.Name);
+			return @this?.Name.ContainsAtExtension(exts) ?? false;
 		}
 
 		#endregion

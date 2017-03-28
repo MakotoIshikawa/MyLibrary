@@ -18,7 +18,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">SqlParameter のリスト</param>
 		/// <param name="parameterName">パラメーター名</param>
 		/// <param name="value">値</param>
-		public static void Add(this List<SqlParameter> @this, string parameterName, object value) {
+		public static void Add(this List<SqlParameter> @this, string parameterName, object value = null) {
 			if (value == null) {
 				@this.Add(new SqlParameter(parameterName, DBNull.Value));
 			} else {
