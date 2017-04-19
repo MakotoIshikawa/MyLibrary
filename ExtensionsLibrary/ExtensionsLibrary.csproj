@@ -47,6 +47,7 @@
     <Compile Include="Extensions\GenericsExtension.cs" />
     <Compile Include="Extensions\ListAddExtension.cs" />
     <Compile Include="Extensions\ListExtension.cs" />
+    <Compile Include="Extensions\MathExtension.cs" />
     <Compile Include="Extensions\ObjectExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\TupleExtension.cs" />

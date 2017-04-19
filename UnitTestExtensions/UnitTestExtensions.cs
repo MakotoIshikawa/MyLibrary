@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Linq;
 using ExtensionsLibrary.Extensions;
@@ -222,6 +223,26 @@ namespace UnitTestExtensions {
 				var actual = chr.Repeat(3);
 
 				Assert.AreEqual(expected, actual);
+			}
+		}
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.StringExtension))]
+		public void 文字列細分化() {
+			{
+				var separator = ", ";
+				var ary = new[] { "月", "火", "水", "木", "金", "土", "日", };
+				var str = ary.Join(separator);
+
+				// 期待値
+				var expected = ary;
+
+				// 実際値
+				var actual = str.Split(true, separator);
+
+				var ret = expected.StructuralEquals(actual);
+				Assert.IsTrue(ret);
 			}
 		}
 

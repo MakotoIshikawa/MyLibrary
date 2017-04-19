@@ -460,6 +460,23 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
+		#region MyRegion
+
+		/// <summary>
+		/// 配列内の文字列に基づいて文字列を部分文字列に分割します。
+		/// 部分文字列が空の配列の要素を含めるかどうかを指定することができます。
+		/// </summary>
+		/// <param name="this">string</param>
+		/// <param name="removeEmpty"><para>空の配列要素を省略する場合は true</para>
+		/// <para>空の配列要素も含める場合は false</para></param>
+		/// <param name="separator">この文字列から部分文字列を取り出すために区切り文字として使用する文字列配列。
+		/// <para>区切り文字が含まれていない空の配列。または null。</para></param>
+		/// <returns>この文字列を、separator 配列のいずれかまたは複数の要素 (文字列) で区切ることによって取り出された部分文字列を格納する配列。</returns>
+		public static string[] Split(this string @this, bool removeEmpty, params string[] separator)
+			=> @this.Split(separator, removeEmpty ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
+
+		#endregion
+
 		#endregion
 	}
 }

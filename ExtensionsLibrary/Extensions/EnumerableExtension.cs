@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -424,6 +425,24 @@ namespace ExtensionsLibrary.Extensions {
 		public static IEnumerable<TSource> MinElementsBy<TSource, TResult>(this IEnumerable<TSource> @this, Func<TSource, TResult> selector) {
 			var value = @this.Min(selector);
 			return @this.Where(c => selector(c).Equals(value));
+		}
+
+		#endregion
+
+		#region 比較
+
+		/// <summary>
+		/// 構造的に同等かどうかを判定します。
+		/// </summary>
+		/// <param name="this">IStructuralEquatable</param>
+		/// <param name="other">現在のインスタンスと比較するオブジェクト</param>
+		/// <returns>
+		/// <para>2 つのオブジェクトが等しい場合は true</para>
+		/// <para>それ以外の場合は false</para>
+		/// </returns>
+		public static bool StructuralEquals(this IStructuralEquatable @this, IStructuralEquatable other) {
+			var ret = @this.Equals(other, StructuralComparisons.StructuralEqualityComparer);
+			return ret;
 		}
 
 		#endregion

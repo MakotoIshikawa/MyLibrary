@@ -31,6 +31,6 @@ using System.Resources;
 //
 // すべての値を指定するか、下のように '*' を使ってビルドおよびリビジョン番号を 
 // 既定値にすることができます:
-[assembly: AssemblyVersion("1.2.*")]
-[assembly: AssemblyFileVersion("1.2.3.11")]
+[assembly: AssemblyVersion("1.7.*")]
+[assembly: AssemblyFileVersion("1.7.4.19")]
 [assembly: NeutralResourcesLanguage("ja-JP")]
