@@ -56,6 +56,7 @@
     <Compile Include="UnitTestObjectAnalysis.cs" />
     <Compile Include="UnitTestWpf.cs" />
     <Compile Include="UnitTestWindowsForms.cs" />
+    <Compile Include="UnitTestJson.cs" />
     <Compile Include="UnitTestXml.cs" />
     <Compile Include="UnitTestExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +69,10 @@
     <ProjectReference Include="..\ExtensionsLibrary\ExtensionsLibrary.csproj">
       <Project>{d37920d6-23c2-42a2-a593-32f8687fd320}</Project>
       <Name>ExtensionsLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JsonLibrary\JsonLibrary.csproj">
+      <Project>{b81b68d9-a7fa-49d9-86c3-ad3d609f4226}</Project>
+      <Name>JsonLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ObjectAnalysisProject\ObjectAnalysisProject.csproj">
       <Project>{be1bb940-f59e-4440-add0-603bd9915a02}</Project>

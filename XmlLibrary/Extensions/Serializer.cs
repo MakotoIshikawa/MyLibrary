@@ -2,7 +2,6 @@
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using ExtensionsLibrary.Extensions;
 
 namespace XmlLibrary.Extensions {
 	/// <summary>

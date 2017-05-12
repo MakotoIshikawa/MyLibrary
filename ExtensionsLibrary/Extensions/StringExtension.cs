@@ -460,7 +460,7 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
-		#region MyRegion
+		#region Split
 
 		/// <summary>
 		/// ”z—ñ“à‚Ì•¶š—ñ‚ÉŠî‚Ã‚¢‚Ä•¶š—ñ‚ğ•”•ª•¶š—ñ‚É•ªŠ„‚µ‚Ü‚·B
