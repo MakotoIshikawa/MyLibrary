@@ -28,7 +28,7 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
-		#region 文字列検索
+		#region 文字列判定
 
 		/// <summary>
 		/// 指定された文字列が存在するかどうかを示します。
@@ -44,6 +44,15 @@ namespace ExtensionsLibrary.Extensions {
 
 			return !(@this.IndexOf(word) < 0);
 		}
+
+		/// <summary>
+		/// 指定したワードの配列を全て含んでいるかどうか判定します。
+		/// </summary>
+		/// <param name="this">string</param>
+		/// <param name="words">ワードの配列</param>
+		/// <returns>全てのワードを含んでいる場合は、true を返します。</returns>
+		public static bool MatchWords(this string @this, params string[] words)
+			=> words.All(s => @this.HasString(s));
 
 		#endregion
 

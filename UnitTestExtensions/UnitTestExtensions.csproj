@@ -57,11 +57,17 @@
     <Compile Include="UnitTestWpf.cs" />
     <Compile Include="UnitTestWindowsForms.cs" />
     <Compile Include="UnitTestJson.cs" />
+    <Compile Include="UnitTestLuis.cs" />
+    <Compile Include="UnitTestAzure.cs" />
     <Compile Include="UnitTestXml.cs" />
     <Compile Include="UnitTestExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AzureLibrary\AzureLibrary.csproj">
+      <Project>{1e77b52a-fe74-488f-8f07-7f32ee7de7b9}</Project>
+      <Name>AzureLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CommonFeaturesLibrary\CommonFeaturesLibrary.csproj">
       <Project>{666330c0-b3f9-489a-ab39-4217d18728c7}</Project>
       <Name>CommonFeaturesLibrary</Name>
@@ -73,6 +79,10 @@
     <ProjectReference Include="..\JsonLibrary\JsonLibrary.csproj">
       <Project>{b81b68d9-a7fa-49d9-86c3-ad3d609f4226}</Project>
       <Name>JsonLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LuisLibrary\LuisLibrary.csproj">
+      <Project>{37a74f13-c54a-4d7c-8972-72ac1f0d4fa5}</Project>
+      <Name>LuisLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ObjectAnalysisProject\ObjectAnalysisProject.csproj">
       <Project>{be1bb940-f59e-4440-add0-603bd9915a02}</Project>
