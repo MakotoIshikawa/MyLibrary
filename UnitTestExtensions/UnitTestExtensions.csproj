@@ -52,6 +52,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Data\UserInfo.cs" />
+    <Compile Include="UnitTestNet.cs" />
+    <Compile Include="UnitTestBot.cs" />
     <Compile Include="UnitTestCommonFeatures.cs" />
     <Compile Include="UnitTestObjectAnalysis.cs" />
     <Compile Include="UnitTestWpf.cs" />
@@ -68,6 +70,10 @@
       <Project>{1e77b52a-fe74-488f-8f07-7f32ee7de7b9}</Project>
       <Name>AzureLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BotLibrary\BotLibrary.csproj">
+      <Project>{6d14cbfd-c76b-4e64-b752-17ea50eccc0b}</Project>
+      <Name>BotLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CommonFeaturesLibrary\CommonFeaturesLibrary.csproj">
       <Project>{666330c0-b3f9-489a-ab39-4217d18728c7}</Project>
       <Name>CommonFeaturesLibrary</Name>
@@ -83,6 +89,10 @@
     <ProjectReference Include="..\LuisLibrary\LuisLibrary.csproj">
       <Project>{37a74f13-c54a-4d7c-8972-72ac1f0d4fa5}</Project>
       <Name>LuisLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetLibrary\NetLibrary.csproj">
+      <Project>{4aa33b8a-ed2b-4bcd-bdb3-02cb357c0758}</Project>
+      <Name>NetLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ObjectAnalysisProject\ObjectAnalysisProject.csproj">
       <Project>{be1bb940-f59e-4440-add0-603bd9915a02}</Project>

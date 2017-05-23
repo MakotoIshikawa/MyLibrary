@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuisLibrary", "LuisLibrary\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotLibrary", "BotLibrary\BotLibrary.csproj", "{6D14CBFD-C76B-4E64-B752-17EA50ECCC0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetLibrary", "NetLibrary\NetLibrary.csproj", "{4AA33B8A-ED2B-4BCD-BDB3-02CB357C0758}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{6D14CBFD-C76B-4E64-B752-17EA50ECCC0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D14CBFD-C76B-4E64-B752-17EA50ECCC0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D14CBFD-C76B-4E64-B752-17EA50ECCC0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AA33B8A-ED2B-4BCD-BDB3-02CB357C0758}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AA33B8A-ED2B-4BCD-BDB3-02CB357C0758}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AA33B8A-ED2B-4BCD-BDB3-02CB357C0758}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AA33B8A-ED2B-4BCD-BDB3-02CB357C0758}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

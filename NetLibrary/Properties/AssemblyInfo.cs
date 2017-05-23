@@ -1,15 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Resources;
 
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("CommonFeaturesLibrary")]
-[assembly: AssemblyDescription("共通処理ライブラリ")]
+[assembly: AssemblyTitle("NetLibrary")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CommonFeaturesLibrary")]
+[assembly: AssemblyProduct("NetLibrary")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,18 +19,18 @@ using System.Resources;
 // その型の ComVisible 属性を true に設定してください。
 [assembly: ComVisible(false)]
 
-// 次の GUID は、このプロジェクトが COM に公開される場合の、typelib の ID です
-[assembly: Guid("480ca42a-eac0-484c-9229-11ceee3236ab")]
+// このプロジェクトが COM に公開される場合、次の GUID が typelib の ID になります
+[assembly: Guid("4aa33b8a-ed2b-4bcd-bdb3-02cb357c0758")]
 
-// アセンブリのバージョン情報は、以下の 4 つの値で構成されています:
+// アセンブリのバージョン情報は次の 4 つの値で構成されています:
 //
-//      Major Version
-//      Minor Version 
-//      Build Number
+//      メジャー バージョン
+//      マイナー バージョン
+//      ビルド番号
 //      Revision
 //
 // すべての値を指定するか、下のように '*' を使ってビルドおよびリビジョン番号を 
 // 既定値にすることができます:
-[assembly: AssemblyVersion("1.7.*")]
-[assembly: AssemblyFileVersion("1.7.3.11")]
-[assembly: NeutralResourcesLanguage("ja-JP")]
+// [assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.7.5.*")]
+[assembly: AssemblyFileVersion("1.7.5.22")]

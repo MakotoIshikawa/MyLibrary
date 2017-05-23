@@ -26,7 +26,7 @@ namespace ExtensionsLibrary.Extensions {
 			return Path.GetFileNameWithoutExtension(@this.OriginalString);
 		}
 
-		#region 拡張子変更
+		#region 拡張子判定
 
 		/// <summary>
 		/// イメージファイルかどうかを判定します。

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using LuisLibrary.Data;
-using LuisLibrary.Extensions;
+using NetLibrary.Extensions;
 
 namespace LuisLibrary.Utility {
 	/// <summary>
@@ -21,7 +21,7 @@ namespace LuisLibrary.Utility {
 		/// <returns>解析結果を返します。</returns>
 		public static async Task<LuisResponseRoot> AnalyzeAsync(string appId, string key, string talk) {
 			var requestUri = GetUriOfLuisApi(appId, key, talk);
-			return await requestUri.ReadAsJsonAsync<LuisResponseRoot>();
+			return await requestUri.GetJsonAsync<LuisResponseRoot>();
 		}
 
 		/// <summary>
