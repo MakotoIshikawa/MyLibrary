@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace NetLibrary.Extensions {
 	/// <summary>
@@ -11,6 +12,37 @@ namespace NetLibrary.Extensions {
 	/// </summary>
 	public static partial class UriExtension {
 		#region メソッド
+
+		/// <summary>
+		/// 指定 URI に GET 要求を送信し、非同期操作で応答本体を JObject として返します。
+		/// </summary>
+		/// <param name="this">Uri</param>
+		/// <param name="setting">HttpClient の設定を行うメソッド</param>
+		/// <returns>応答データの JObject を返します。</returns>
+		public static async Task<JObject> GetObjectAsync(this Uri @this, Action<HttpClient> setting = null) {
+			var json = await @this.GetStringAsync(setting);
+			var obj = JObject.Parse(json);
+			return obj;
+		}
+
+		#region String
+
+		/// <summary>
+		/// 指定 URI に GET 要求を送信し、非同期操作で応答本体を文字列として返します。
+		/// </summary>
+		/// <param name="this">Uri</param>
+		/// <param name="setting">HttpClient の設定を行うメソッド</param>
+		/// <returns>応答データの文字列を返します。</returns>
+		public static async Task<string> GetStringAsync(this Uri @this, Action<HttpClient> setting = null) {
+			using (var client = new HttpClient()) {
+				setting?.Invoke(client);
+
+				var jsonText = await client.GetStringAsync(@this);
+				return jsonText;
+			}
+		}
+
+		#endregion
 
 		#region Json
 
