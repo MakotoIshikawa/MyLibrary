@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Data\PrecipitationModel.cs" />
     <Compile Include="Data\UserInfo.cs" />
+    <Compile Include="UnitTestRetry.cs" />
     <Compile Include="UnitTestNet.cs" />
     <Compile Include="UnitTestBot.cs" />
     <Compile Include="UnitTestCommonFeatures.cs" />
@@ -105,6 +106,10 @@
     <ProjectReference Include="..\ObjectAnalysisProject\ObjectAnalysisProject.csproj">
       <Project>{be1bb940-f59e-4440-add0-603bd9915a02}</Project>
       <Name>ObjectAnalysisProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RetryLibrary\RetryLibrary.csproj">
+      <Project>{2bb3fff2-8010-4e79-a60c-5153fc99b259}</Project>
+      <Name>RetryLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\WindowsFormsLibrary\WindowsFormsLibrary.csproj">
       <Project>{d2bdb1cb-dc00-413e-a895-30075f92edb4}</Project>

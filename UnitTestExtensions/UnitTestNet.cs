@@ -1,17 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using CommonFeaturesLibrary.Extensions;
 using ExtensionsLibrary.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NetLibrary.Extensions;
 using UnitTestExtensions.Data;
-using Newtonsoft.Json;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using Newtonsoft.Json.Linq;
 
 namespace UnitTestExtensions {
 	[TestClass]
@@ -33,8 +26,7 @@ namespace UnitTestExtensions {
 
 			Assert.IsNotNull(json);
 
-			var jsonStr = await uri.GetStringAsync();
-			var jobj = JObject.Parse(jsonStr);
+			var jobj = await uri.GetObjectAsync();
 			var jstr = jobj.ToString();
 			var feature = jobj[nameof(Feature)].FirstOrDefault();
 			var weathers = (feature[nameof(Property)][nameof(WeatherList)][nameof(Weather)]);
