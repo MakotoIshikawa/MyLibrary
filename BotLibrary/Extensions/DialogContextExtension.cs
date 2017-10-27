@@ -98,13 +98,12 @@ namespace BotLibrary.Extensions {
 			return cd.ToAttachment();
 		}
 
-		private static CardAction ToButton(this KeyValuePair<string, string> kv) {
-			return new CardAction() {
+		private static CardAction ToButton(this KeyValuePair<string, string> kv)
+			=> new CardAction() {
 				Value = kv.Value,
 				Type = "postBack",
 				Title = kv.Key,
 			};
-		}
 
 		#endregion
 

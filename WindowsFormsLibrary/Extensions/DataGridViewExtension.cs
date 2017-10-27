@@ -16,18 +16,16 @@ namespace WindowsFormsLibrary.Extensions {
 		/// </summary>
 		/// <param name="this">DataGridView</param>
 		/// <returns>DataGridViewRow のコレクションを返します。</returns>
-		public static IEnumerable<DataGridViewRow> GetSelectedRows(this DataGridView @this) {
-			return @this.SelectedRows.ToGeneric();
-		}
+		public static IEnumerable<DataGridViewRow> GetSelectedRows(this DataGridView @this)
+			=> @this.SelectedRows.ToGeneric();
 
 		/// <summary>
 		/// ジェネリック型のコレクションに変換します。
 		/// </summary>
 		/// <param name="this">DataGridViewSelectedRowCollection</param>
 		/// <returns>DataGridViewRow のコレクションを返します。</returns>
-		public static IEnumerable<DataGridViewRow> ToGeneric(this DataGridViewSelectedRowCollection @this) {
-			return @this.Cast<DataGridViewRow>();
-		}
+		public static IEnumerable<DataGridViewRow> ToGeneric(this DataGridViewSelectedRowCollection @this)
+			=> @this.Cast<DataGridViewRow>();
 
 		#region データテーブル変換
 

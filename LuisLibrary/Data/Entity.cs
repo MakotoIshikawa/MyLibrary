@@ -40,9 +40,8 @@ namespace LuisLibrary.Data {
 		/// オブジェクトを文字列に変換します。
 		/// </summary>
 		/// <returns>オブジェクトを表す文字列を返します。</returns>
-		public override string ToString() {
-			return this.GetPropertiesString();
-		}
+		public override string ToString()
+			=> this.GetPropertiesString();
 
 		#endregion
 	}

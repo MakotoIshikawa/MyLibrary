@@ -10,6 +10,15 @@ using UnitTestExtensions.Data;
 namespace UnitTestExtensions {
 	[TestClass]
 	public partial class UnitTestExtensions {
+		#region プロパティ
+
+		/// <summary>
+		/// リソースフォルダのディレクトリ情報を取得します。
+		/// </summary>
+		public static DirectoryInfo Resources => new DirectoryInfo(@".");
+
+		#endregion
+
 		#region メソッド
 
 		#region DataTableExtension
@@ -80,6 +89,87 @@ namespace UnitTestExtensions {
 			}
 		}
 
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.DateTimeExtension))]
+		public void 日時切り上げ() {
+			var interval = TimeSpan.FromMinutes(15);
+			{
+				var tim = DateTime.Parse("2018-01-03 08:59:01");
+
+				// 期待値
+				var expected = new DateTime(2018, 01, 03, 9, 0, 0);
+
+				// 実際値
+				var actual = tim.RoundUp(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = DateTime.Parse("2018-01-03 09:00:00");
+
+				// 期待値
+				var expected = new DateTime(2018, 01, 03, 9, 0, 0);
+
+				// 実際値
+				var actual = tim.RoundUp(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = DateTime.Parse("2018-01-03 09:00:01");
+
+				// 期待値
+				var expected = new DateTime(2018, 01, 03, 9, 15, 0);
+
+				// 実際値
+				var actual = tim.RoundUp(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.DateTimeExtension))]
+		public void 日時切り捨て() {
+			var interval = TimeSpan.FromMinutes(15);
+			{
+				var tim = DateTime.Parse("2018-01-03 08:59:01");
+
+				// 期待値
+				var expected = new DateTime(2018, 01, 03, 8, 45, 0);
+
+				// 実際値
+				var actual = tim.RoundDown(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = DateTime.Parse("2018-01-03 09:00:00");
+
+				// 期待値
+				var expected = new DateTime(2018, 01, 03, 9, 0, 0);
+
+				// 実際値
+				var actual = tim.RoundDown(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = DateTime.Parse("2018-01-03 09:00:01");
+
+				// 期待値
+				var expected = new DateTime(2018, 01, 03, 9, 0, 0);
+
+				// 実際値
+				var actual = tim.RoundDown(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
 		#endregion
 
 		#region DictionaryExtension
@@ -91,12 +181,13 @@ namespace UnitTestExtensions {
 		[TestMethod]
 		[Owner(nameof(ExtensionsLibrary))]
 		[TestCategory(nameof(ExtensionsLibrary.Extensions.DirectoryInfoExtension))]
+		[DeploymentItem(@"Resources")]
 		public void ディレクトリ内ファイル取得() {
-			var fullPath = $@"C:\work";
-			var dir = new DirectoryInfo(fullPath);
+			var dir = Resources;
 			var files = dir.GetFileInfos(true, ".htm", ".html");
 
 			Assert.IsTrue(files.Any());
+			Assert.IsTrue(files.Any(f => f.Extension == ".csv"));
 			Assert.IsFalse(files.Any(f => f.Extension == ".htm"));
 			Assert.IsFalse(files.Any(f => f.Extension == ".html"));
 		}
@@ -243,6 +334,240 @@ namespace UnitTestExtensions {
 
 				var ret = expected.StructuralEquals(actual);
 				Assert.IsTrue(ret);
+			}
+		}
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.StringExtension))]
+		public void 時刻変換() {
+			{
+				var str = "13:30";
+
+				// 期待値
+				var expected = new TimeSpan(13, 30, 0);
+
+				// 実際値
+				var actual = str.ToDateTime("HH:mm")?.TimeOfDay;
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "13:30";
+
+				// 期待値
+				var expected = new TimeSpan(13, 30, 0);
+
+				// 実際値
+				var actual = str.ToTimeSpan("HH:mm");
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "08:00";
+
+				// 期待値
+				var expected = new TimeSpan(8, 0, 0);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "9:00";
+
+				// 期待値
+				var expected = new TimeSpan(9, 0, 0);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "1.00:00";
+
+				// 期待値
+				var expected = new TimeSpan(24, 0, 0);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "24:00";
+
+				// 期待値
+				var expected = new TimeSpan(24, 0, 0);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "32:30:50";
+
+				// 期待値
+				var expected = new TimeSpan(32, 30, 50);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "32:30:50.200";
+
+				// 期待値
+				var expected = new TimeSpan(1, 8, 30, 50, 200);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
+		#endregion
+
+		#region TimeSpanExtension
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.TimeSpanExtension))]
+		public void 時分変換() {
+			{
+				var tim = new TimeSpan(9, 0, 0);
+
+				// 期待値
+				var expected = "09:00";
+
+				// 実際値
+				var actual = tim.ToHourAndMinString();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = new TimeSpan(128, 70, 0);
+
+				// 期待値
+				var expected = "129:10";
+
+				// 実際値
+				var actual = tim.ToHourAndMinString();
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.TimeSpanExtension))]
+		public void ミリ秒変換() {
+			{
+				var tim = new TimeSpan(0, 9, 0, 0, 050);
+
+				// 期待値
+				var expected = "09:00:00.050";
+
+				// 実際値
+				var actual = tim.ToMilliSecondString();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = new TimeSpan(0, 128, 70, 0, 1200);
+
+				// 期待値
+				var expected = "129:10:01.200";
+
+				// 実際値
+				var actual = tim.ToMilliSecondString();
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.TimeSpanExtension))]
+		public void 時刻切り上げ() {
+			var interval = 15;
+			{
+				var tim = TimeSpan.Parse("08:59:01");
+
+				// 期待値
+				var expected = new TimeSpan(9, 0, 0);
+
+				// 実際値
+				var actual = tim.RoundUpAtMinute(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = TimeSpan.Parse("09:00:00");
+
+				// 期待値
+				var expected = new TimeSpan(9, 0, 0);
+
+				// 実際値
+				var actual = tim.RoundUpAtMinute(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = TimeSpan.Parse("09:00:01");
+
+				// 期待値
+				var expected = new TimeSpan(9, 15, 0);
+
+				// 実際値
+				var actual = tim.RoundUpAtMinute(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.TimeSpanExtension))]
+		public void 時刻切り捨て() {
+			var interval = 15;
+			{
+				var tim = TimeSpan.Parse("08:59:01");
+
+				// 期待値
+				var expected = new TimeSpan(8, 45, 0);
+
+				// 実際値
+				var actual = tim.RoundDownAtMinute(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = TimeSpan.Parse("09:00:00");
+
+				// 期待値
+				var expected = new TimeSpan(9, 0, 0);
+
+				// 実際値
+				var actual = tim.RoundDownAtMinute(interval);
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = TimeSpan.Parse("09:00:01");
+
+				// 期待値
+				var expected = new TimeSpan(9, 0, 0);
+
+				// 実際値
+				var actual = tim.RoundDownAtMinute(interval);
+
+				Assert.AreEqual(expected, actual);
 			}
 		}
 

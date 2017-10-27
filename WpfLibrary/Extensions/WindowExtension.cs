@@ -20,9 +20,8 @@ namespace WpfLibrary.Extensions {
 		/// <param name="defaultResult">メッセージ ボックスの既定の結果を指定する MessageBoxResult 値。</param>
 		/// <param name="options">オプションを指定する MessageBoxOptions 値オブジェクト。</param>
 		/// <returns>DialogResult 値のいずれか。</returns>
-		public static MessageBoxResult ShowMessageBox(this Window @this, string messageBoxText, string caption = "", MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage icon = MessageBoxImage.None, MessageBoxResult defaultResult = MessageBoxResult.None, MessageBoxOptions options = MessageBoxOptions.None) {
-			return MessageBox.Show(@this, messageBoxText, caption, button, icon, defaultResult, options);
-		}
+		public static MessageBoxResult ShowMessageBox(this Window @this, string messageBoxText, string caption = "", MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage icon = MessageBoxImage.None, MessageBoxResult defaultResult = MessageBoxResult.None, MessageBoxOptions options = MessageBoxOptions.None)
+			=> MessageBox.Show(@this, messageBoxText, caption, button, icon, defaultResult, options);
 
 		#endregion
 	}

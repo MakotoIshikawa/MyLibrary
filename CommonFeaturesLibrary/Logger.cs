@@ -62,9 +62,8 @@ namespace CommonFeaturesLibrary {
 		/// <param name="message">メッセージ</param>
 		/// <remarks>
 		/// ログファイルにログを書き込む</remarks>
-		public void WriteLog(string message) {
-			this.FileInfo.WriteLog(message);
-		}
+		public void WriteLog(string message)
+			=> this.FileInfo.WriteLog(message);
 
 		#endregion
 
@@ -73,9 +72,8 @@ namespace CommonFeaturesLibrary {
 		/// <summary>
 		/// ログファイルの内容をクリアします。
 		/// </summary>
-		public void Clear() {
-			this.FileInfo.Clear();
-		}
+		public void Clear()
+			=> this.FileInfo.Clear();
 
 		#endregion
 

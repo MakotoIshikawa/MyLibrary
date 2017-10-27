@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using JsonLibrary.Extensions;
 
 namespace NetLibrary.Extensions {
 	/// <summary> 
@@ -20,13 +20,14 @@ namespace NetLibrary.Extensions {
 		/// <typeparam name="T">JSON をデシリアライズする型</typeparam>
 		/// <param name="this">HttpContent</param>
 		/// <param name="enc">文字エンコーディング</param>
+		/// <param name="ignoreNull">null 値を無視するかどうか</param>
 		/// <returns>HttpContent から読み込んだ JSON をデシリアライズした結果のオブジェクト</returns> 
-		public static async Task<T> ReadAsJsonAsync<T>(this HttpContent @this, Encoding enc = null) {
+		public static async Task<T> ReadAsJsonAsync<T>(this HttpContent @this, Encoding enc = null, bool ignoreNull = true) {
 			var jsonText = (enc != null)
 				? await @this.ReadAsStringAsync(enc)
 				: await @this.ReadAsStringAsync();
 
-			return JsonConvert.DeserializeObject<T>(jsonText);
+			return jsonText.Deserialize<T>(ignoreNull);
 		}
 
 		/// <summary>

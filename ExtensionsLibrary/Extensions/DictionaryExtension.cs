@@ -17,9 +17,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">マップ</param>
 		/// <param name="key">キー</param>
 		/// <returns>値を返します。</returns>
-		public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key) {
-			return @this.GetValueOrDefault(key, default(TValue));
-		}
+		public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key)
+			=> @this.GetValueOrDefault(key, default(TValue));
 
 		/// <summary>
 		/// 値を取得します。存在しないKeyの場合は default 値を返します。
@@ -28,9 +27,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="key">キー</param>
 		/// <param name="defaultValue">default 値</param>
 		/// <returns>値を返します。</returns>
-		public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key, TValue defaultValue) {
-			return @this.ContainsKey(key) ? @this[key] : defaultValue;
-		}
+		public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key, TValue defaultValue)
+			=> @this.ContainsKey(key) ? @this[key] : defaultValue;
 
 		#endregion
 
@@ -39,9 +37,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// </summary>
 		/// <param name="this">IDictionary インターフェイスを実装したクラス</param>
 		/// <returns>キーと値を入れ替えたディクショナリーを返します。</returns>
-		public static Dictionary<TValue, TKey> Swap<TKey, TValue>(this IDictionary<TKey, TValue> @this) {
-			return @this.ToDictionary(kv => kv.Value, kv => kv.Key);
-		}
+		public static Dictionary<TValue, TKey> Swap<TKey, TValue>(this IDictionary<TKey, TValue> @this)
+			=> @this.ToDictionary(kv => kv.Value, kv => kv.Key);
 
 		#endregion
 	}

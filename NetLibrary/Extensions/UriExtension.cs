@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using JsonLibrary.Extensions;
 using Newtonsoft.Json.Linq;
 
 namespace NetLibrary.Extensions {
@@ -54,16 +54,17 @@ namespace NetLibrary.Extensions {
 		/// <typeparam name="TResult">戻り値の型</typeparam>
 		/// <param name="this">Uri</param>
 		/// <param name="enc">文字エンコーディング</param>
+		/// <param name="ignoreNull">null 値を無視するかどうか</param>
 		/// <param name="setting">HttpClient の設定を行うメソッド</param>
 		/// <returns>デシリアライズ JSON オブジェクトを返します。</returns>
-		public static async Task<TResult> GetJsonAsync<TResult>(this Uri @this, Encoding enc, Action<HttpClient> setting = null) {
+		public static async Task<TResult> GetJsonAsync<TResult>(this Uri @this, Encoding enc, bool ignoreNull = true, Action<HttpClient> setting = null) {
 			using (var client = new HttpClient()) {
 				setting?.Invoke(client);
 
 				var response = await client.GetAsync(@this);
 				response.EnsureSuccessStatusCode();
 
-				return await response.Content.ReadAsJsonAsync<TResult>(enc);
+				return await response.Content.ReadAsJsonAsync<TResult>(enc, ignoreNull);
 			}
 		}
 
@@ -73,14 +74,15 @@ namespace NetLibrary.Extensions {
 		/// </summary>
 		/// <typeparam name="TResult">戻り値の型</typeparam>
 		/// <param name="this">Uri</param>
+		/// <param name="ignoreNull">null 値を無視するかどうか</param>
 		/// <param name="setting">HttpClient の設定を行うメソッド</param>
 		/// <returns>デシリアライズ JSON オブジェクトを返します。</returns>
-		public static async Task<TResult> GetJsonAsync<TResult>(this Uri @this, Action<HttpClient> setting = null) {
+		public static async Task<TResult> GetJsonAsync<TResult>(this Uri @this, bool ignoreNull = true, Action<HttpClient> setting = null) {
 			using (var client = new HttpClient()) {
 				setting?.Invoke(client);
 
 				var jsonText = await client.GetStringAsync(@this);
-				return JsonConvert.DeserializeObject<TResult>(jsonText);
+				return jsonText.Deserialize<TResult>(ignoreNull);
 			}
 		}
 
@@ -125,6 +127,55 @@ namespace NetLibrary.Extensions {
 			ms.Seek(0, SeekOrigin.Begin);
 
 			return ms;
+		}
+
+		#endregion
+
+		#region POST
+
+		/// <summary>
+		/// POST 要求を非同期操作として送信します。
+		/// </summary>
+		/// <typeparam name="T">要求の内容を格納した値の型</typeparam>
+		/// <param name="this">Uri</param>
+		/// <param name="value">要求の内容を格納した値</param>
+		/// <returns>HTTP 応答メッセージを返します。</returns>
+		public static async Task<HttpResponseMessage> PostAsync<T>(this Uri @this, T value) {
+			using (var client = new HttpClient()) {
+				return await client.PostAsync(@this, value);
+			}
+		}
+
+		#endregion
+
+		#region PUT
+
+		/// <summary>
+		/// PUT 要求を非同期操作として送信します。
+		/// </summary>
+		/// <typeparam name="T">要求の内容を格納した値の型</typeparam>
+		/// <param name="this">Uri</param>
+		/// <param name="value">要求の内容を格納した値</param>
+		/// <returns>HTTP 応答メッセージを返します。</returns>
+		public static async Task<HttpResponseMessage> PutAsync<T>(this Uri @this, T value) {
+			using (var client = new HttpClient()) {
+				return await client.PutAsync(@this, value);
+			}
+		}
+
+		#endregion
+
+		#region DELETE
+
+		/// <summary>
+		/// DELETE 要求を非同期操作として送信します。
+		/// </summary>
+		/// <param name="this">Uri</param>
+		/// <returns>HTTP 応答メッセージを返します。</returns>
+		public static async Task<HttpResponseMessage> DeleteAsync(this Uri @this) {
+			using (var client = new HttpClient()) {
+				return await client.DeleteAsync(@this);
+			}
 		}
 
 		#endregion

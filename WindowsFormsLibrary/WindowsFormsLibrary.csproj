@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WindowsFormsLibrary</RootNamespace>
     <AssemblyName>WindowsFormsLibrary</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -45,31 +45,29 @@
     <Compile Include="Extensions\FormExtension.cs" />
     <Compile Include="Extensions\ListBoxExtension.cs" />
     <Compile Include="Extensions\Win32WindowExtension.cs" />
-    <Compile Include="Forms\Primitives\FormDirectoryBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Primitives\FormDirectoryBase.Designer.cs">
-      <DependentUpon>FormDirectoryBase.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Primitives\FormEditText.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interface\IListEdit.cs" />
-    <Compile Include="Interface\ISignInInfo.cs" />
+    <Compile Include="Forms\Primitives\FormImportDirectoryBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Primitives\FormImportDirectoryBase.Designer.cs">
+      <DependentUpon>FormImportDirectoryBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\Primitives\FormDirectoryBase.resx">
-      <DependentUpon>FormDirectoryBase.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Primitives\FormImportDirectoryBase.resx">
+      <DependentUpon>FormImportDirectoryBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonFeaturesLibrary\CommonFeaturesLibrary.csproj">
-      <Project>{666330c0-b3f9-489a-ab39-4217d18728c7}</Project>
+      <Project>{72a0933e-88de-48c4-a3e4-e1c8fdb13065}</Project>
       <Name>CommonFeaturesLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ExtensionsLibrary\ExtensionsLibrary.csproj">
-      <Project>{d37920d6-23c2-42a2-a593-32f8687fd320}</Project>
+      <Project>{055d9f52-4e4c-44f8-b1fc-332d1525e375}</Project>
       <Name>ExtensionsLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ObjectAnalysisProject\ObjectAnalysisProject.csproj">

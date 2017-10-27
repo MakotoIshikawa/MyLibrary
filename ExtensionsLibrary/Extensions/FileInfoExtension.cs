@@ -1,8 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ExtensionsLibrary.Extensions {
@@ -25,9 +22,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// </param>
 		/// <param name="encoding">使用する文字エンコーディング</param>
 		/// <returns>新しい StreamWriter を返します。</returns>
-		public static StreamWriter CreateText(this FileInfo @this, bool append, Encoding encoding) {
-			return new StreamWriter(@this.FullName, append, encoding);
-		}
+		public static StreamWriter CreateText(this FileInfo @this, bool append, Encoding encoding)
+			=> new StreamWriter(@this.FullName, append, encoding);
 
 		#endregion
 
@@ -73,8 +69,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// </summary>
 		/// <param name="this">FileInfo</param>
 		/// <returns>イメージファイルであれば true を返します。</returns>
-		public static bool IsImage(this FileInfo @this) {
-			return @this.ContainsAtExtension(
+		public static bool IsImage(this FileInfo @this)
+			=> @this.ContainsAtExtension(
 				"gif",
 				"jpg", "jpeg", "jpe", "jfif",
 				"png",
@@ -85,15 +81,14 @@ namespace ExtensionsLibrary.Extensions {
 				"pcx",
 				"ico"
 			);
-		}
 
 		/// <summary>
 		/// SharePoint の icon に対応しているファイルかどうかを判定します。
 		/// </summary>
 		/// <param name="this">FileInfo</param>
 		/// <returns>SharePoint の icon に対応しているファイルであれば true を返します。</returns>
-		public static bool IsSharePointIcon(this FileInfo @this) {
-			return @this.ContainsAtExtension(
+		public static bool IsSharePointIcon(this FileInfo @this)
+			=> @this.ContainsAtExtension(
 				"ASP", "ASPX",
 				"CSS",
 				"DOC", "DOCM", "DOCX",
@@ -117,7 +112,6 @@ namespace ExtensionsLibrary.Extensions {
 				"XSD", "XSL",
 				"ZIP"
 			);
-		}
 
 		/// <summary>
 		/// 拡張子を判定ます。
@@ -125,9 +119,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">FileInfo</param>
 		/// <param name="exts">拡張子の配列</param>
 		/// <returns>該当する拡張子があれば true を返します。それ以外は false</returns>
-		public static bool ContainsAtExtension(this FileInfo @this, params string[] exts) {
-			return @this?.Name.ContainsAtExtension(exts) ?? false;
-		}
+		public static bool ContainsAtExtension(this FileInfo @this, params string[] exts)
+			=> @this?.Name.ContainsAtExtension(exts) ?? false;
 
 		#endregion
 

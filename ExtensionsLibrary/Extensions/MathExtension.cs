@@ -16,9 +16,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="min">下限値</param>
 		/// <param name="max">上限値</param>
 		/// <returns>範囲内の値を返します。</returns>
-		public static short WithinRange(this short value, short min, short max) {
-			return Math.Min(max, Math.Max(min, value));
-		}
+		public static short WithinRange(this short value, short min, short max)
+			=> Math.Min(max, Math.Max(min, value));
 
 		/// <summary>
 		/// 上限と下限を設定して、範囲内の値を取得します。
@@ -27,9 +26,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="min">下限値</param>
 		/// <param name="max">上限値</param>
 		/// <returns>範囲内の値を返します。</returns>
-		public static ushort WithinRange(this ushort value, ushort min, ushort max) {
-			return Math.Min(max, Math.Max(min, value));
-		}
+		public static ushort WithinRange(this ushort value, ushort min, ushort max)
+			=> Math.Min(max, Math.Max(min, value));
 
 		/// <summary>
 		/// 上限と下限を設定して、範囲内の値を取得します。
@@ -38,9 +36,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="min">下限値</param>
 		/// <param name="max">上限値</param>
 		/// <returns>範囲内の値を返します。</returns>
-		public static int WithinRange(this int value, int min, int max) {
-			return Math.Min(max, Math.Max(min, value));
-		}
+		public static int WithinRange(this int value, int min, int max)
+			=> Math.Min(max, Math.Max(min, value));
 
 		/// <summary>
 		/// 上限と下限を設定して、範囲内の値を取得します。
@@ -49,9 +46,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="min">下限値</param>
 		/// <param name="max">上限値</param>
 		/// <returns>範囲内の値を返します。</returns>
-		public static uint WithinRange(this uint value, uint min, uint max) {
-			return Math.Min(max, Math.Max(min, value));
-		}
+		public static uint WithinRange(this uint value, uint min, uint max)
+			=> Math.Min(max, Math.Max(min, value));
 
 		/// <summary>
 		/// 上限と下限を設定して、範囲内の値を取得します。
@@ -60,9 +56,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="min">下限値</param>
 		/// <param name="max">上限値</param>
 		/// <returns>範囲内の値を返します。</returns>
-		public static long WithinRange(this long value, long min, long max) {
-			return Math.Min(max, Math.Max(min, value));
-		}
+		public static long WithinRange(this long value, long min, long max)
+			=> Math.Min(max, Math.Max(min, value));
 
 		/// <summary>
 		/// 上限と下限を設定して、範囲内の値を取得します。
@@ -71,9 +66,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="min">下限値</param>
 		/// <param name="max">上限値</param>
 		/// <returns>範囲内の値を返します。</returns>
-		public static ulong WithinRange(this ulong value, ulong min, ulong max) {
-			return Math.Min(max, Math.Max(min, value));
-		}
+		public static ulong WithinRange(this ulong value, ulong min, ulong max)
+			=> Math.Min(max, Math.Max(min, value));
 
 		/// <summary>
 		/// 上限と下限を設定して、範囲内の値を取得します。
@@ -82,9 +76,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="min">下限値</param>
 		/// <param name="max">上限値</param>
 		/// <returns>範囲内の値を返します。</returns>
-		public static float WithinRange(this float value, float min, float max) {
-			return Math.Min(max, Math.Max(min, value));
-		}
+		public static float WithinRange(this float value, float min, float max)
+			=> Math.Min(max, Math.Max(min, value));
 
 		/// <summary>
 		/// 上限と下限を設定して、範囲内の値を取得します。
@@ -93,9 +86,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="min">下限値</param>
 		/// <param name="max">上限値</param>
 		/// <returns>範囲内の値を返します。</returns>
-		public static double WithinRange(this double value, double min, double max) {
-			return Math.Min(max, Math.Max(min, value));
-		}
+		public static double WithinRange(this double value, double min, double max)
+			=> Math.Min(max, Math.Max(min, value));
 
 		/// <summary>
 		/// 上限と下限を設定して、範囲内の値を取得します。
@@ -104,9 +96,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="min">下限値</param>
 		/// <param name="max">上限値</param>
 		/// <returns>範囲内の値を返します。</returns>
-		public static decimal WithinRange(this decimal value, decimal min, decimal max) {
-			return Math.Min(max, Math.Max(min, value));
-		}
+		public static decimal WithinRange(this decimal value, decimal min, decimal max)
+			=> Math.Min(max, Math.Max(min, value));
 
 		#endregion
 

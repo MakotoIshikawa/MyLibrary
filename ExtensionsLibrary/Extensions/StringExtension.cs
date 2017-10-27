@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
@@ -8,19 +8,19 @@ using System.Text.RegularExpressions;
 
 namespace ExtensionsLibrary.Extensions {
 	/// <summary>
-	/// •¶š—ñ‚ğ•â•‚·‚éŠg’£ƒƒ\ƒbƒh‚ğ’ñ‹Ÿ‚µ‚Ü‚·B
+	/// æ–‡å­—åˆ—ã‚’è£œåŠ©ã™ã‚‹æ‹¡å¼µãƒ¡ã‚½ãƒƒãƒ‰ã‚’æä¾›ã—ã¾ã™ã€‚
 	/// </summary>
 	public static partial class StringExtension {
-		#region ƒƒ\ƒbƒh
+		#region ãƒ¡ã‚½ãƒƒãƒ‰
 
-		#region ƒƒOæ“¾
+		#region æ™‚åˆ»ãƒ­ã‚°å–å¾—
 
 		/// <summary>
-		/// ƒƒO‚ğæ“¾‚µ‚Ü‚·B
+		/// æ™‚åˆ»ãƒ­ã‚°ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">ƒƒbƒZ[ƒW</param>
+		/// <param name="this">ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
 		/// <remarks>
-		/// ‚ğ•t‰Á‚µ‚½•¶š—ñ‚ğæ“¾‚µ‚Ü‚·B</remarks>
+		/// æ™‚åˆ»ã‚’ä»˜åŠ ã—ãŸæ–‡å­—åˆ—ã‚’å–å¾—ã—ã¾ã™ã€‚</remarks>
 		public static string GetTimeLog(this string @this) {
 			var milliSecond = DateTime.Now.ToMilliSecondString();
 			return $"{milliSecond} {@this}";
@@ -28,15 +28,15 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
-		#region •¶š—ñ”»’è
+		#region æ–‡å­—åˆ—åˆ¤å®š
 
 		/// <summary>
-		/// w’è‚³‚ê‚½•¶š—ñ‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ¦‚µ‚Ü‚·B
+		/// æŒ‡å®šã•ã‚ŒãŸæ–‡å­—åˆ—ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">ƒeƒXƒg‚·‚é•¶š—ñB</param>
-		/// <param name="word">ŒŸõ‚·‚é•¶š—ñ</param>
-		/// <returns>‚»‚Ì•¶š—ñ‚ªŒ©‚Â‚©‚Á‚½ê‡‚ÍAtrueB
-		/// Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚Í falseB</returns>
+		/// <param name="this">ãƒ†ã‚¹ãƒˆã™ã‚‹æ–‡å­—åˆ—ã€‚</param>
+		/// <param name="word">æ¤œç´¢ã™ã‚‹æ–‡å­—åˆ—</param>
+		/// <returns>ãã®æ–‡å­—åˆ—ãŒè¦‹ã¤ã‹ã£ãŸå ´åˆã¯ã€trueã€‚
+		/// è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯ falseã€‚</returns>
 		public static bool HasString(this string @this, string word) {
 			if (@this.IsEmpty() || word.IsEmpty()) {
 				return false;
@@ -46,24 +46,24 @@ namespace ExtensionsLibrary.Extensions {
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒ[ƒh‚Ì”z—ñ‚ğ‘S‚ÄŠÜ‚ñ‚Å‚¢‚é‚©‚Ç‚¤‚©”»’è‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸãƒ¯ãƒ¼ãƒ‰ã®é…åˆ—ã‚’å…¨ã¦å«ã‚“ã§ã„ã‚‹ã‹ã©ã†ã‹åˆ¤å®šã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="this">string</param>
-		/// <param name="words">ƒ[ƒh‚Ì”z—ñ</param>
-		/// <returns>‘S‚Ä‚Ìƒ[ƒh‚ğŠÜ‚ñ‚Å‚¢‚éê‡‚ÍAtrue ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <param name="words">ãƒ¯ãƒ¼ãƒ‰ã®é…åˆ—</param>
+		/// <returns>å…¨ã¦ã®ãƒ¯ãƒ¼ãƒ‰ã‚’å«ã‚“ã§ã„ã‚‹å ´åˆã¯ã€true ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public static bool MatchWords(this string @this, params string[] words)
 			=> words.All(s => @this.HasString(s));
 
 		#endregion
 
-		#region ƒRƒƒ“ƒgƒAƒEƒg
+		#region ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 
 		/// <summary>
-		/// •¶š—ñ‚©‚çw’è‚³‚ê‚½‹L†ˆÈ~‚Ì•¶š—ñ‚ğƒRƒƒ“ƒgƒAƒEƒg‚µ‚Ü‚·B
+		/// æ–‡å­—åˆ—ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸè¨˜å·ä»¥é™ã®æ–‡å­—åˆ—ã‚’ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">‘ÎÛ•¶š—ñ</param>
-		/// <param name="sign">‹L†</param>
-		/// <returns>ƒRƒƒ“ƒgƒAƒEƒg‚³‚ê‚½•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <param name="this">å¯¾è±¡æ–‡å­—åˆ—</param>
+		/// <param name="sign">è¨˜å·</param>
+		/// <returns>ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã•ã‚ŒãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public static string CommentOut(this string @this, string sign) {
 			if (sign.IsEmpty()) {
 				return @this;
@@ -79,154 +79,14 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
-		#region Nullable •ÏŠ·
-
-		#region short? ‚É•ÏŠ·
+		#region ç¹°ã‚Šè¿”ã—æ–‡å­—åˆ—ç”Ÿæˆ
 
 		/// <summary>
-		/// short? Œ^‚É•ÏŠ·‚µ‚Ü‚·B
+		/// ç¹°ã‚Šè¿”ã—æ–‡å­—åˆ—ç”Ÿæˆ
 		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>Nullable ’l‚É•ÏŠ·‚µ‚½’l‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static short? ToNullableShort(this string @this) {
-			short result;
-			if (short.TryParse(@this, out result)) {
-				return result;
-			}
-			return null;
-		}
-
-		#endregion
-
-		#region int? ‚É•ÏŠ·
-
-		/// <summary>
-		/// int? Œ^‚É•ÏŠ·‚µ‚Ü‚·B
-		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>Nullable ’l‚É•ÏŠ·‚µ‚½’l‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static int? ToNullableInt(this string @this) {
-			int result;
-			if (int.TryParse(@this, out result)) {
-				return result;
-			}
-			return null;
-		}
-
-		#endregion
-
-		#region long? ‚É•ÏŠ·
-
-		/// <summary>
-		/// long? Œ^‚É•ÏŠ·‚µ‚Ü‚·B
-		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>Nullable ’l‚É•ÏŠ·‚µ‚½’l‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static long? ToNullableLong(this string @this) {
-			long result;
-			if (long.TryParse(@this, out result)) {
-				return result;
-			}
-			return null;
-		}
-
-		#endregion
-
-		#region uint? ‚É•ÏŠ·
-
-		/// <summary>
-		/// uint? Œ^‚É•ÏŠ·‚µ‚Ü‚·B
-		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>Nullable ’l‚É•ÏŠ·‚µ‚½’l‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static uint? ToNullableUint(this string @this) {
-			uint result;
-			if (uint.TryParse(@this, out result)) {
-				return result;
-			}
-			return null;
-		}
-
-		#endregion
-
-		#region float? ‚É•ÏŠ·
-
-		/// <summary>
-		/// float? Œ^‚É•ÏŠ·‚µ‚Ü‚·B
-		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>Nullable ’l‚É•ÏŠ·‚µ‚½’l‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static float? ToNullableFloat(this string @this) {
-			float result;
-			if (float.TryParse(@this, out result)) {
-				return result;
-			}
-			return null;
-		}
-
-		#endregion
-
-		#region double? ‚É•ÏŠ·
-
-		/// <summary>
-		/// double? Œ^‚É•ÏŠ·‚µ‚Ü‚·B
-		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>Nullable ’l‚É•ÏŠ·‚µ‚½’l‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static double? ToNullableDouble(this string @this) {
-			double result;
-			if (double.TryParse(@this, out result)) {
-				return result;
-			}
-			return null;
-		}
-
-		#endregion
-
-		#region decimal? ‚É•ÏŠ·
-
-		/// <summary>
-		/// decimal? Œ^‚É•ÏŠ·‚µ‚Ü‚·B
-		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>Nullable ’l‚É•ÏŠ·‚µ‚½’l‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static decimal? ToNullableDecimal(this string @this) {
-			decimal result;
-			if (decimal.TryParse(@this, out result)) {
-				return result;
-			}
-			return null;
-		}
-
-		#endregion
-
-		#region bool? ‚É•ÏŠ·
-
-		/// <summary>
-		/// bool? Œ^‚É•ÏŠ·‚µ‚Ü‚·B
-		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>Nullable ’l‚É•ÏŠ·‚µ‚½’l‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static bool? ToNullableBool(this string @this) {
-			bool result;
-			if (bool.TryParse(@this, out result)) {
-				return result;
-			}
-			return null;
-		}
-
-		#endregion
-
-		#endregion
-
-		#region ŒJ‚è•Ô‚µ•¶š—ñ¶¬
-
-		/// <summary>
-		/// ŒJ‚è•Ô‚µ•¶š—ñ¶¬
-		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <param name="repeat">ŒÂ”</param>
-		/// <returns>¶¬•¶š—ñ</returns>
+		/// <param name="this">æ–‡å­—åˆ—</param>
+		/// <param name="repeat">å€‹æ•°</param>
+		/// <returns>ç”Ÿæˆæ–‡å­—åˆ—</returns>
 		public static string Repeat(this string @this, int repeat) {
 			if (@this.IsEmpty()) {
 				return @this;
@@ -236,11 +96,11 @@ namespace ExtensionsLibrary.Extensions {
 		}
 
 		/// <summary>
-		/// ŒJ‚è•Ô‚µ•¶š—ñ¶¬
+		/// ç¹°ã‚Šè¿”ã—æ–‡å­—åˆ—ç”Ÿæˆ
 		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <param name="repeat">ŒÂ”</param>
-		/// <returns>¶¬•¶š—ñ</returns>
+		/// <param name="this">æ–‡å­—åˆ—</param>
+		/// <param name="repeat">å€‹æ•°</param>
+		/// <returns>ç”Ÿæˆæ–‡å­—åˆ—</returns>
 		public static string Repeat(this char @this, int repeat) {
 			if (@this == char.MinValue) {
 				return string.Empty;
@@ -251,52 +111,49 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
-		#region Stream¶¬
+		#region Streamç”Ÿæˆ
 
 		/// <summary>
-		/// MemoryStream ‚ğ¶¬‚µ‚Ü‚·B
+		/// MemoryStream ã‚’ç”Ÿæˆã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <param name="encoding">ƒGƒ“ƒR[ƒfƒBƒ“ƒO</param>
-		/// <returns>MemoryStream ‚ÌV‚µ‚¢ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static MemoryStream CreateStream(this string @this, Encoding encoding) {
-			return new MemoryStream(encoding.GetBytes(@this));
-		}
+		/// <param name="this">æ–‡å­—åˆ—</param>
+		/// <param name="encoding">ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°</param>
+		/// <returns>MemoryStream ã®æ–°ã—ã„ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¿”ã—ã¾ã™ã€‚</returns>
+		public static MemoryStream CreateStream(this string @this, Encoding encoding)
+			=> new MemoryStream(encoding.GetBytes(@this));
 
 		#endregion
 
-		#region ‹ó•¶š”»’è
+		#region ç©ºæ–‡å­—åˆ¤å®š
 
 		/// <summary>
-		/// w’è‚³‚ê‚½•¶š—ñ‚ª null ‚Ü‚½‚Í System.String.Empty •¶š—ñ‚Å‚ ‚é‚©‚Ç‚¤‚©‚ğ¦‚µ‚Ü‚·B
+		/// æŒ‡å®šã•ã‚ŒãŸæ–‡å­—åˆ—ãŒ null ã¾ãŸã¯ System.String.Empty æ–‡å­—åˆ—ã§ã‚ã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>null ‚Ü‚½‚Í‹ó‚Ì•¶š—ñ ("") ‚Ìê‡‚Í trueB
-		/// ‚»‚êˆÈŠO‚Ìê‡‚Í falseB</returns>
-		public static bool IsEmpty(this string @this) {
-			return string.IsNullOrEmpty(@this);
-		}
+		/// <param name="this">æ–‡å­—åˆ—</param>
+		/// <returns>null ã¾ãŸã¯ç©ºã®æ–‡å­—åˆ— ("") ã®å ´åˆã¯ trueã€‚
+		/// ãã‚Œä»¥å¤–ã®å ´åˆã¯ falseã€‚</returns>
+		public static bool IsEmpty(this string @this)
+			=> string.IsNullOrEmpty(@this);
 
 		/// <summary>
-		/// w’è‚³‚ê‚½•¶š—ñ‚ª null ‚Ü‚½‚Í‹ó‚Å‚ ‚é‚©A‹ó”’•¶š‚¾‚¯‚Å\¬‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ¦‚µ‚Ü‚·B
+		/// æŒ‡å®šã•ã‚ŒãŸæ–‡å­—åˆ—ãŒ null ã¾ãŸã¯ç©ºã§ã‚ã‚‹ã‹ã€ç©ºç™½æ–‡å­—ã ã‘ã§æ§‹æˆã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>null ‚Ü‚½‚Í ‚Ü‚½‚Í‹ó‚Ì•¶š—ñ ("") ‚Å‚ ‚é‚©A‹ó”’•¶š‚¾‚¯‚Å\¬‚³‚ê‚Ä‚¢‚éê‡‚Í trueB
-		/// ‚»‚êˆÈŠO‚Ìê‡‚Í falseB</returns>
-		public static bool IsWhiteSpace(this string @this) {
-			return string.IsNullOrWhiteSpace(@this);
-		}
+		/// <param name="this">æ–‡å­—åˆ—</param>
+		/// <returns>null ã¾ãŸã¯ ã¾ãŸã¯ç©ºã®æ–‡å­—åˆ— ("") ã§ã‚ã‚‹ã‹ã€ç©ºç™½æ–‡å­—ã ã‘ã§æ§‹æˆã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ trueã€‚
+		/// ãã‚Œä»¥å¤–ã®å ´åˆã¯ falseã€‚</returns>
+		public static bool IsWhiteSpace(this string @this)
+			=> string.IsNullOrWhiteSpace(@this);
 
 		#endregion
 
-		#region •¶š—ñ˜AŒ‹
+		#region æ–‡å­—åˆ—é€£çµ
 
 		/// <summary>
-		/// String ƒRƒŒƒNƒVƒ‡ƒ“‚Ìƒƒ“ƒo[‚ğ˜AŒ‹‚µ‚Ü‚·BŠeƒƒ“ƒo[‚ÌŠÔ‚É‚ÍAw’è‚µ‚½‹æØ‚è‹L†‚ª‘}“ü‚³‚ê‚Ü‚·B
+		/// String ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ¡ãƒ³ãƒãƒ¼ã‚’é€£çµã—ã¾ã™ã€‚å„ãƒ¡ãƒ³ãƒãƒ¼ã®é–“ã«ã¯ã€æŒ‡å®šã—ãŸåŒºåˆ‡ã‚Šè¨˜å·ãŒæŒ¿å…¥ã•ã‚Œã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">˜AŒ‹‚·‚é•¶š—ñ‚ğŠi”[‚µ‚Ä‚¢‚éƒRƒŒƒNƒVƒ‡ƒ“</param>
-		/// <param name="separator">‹æØ‚è‹L†‚Æ‚µ‚Äg—p‚·‚é•¶š—ñ</param>
-		/// <returns>separator •¶š—ñ‚Å‹æØ‚ç‚ê‚½•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <param name="this">é€£çµã™ã‚‹æ–‡å­—åˆ—ã‚’æ ¼ç´ã—ã¦ã„ã‚‹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³</param>
+		/// <param name="separator">åŒºåˆ‡ã‚Šè¨˜å·ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹æ–‡å­—åˆ—</param>
+		/// <returns>separator æ–‡å­—åˆ—ã§åŒºåˆ‡ã‚‰ã‚ŒãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public static string Join(this IEnumerable<string> @this, string separator = null) {
 			if (!(@this?.Any() ?? false)) {
 				return null;
@@ -307,24 +164,23 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
-		#region Base64 •ÏŠ·
+		#region Base64 å¤‰æ›
 
 		/// <summary>
-		/// Base64 ‚Ì”š‚ÅƒGƒ“ƒR[ƒh‚³‚ê‚½“™‰¿‚Ì•¶š—ñŒ`®‚É•ÏŠ·‚µ‚Ü‚·B
+		/// Base64 ã®æ•°å­—ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸç­‰ä¾¡ã®æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›ã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>Base64 ‚Ì”š‚ÅƒGƒ“ƒR[ƒh‚³‚ê‚½•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static string ToBase64(this string @this) {
-			return @this.ToBase64(Encoding.UTF8);
-		}
+		/// <param name="this">æ–‡å­—åˆ—</param>
+		/// <returns>Base64 ã®æ•°å­—ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
+		public static string ToBase64(this string @this)
+			=> @this.ToBase64(Encoding.UTF8);
 
 		/// <summary>
-		/// ƒGƒ“ƒR[ƒh‚ğw’è‚µ‚ÄA
-		/// Base64 ‚Ì”š‚ÅƒGƒ“ƒR[ƒh‚³‚ê‚½“™‰¿‚Ì•¶š—ñŒ`®‚É•ÏŠ·‚µ‚Ü‚·B
+		/// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã‚’æŒ‡å®šã—ã¦ã€
+		/// Base64 ã®æ•°å­—ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸç­‰ä¾¡ã®æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›ã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <param name="enc">ƒGƒ“ƒR[ƒh</param>
-		/// <returns>Base64 ‚Ì”š‚ÅƒGƒ“ƒR[ƒh‚³‚ê‚½•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <param name="this">æ–‡å­—åˆ—</param>
+		/// <param name="enc">ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰</param>
+		/// <returns>Base64 ã®æ•°å­—ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public static string ToBase64(this string @this, Encoding enc) {
 			if (@this.IsEmpty()) {
 				return string.Empty;
@@ -334,21 +190,20 @@ namespace ExtensionsLibrary.Extensions {
 		}
 
 		/// <summary>
-		/// Base64 ‚Ì”š‚ÅƒGƒ“ƒR[ƒh‚³‚ê‚½•¶š—ñ‚©‚ç•¶š—ñ‚É•ÏŠ·‚µ‚Ü‚·B
+		/// Base64 ã®æ•°å­—ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸæ–‡å­—åˆ—ã‹ã‚‰æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">Base64 ”šƒGƒ“ƒR[ƒh•¶š—ñ</param>
-		/// <returns>•ÏŠ·‚³‚ê‚½•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static string FromBase64(this string @this) {
-			return @this.FromBase64(Encoding.UTF8);
-		}
+		/// <param name="this">Base64 æ•°å­—ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰æ–‡å­—åˆ—</param>
+		/// <returns>å¤‰æ›ã•ã‚ŒãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
+		public static string FromBase64(this string @this)
+			=> @this.FromBase64(Encoding.UTF8);
 
 		/// <summary>
-		/// ƒGƒ“ƒR[ƒh‚ğw’è‚µ‚ÄA
-		/// Base64 ‚Ì”š‚ÅƒGƒ“ƒR[ƒh‚³‚ê‚½•¶š—ñ‚©‚ç•¶š—ñ‚É•ÏŠ·‚µ‚Ü‚·B
+		/// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã‚’æŒ‡å®šã—ã¦ã€
+		/// Base64 ã®æ•°å­—ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸæ–‡å­—åˆ—ã‹ã‚‰æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">Base64 ”šƒGƒ“ƒR[ƒh•¶š—ñ</param>
-		/// <param name="enc">ƒGƒ“ƒR[ƒh</param>
-		/// <returns>•ÏŠ·‚³‚ê‚½•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <param name="this">Base64 æ•°å­—ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰æ–‡å­—åˆ—</param>
+		/// <param name="enc">ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰</param>
+		/// <returns>å¤‰æ›ã•ã‚ŒãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public static string FromBase64(this string @this, Encoding enc) {
 			if (@this.IsEmpty()) {
 				return string.Empty;
@@ -359,58 +214,54 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
-		#region ’læ“¾
+		#region å€¤å–å¾—
 
 		/// <summary>
-		/// null ‚©‚Ç‚¤‚©‚ğ”»’è‚µ‚Ä•¶š—ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// null ã‹ã©ã†ã‹ã‚’åˆ¤å®šã—ã¦æ–‡å­—åˆ—ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">•¶š—ñ</param>
-		/// <returns>null ê‡ string.Empty ‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static string GetValueOrEmpty(this string @this) {
-			return @this.IsEmpty() ? string.Empty : @this;
-		}
+		/// <param name="this">æ–‡å­—åˆ—</param>
+		/// <returns>null å ´åˆ string.Empty ã‚’è¿”ã—ã¾ã™ã€‚</returns>
+		public static string GetValueOrEmpty(this string @this)
+			=> @this ?? string.Empty;
 
 		#endregion
 
-		#region Ø‚èo‚µ
+		#region åˆ‡ã‚Šå‡ºã—
 
 		/// <summary>
-		/// •¶š—ñ‚Ì¶’[‚©‚çw’è‚³‚ê‚½•¶š”•ª‚Ì•¶š—ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// æ–‡å­—åˆ—ã®å·¦ç«¯ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸæ–‡å­—æ•°åˆ†ã®æ–‡å­—åˆ—ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="this">string</param>
-		/// <param name="length">æ‚èo‚·•¶š”</param>
-		/// <returns>æ‚èo‚µ‚½•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static string Left(this string @this, int length) {
-			return (new string(@this.Take(length).ToArray())).TrimEnd();
-		}
+		/// <param name="length">å–ã‚Šå‡ºã™æ–‡å­—æ•°</param>
+		/// <returns>å–ã‚Šå‡ºã—ãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
+		public static string Left(this string @this, int length)
+			=> (new string(@this.Take(length).ToArray())).TrimEnd();
 
 		/// <summary>
-		/// w’è‚³‚ê‚½ˆÊ’u‚©‚ç•¶š—ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// æŒ‡å®šã•ã‚ŒãŸä½ç½®ã‹ã‚‰æ–‡å­—åˆ—ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="this">string</param>
-		/// <param name="start">ŠJnˆÊ’u</param>
-		/// <returns>æ‚èo‚µ‚½•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static string Mid(this string @this, int start) {
-			return (new string(@this.Skip(start - 1).ToArray())).TrimEnd();
-		}
+		/// <param name="start">é–‹å§‹ä½ç½®</param>
+		/// <returns>å–ã‚Šå‡ºã—ãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
+		public static string Mid(this string @this, int start)
+			=> (new string(@this.Skip(start - 1).ToArray())).TrimEnd();
 
 		/// <summary>
-		/// w’è‚³‚ê‚½ˆÊ’u‚©‚çAw’è‚³‚ê‚½•¶š”•ª‚Ì•¶š—ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// æŒ‡å®šã•ã‚ŒãŸä½ç½®ã‹ã‚‰ã€æŒ‡å®šã•ã‚ŒãŸæ–‡å­—æ•°åˆ†ã®æ–‡å­—åˆ—ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="this">string</param>
-		/// <param name="start">ŠJnˆÊ’u</param>
-		/// <param name="length">æ‚èo‚·•¶š”</param>
-		/// <returns>æ‚èo‚µ‚½•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B</returns>
-		public static string Mid(this string @this, int start, int length) {
-			return (new string(@this.Skip(start - 1).Take(length).ToArray())).TrimEnd();
-		}
+		/// <param name="start">é–‹å§‹ä½ç½®</param>
+		/// <param name="length">å–ã‚Šå‡ºã™æ–‡å­—æ•°</param>
+		/// <returns>å–ã‚Šå‡ºã—ãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
+		public static string Mid(this string @this, int start, int length)
+			=> (new string(@this.Skip(start - 1).Take(length).ToArray())).TrimEnd();
 
 		/// <summary>
-		/// •¶š—ñ‚Ì‰E’[‚©‚çw’è‚³‚ê‚½•¶š”•ª‚Ì•¶š—ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// æ–‡å­—åˆ—ã®å³ç«¯ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸæ–‡å­—æ•°åˆ†ã®æ–‡å­—åˆ—ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="this">string</param>
-		/// <param name="length">æ‚èo‚·•¶š”</param>
-		/// <returns>æ‚èo‚µ‚½•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <param name="length">å–ã‚Šå‡ºã™æ–‡å­—æ•°</param>
+		/// <returns>å–ã‚Šå‡ºã—ãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public static string Right(this string @this, int length) {
 			var cnt = @this.Length - length;
 			return (new string(@this.Skip(cnt).ToArray())).Trim();
@@ -418,41 +269,74 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
-		#region •ÏŠ·
+		#region æ™‚åˆ»å¤‰æ›
 
 		/// <summary>
-		/// •¶š—ñ‚ğ DateTime ‚É•ÏŠ·‚µ‚Ü‚·B
+		/// æ–‡å­—åˆ—ã‚’ DateTime ã«å¤‰æ›ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="this">string</param>
-		/// <param name="format">‘®</param>
-		/// <returns>DateTime ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <param name="format">æ›¸å¼</param>
+		/// <returns>DateTime ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public static DateTime? ToDateTime(this string @this, string format = null) {
 			if (format.IsEmpty()) {
-				DateTime result;
-				if (!DateTime.TryParse(@this, out result)) {
+				if (!DateTime.TryParse(@this, out var result)) {
 					return null;
 				}
 				return result;
 			} else {
-				DateTime result;
-				if (!DateTime.TryParseExact(@this, format, null, DateTimeStyles.None, out result)) {
+				if (!DateTime.TryParseExact(@this, format, null, DateTimeStyles.None, out var result)) {
 					return null;
 				}
 				return result;
 			}
 		}
 
+		/// <summary>
+		/// æ–‡å­—åˆ—ã‚’ TimeSpan ã«å¤‰æ›ã—ã¾ã™ã€‚
+		/// </summary>
+		/// <param name="this">string</param>
+		/// <param name="format">æ›¸å¼</param>
+		/// <returns>TimeSpan ã‚’è¿”ã—ã¾ã™ã€‚</returns>
+		public static TimeSpan? ToTimeSpan(this string @this, string format = null) {
+			try {
+				if (format.IsEmpty()) {
+					if (!TimeSpan.TryParse(@this, out var result)) {
+						var split = @this.Split(':', '.')
+							.Where(s => int.TryParse(s, out var r))
+							.Select(s => int.Parse(s)).ToList();
+
+						switch (split.Count) {
+						case 2:
+							return new TimeSpan(split[0], split[1], 0);
+						case 3:
+							return new TimeSpan(split[0], split[1], split[2]);
+						case 4:
+							return new TimeSpan(0,split[0], split[1], split[2], split[3]);
+						default:
+							return null;
+						}
+					}
+
+					return result;
+				} else {
+					return @this.ToDateTime(format)?.TimeOfDay;
+				}
+			} catch (Exception) {
+				return null;
+			}
+		}
+
 		#endregion
 
-		#region ƒtƒ@ƒCƒ‹ƒpƒX”»’è
+		#region ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹åˆ¤å®š
 
 		/// <summary>
-		/// w’è‚µ‚½ƒtƒ@ƒCƒ‹ƒpƒX•¶š—ñ‚Ì
-		/// Šg’£q‚ğ”»’è‚Ü‚·B
+		/// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹æ–‡å­—åˆ—ã®
+		/// æ‹¡å¼µå­ã‚’åˆ¤å®šã¾ã™ã€‚
 		/// </summary>
-		/// <param name="this">ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="exts">Šg’£q‚Ì”z—ñ</param>
-		/// <returns>ŠY“–‚·‚éŠg’£q‚ª‚ ‚ê‚Î true ‚ğ•Ô‚µ‚Ü‚·B‚»‚êˆÈŠO‚Í false</returns>
+		/// <param name="this">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="exts">æ‹¡å¼µå­ã®é…åˆ—</param>
+		/// <returns>è©²å½“ã™ã‚‹æ‹¡å¼µå­ãŒã‚ã‚Œã° true ã‚’è¿”ã—ã¾ã™ã€‚ãã‚Œä»¥å¤–ã¯ false</returns>
 		public static bool ContainsAtExtension(this string @this, params string[] exts) {
 			if (@this.IsEmpty()) {
 				return false;
@@ -472,17 +356,38 @@ namespace ExtensionsLibrary.Extensions {
 		#region Split
 
 		/// <summary>
-		/// ”z—ñ“à‚Ì•¶š—ñ‚ÉŠî‚Ã‚¢‚Ä•¶š—ñ‚ğ•”•ª•¶š—ñ‚É•ªŠ„‚µ‚Ü‚·B
-		/// •”•ª•¶š—ñ‚ª‹ó‚Ì”z—ñ‚Ì—v‘f‚ğŠÜ‚ß‚é‚©‚Ç‚¤‚©‚ğw’è‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+		/// é…åˆ—å†…ã®æ–‡å­—åˆ—ã«åŸºã¥ã„ã¦æ–‡å­—åˆ—ã‚’éƒ¨åˆ†æ–‡å­—åˆ—ã«åˆ†å‰²ã—ã¾ã™ã€‚
+		/// éƒ¨åˆ†æ–‡å­—åˆ—ãŒç©ºã®é…åˆ—ã®è¦ç´ ã‚’å«ã‚ã‚‹ã‹ã©ã†ã‹ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
 		/// </summary>
 		/// <param name="this">string</param>
-		/// <param name="removeEmpty"><para>‹ó‚Ì”z—ñ—v‘f‚ğÈ—ª‚·‚éê‡‚Í true</para>
-		/// <para>‹ó‚Ì”z—ñ—v‘f‚àŠÜ‚ß‚éê‡‚Í false</para></param>
-		/// <param name="separator">‚±‚Ì•¶š—ñ‚©‚ç•”•ª•¶š—ñ‚ğæ‚èo‚·‚½‚ß‚É‹æØ‚è•¶š‚Æ‚µ‚Äg—p‚·‚é•¶š—ñ”z—ñB
-		/// <para>‹æØ‚è•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚È‚¢‹ó‚Ì”z—ñB‚Ü‚½‚Í nullB</para></param>
-		/// <returns>‚±‚Ì•¶š—ñ‚ğAseparator ”z—ñ‚Ì‚¢‚¸‚ê‚©‚Ü‚½‚Í•¡”‚Ì—v‘f (•¶š—ñ) ‚Å‹æØ‚é‚±‚Æ‚É‚æ‚Á‚Äæ‚èo‚³‚ê‚½•”•ª•¶š—ñ‚ğŠi”[‚·‚é”z—ñB</returns>
+		/// <param name="removeEmpty"><para>ç©ºã®é…åˆ—è¦ç´ ã‚’çœç•¥ã™ã‚‹å ´åˆã¯ true</para>
+		/// <para>ç©ºã®é…åˆ—è¦ç´ ã‚‚å«ã‚ã‚‹å ´åˆã¯ false</para></param>
+		/// <param name="separator">ã“ã®æ–‡å­—åˆ—ã‹ã‚‰éƒ¨åˆ†æ–‡å­—åˆ—ã‚’å–ã‚Šå‡ºã™ãŸã‚ã«åŒºåˆ‡ã‚Šæ–‡å­—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹æ–‡å­—åˆ—é…åˆ—ã€‚
+		/// <para>åŒºåˆ‡ã‚Šæ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ãªã„ç©ºã®é…åˆ—ã€‚ã¾ãŸã¯ nullã€‚</para></param>
+		/// <returns>ã“ã®æ–‡å­—åˆ—ã‚’ã€separator é…åˆ—ã®ã„ãšã‚Œã‹ã¾ãŸã¯è¤‡æ•°ã®è¦ç´  (æ–‡å­—åˆ—) ã§åŒºåˆ‡ã‚‹ã“ã¨ã«ã‚ˆã£ã¦å–ã‚Šå‡ºã•ã‚ŒãŸéƒ¨åˆ†æ–‡å­—åˆ—ã‚’æ ¼ç´ã™ã‚‹é…åˆ—ã€‚</returns>
 		public static string[] Split(this string @this, bool removeEmpty, params string[] separator)
 			=> @this.Split(separator, removeEmpty ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
+
+		#endregion
+
+		#region çœç•¥
+
+		/// <summary>
+		/// æŒ‡å®šã—ãŸæ¡æ•°ã‚’è¶…ãˆã‚‹å ´åˆã«ã€æ–‡å­—åˆ—ã‚’çœç•¥ã—ã¾ã™ã€‚
+		/// </summary>
+		/// <param name="this">string</param>
+		/// <param name="digits">æ¡æ•°</param>
+		/// <param name="suffixes">æ¥å°¾è¾</param>
+		/// <returns>çœç•¥ã—ãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚</returns>
+		public static string OmitGreaterThan(this string @this, int digits = 100, string suffixes = "...") {
+			if (@this.IsWhiteSpace()) {
+				return string.Empty;
+			}
+
+			var ret = @this.Left(digits);
+
+			return @this.Length > digits ? ret + suffixes : ret;
+		}
 
 		#endregion
 

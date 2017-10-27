@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExtensionsLibrary.Extensions;
@@ -101,9 +101,8 @@ namespace CommonFeaturesLibrary {
 		/// ストリームの現在位置から末尾までのストリームの残り部分。
 		/// 現在の位置がストリームの末尾である場合は、空の配列が返されます。
 		/// </returns>
-		public Task<List<List<string>>> ReadToEndAsync() {
-			return Task.Run(() => this.ReadToEnd().ToList());
-		}
+		public Task<List<List<string>>> ReadToEndAsync()
+			=> Task.Run(() => this.ReadToEnd().ToList());
 
 		/// <summary>
 		/// 現在のストリームから 1 レコード分の文字を読み取り、そのデータを文字配列として返します。
@@ -167,9 +166,8 @@ namespace CommonFeaturesLibrary {
 		/// 現在のストリームから非同期的に 1 レコード分の文字を読み取り、そのデータを文字配列として返します。
 		/// </summary>
 		/// <returns>入力ストリームからの次のレコード。入力ストリームの末尾に到達した場合は null。</returns>
-		public Task<List<string>> ReadRowAsync() {
-			return Task.Run(() => this.ReadRow());
-		}
+		public Task<List<string>> ReadRowAsync()
+			=> Task.Run(() => this.ReadRow());
 
 		#endregion
 
@@ -181,7 +179,7 @@ namespace CommonFeaturesLibrary {
 		/// <param name="tableName">テーブル名</param>
 		/// <returns>データテーブルを返します。</returns>
 		public DataTable ToDataTable(string tableName) {
-			var rows = this.ReadToEnd();
+			var rows = this.ReadToEnd().ToList();
 			var tbl = rows.ToDataTable(tableName);
 			return tbl;
 		}
@@ -203,9 +201,8 @@ namespace CommonFeaturesLibrary {
 		/// CsvReader オブジェクトと、その基になるストリームを閉じ、
 		/// リーダーに関連付けられたすべてのシステムリソースを解放します。
 		/// </summary>
-		public void Close() {
-			this._reader?.Close();
-		}
+		public void Close()
+			=> this._reader?.Close();
 
 		#region IDisposable
 
@@ -225,56 +222,5 @@ namespace CommonFeaturesLibrary {
 		#endregion
 
 		#endregion
-	}
-
-	/// <summary>
-	/// CSV ファイルにアクセスする拡張メソッドを提供するクラスです。
-	/// </summary>
-	public static partial class CsvReaderExtension {
-		/// <summary>
-		/// CSV ファイルのデータを取り込んだデータテーブルを取得します。
-		/// </summary>
-		/// <param name="this">FileInfo</param>
-		/// <returns>CSV ファイルのデータを取り込んだ DataTable を返します。</returns>
-		public static DataTable GetCsvTable(this FileInfo @this) {
-			using (var csv = new CsvReader(@this)) {
-				return csv.ToDataTable(@this.Name);
-			}
-		}
-
-		/// <summary>
-		/// CSV ファイルのデータを取り込んだデータテーブルを取得します。
-		/// </summary>
-		/// <param name="this">Stream</param>
-		/// <param name="tableName">テーブル名</param>
-		/// <returns>CSV ファイルのデータを取り込んだ DataTable を返します。</returns>
-		public static DataTable GetCsvTable(this Stream @this, string tableName) {
-			using (var csv = new CsvReader(@this)) {
-				return csv.ToDataTable(tableName);
-			}
-		}
-
-		/// <summary>
-		/// CSV ファイルのデータを取り込んだデータテーブルを取得します。
-		/// </summary>
-		/// <param name="this">FileInfo</param>
-		/// <returns>CSV ファイルのデータを取り込んだ DataTable を返します。</returns>
-		public static async Task<DataTable> GetCsvTableAsync(this FileInfo @this) {
-			using (var csv = new CsvReader(@this)) {
-				return await csv.ToDataTableAsync(@this.Name);
-			}
-		}
-
-		/// <summary>
-		/// CSV ファイルのデータを取り込んだデータテーブルを取得します。
-		/// </summary>
-		/// <param name="this">Stream</param>
-		/// <param name="tableName">テーブル名</param>
-		/// <returns>CSV ファイルのデータを取り込んだ DataTable を返します。</returns>
-		public static async Task<DataTable> GetCsvTableAsync(this Stream @this, string tableName) {
-			using (var csv = new CsvReader(@this)) {
-				return await csv.ToDataTableAsync(tableName);
-			}
-		}
 	}
 }

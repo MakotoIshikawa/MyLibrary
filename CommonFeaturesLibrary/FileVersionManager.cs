@@ -82,12 +82,13 @@ namespace CommonFeaturesLibrary {
 				// 世代ファイルが存在するか確認
 				var version = StateSelection(filePath, genMgtCnt);
 				if (version == 0) {// 世代ファイルが存在しない場合
-					RenameFile(filePath, 0);	// ファイル改名
+					// ファイル改名
+					RenameFile(filePath, 0);
 					return;
 				}
 
 				if (version >= genMgtCnt) {// 世代ファイルが管理数分ある
-					var oldName = CreateVersionName(filePath, version);
+					var oldName = filePath.GetFileNameWithVersion(version);
 					var oldInfo = new FileInfo(oldName);
 
 					// ファイル削除
@@ -116,7 +117,7 @@ namespace CommonFeaturesLibrary {
 		private static uint StateSelection(string filePath, uint ver) {
 			var nState = 0u;
 			for (var i = 1u; i <= ver; i++) {// 世代ファイルが存在するか確認
-				var fName = CreateVersionName(filePath, i);
+				var fName = filePath.GetFileNameWithVersion(i);
 				var fileInfo = new FileInfo(fName);
 				if (!fileInfo.Exists) {// ファイルが存在しない
 					return nState;
@@ -129,22 +130,13 @@ namespace CommonFeaturesLibrary {
 		}
 
 		/// <summary>
-		/// バージョンファイル情報作成
-		/// </summary>
-		/// <param name="filePath">ファイルパス</param>
-		/// <param name="version">バージョン</param>
-		/// <returns>バージョン番号を付与したファイル名を返します。</returns>
-		private static string CreateVersionName(string filePath, uint version) {
-			var file = new FileInfo(filePath);
-			return file.GetVersionName(version);
-		}
-
-		/// <summary>
 		/// ファイル改名
 		/// </summary>
 		private static void RenameFile(string filePath, uint ver) {
-			var oldName = (ver == 0) ? filePath : CreateVersionName(filePath, ver);
-			var newName = CreateVersionName(filePath, ver + 1);
+			var oldName = (ver == 0)
+				? filePath
+				: filePath.GetFileNameWithVersion(ver);
+			var newName = filePath.GetFileNameWithVersion(ver + 1);
 
 			if (oldName == newName) {
 				// 同名なら何もしない

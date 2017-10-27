@@ -50,7 +50,6 @@ namespace CommonFeaturesLibrary {
 			}
 		}
 
-
 		/// <summary>
 		/// 重複起動しているかどうかを判定します。
 		/// </summary>

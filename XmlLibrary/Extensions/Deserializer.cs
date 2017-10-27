@@ -101,9 +101,8 @@ namespace XmlLibrary.Extensions {
 		/// <typeparam name="TResult">逆シリアル化する型</typeparam>
 		/// <param name="this">XML 文字列</param>
 		/// <returns>逆シリアル化されたオブジェクト</returns>
-		public static TResult DeserializeFromXml<TResult>(this string @this) {
-			return @this.DeserializeFromXml<TResult>(Encoding.UTF8);
-		}
+		public static TResult DeserializeFromXml<TResult>(this string @this)
+			=> @this.DeserializeFromXml<TResult>(Encoding.UTF8);
 
 		/// <summary>
 		/// XML 文字列を逆シリアル化します。

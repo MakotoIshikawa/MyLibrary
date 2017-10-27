@@ -6,6 +6,8 @@ namespace WindowsFormsLibrary.Extensions {
 	/// IWin32Window を拡張するメソッドを提供します。
 	/// </summary>
 	public static class Win32WindowExtension {
+		#region メソッド
+
 		/// <summary>
 		/// 指定したオブジェクトの前に、指定したテキスト、キャプション、ボタン、アイコン、および既定のボタンを表示する
 		/// メッセージ ボックスを表示します。
@@ -17,9 +19,8 @@ namespace WindowsFormsLibrary.Extensions {
 		/// <param name="icon">メッセージ ボックスに表示されるアイコンを指定する。</param>
 		/// <param name="defaultButton">メッセージ ボックスの既定のボタンを指定する。</param>
 		/// <returns>DialogResult 値のいずれか。</returns>
-		public static DialogResult ShowMessageBox(this IWin32Window @this, string text, string caption = "", MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.None, MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button1) {
-			return MessageBox.Show(@this, text, caption, buttons, icon, defaultButton);
-		}
+		public static DialogResult ShowMessageBox(this IWin32Window @this, string text, string caption = "", MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.None, MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button1)
+			=> MessageBox.Show(@this, text, caption, buttons, icon, defaultButton);
 
 		/// <summary>
 		/// エラーを知らせるメッセージ ボックスを表示します。
@@ -28,8 +29,9 @@ namespace WindowsFormsLibrary.Extensions {
 		/// <param name="ex">例外</param>
 		/// <param name="detailed">詳細に表示するか</param>
 		/// <returns>DialogResult 値のいずれか。</returns>
-		public static DialogResult ShowErrorMessage(this IWin32Window @this, Exception ex, bool detailed = false) {
-			return @this.ShowMessageBox(detailed ? $"{ex}" : ex.Message, nameof(MessageBoxIcon.Error), icon: MessageBoxIcon.Error);
-		}
+		public static DialogResult ShowErrorMessage(this IWin32Window @this, Exception ex, bool detailed = false)
+			=> @this.ShowMessageBox(detailed ? $"{ex}" : ex.Message, nameof(MessageBoxIcon.Error), icon: MessageBoxIcon.Error);
+
+		#endregion
 	}
 }

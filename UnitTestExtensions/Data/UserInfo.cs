@@ -41,11 +41,10 @@ namespace UnitTestExtensions.Data {
 				&& (this.住所 == p.住所);
 		}
 
-		public override int GetHashCode() {
-			return this.姓名.GetHashCode()
+		public override int GetHashCode()
+			=> this.姓名.GetHashCode()
 				^ this.生年月日.GetHashCode()
 				^ this.住所.GetHashCode();
-		}
 
 		#endregion
 

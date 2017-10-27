@@ -39,18 +39,24 @@ namespace ExtensionsLibrary.Extensions {
 		/// </summary>
 		/// <param name="this">DataTable</param>
 		/// <returns>行データのコレクションを返します。</returns>
-		public static IEnumerable<DataRow> GetRows(this DataTable @this) {
-			return @this.Rows.Cast<DataRow>();
-		}
+		public static IEnumerable<DataRow> GetRows(this DataTable @this)
+			=> @this?.Rows?.Cast<DataRow>() ?? Enumerable.Empty<DataRow>();
 
 		/// <summary>
 		/// 列データのコレクションを取得します。
 		/// </summary>
 		/// <param name="this">DataTable</param>
 		/// <returns>列データのコレクションを返します。</returns>
-		public static IEnumerable<DataColumn> GetColumns(this DataTable @this) {
-			return @this.Columns.Cast<DataColumn>();
-		}
+		public static IEnumerable<DataColumn> GetColumns(this DataTable @this)
+			=> @this.Columns.Cast<DataColumn>();
+
+		/// <summary>
+		/// 行コレクションにデータがあるかどうかを取得します。
+		/// </summary>
+		/// <param name="this">DataTable</param>
+		/// <returns>行コレクションにに要素が含まれている場合は true。それ以外の場合は false を返します。</returns>
+		public static bool AnyRows(this DataTable @this)
+			=> @this.GetRows().Any();
 
 		#endregion
 	}

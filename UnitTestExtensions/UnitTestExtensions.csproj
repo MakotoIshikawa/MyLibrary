@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitTestExtensions</RootNamespace>
     <AssemblyName>UnitTestExtensions</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,13 +37,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
@@ -60,6 +62,13 @@
   <ItemGroup>
     <Compile Include="Data\PrecipitationModel.cs" />
     <Compile Include="Data\UserInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UnitTestExcel.cs" />
+    <Compile Include="UnitTestOffice.cs" />
     <Compile Include="UnitTestRetry.cs" />
     <Compile Include="UnitTestNet.cs" />
     <Compile Include="UnitTestBot.cs" />
@@ -70,6 +79,7 @@
     <Compile Include="UnitTestJson.cs" />
     <Compile Include="UnitTestLuis.cs" />
     <Compile Include="UnitTestAzure.cs" />
+    <Compile Include="UnitTestSharePoint.cs" />
     <Compile Include="UnitTestXml.cs" />
     <Compile Include="UnitTestExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,32 +94,44 @@
       <Name>BotLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\CommonFeaturesLibrary\CommonFeaturesLibrary.csproj">
-      <Project>{666330c0-b3f9-489a-ab39-4217d18728c7}</Project>
+      <Project>{72a0933e-88de-48c4-a3e4-e1c8fdb13065}</Project>
       <Name>CommonFeaturesLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelLibrary\ExcelLibrary.csproj">
+      <Project>{e70e8e0e-dd49-4d65-82ed-b9d423e52c36}</Project>
+      <Name>ExcelLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ExtensionsLibrary\ExtensionsLibrary.csproj">
       <Project>{d37920d6-23c2-42a2-a593-32f8687fd320}</Project>
       <Name>ExtensionsLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\JsonLibrary\JsonLibrary.csproj">
-      <Project>{b81b68d9-a7fa-49d9-86c3-ad3d609f4226}</Project>
+      <Project>{a1057257-861d-4fb9-b5bd-21e93c4847f3}</Project>
       <Name>JsonLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\LuisLibrary\LuisLibrary.csproj">
-      <Project>{37a74f13-c54a-4d7c-8972-72ac1f0d4fa5}</Project>
+      <Project>{89051b4e-0ee4-4951-ae21-3d160f3febbd}</Project>
       <Name>LuisLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\NetLibrary\NetLibrary.csproj">
-      <Project>{4aa33b8a-ed2b-4bcd-bdb3-02cb357c0758}</Project>
+      <Project>{c429b47b-5393-47ae-ae7c-5d4657018800}</Project>
       <Name>NetLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ObjectAnalysisProject\ObjectAnalysisProject.csproj">
       <Project>{be1bb940-f59e-4440-add0-603bd9915a02}</Project>
       <Name>ObjectAnalysisProject</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OfficeLibrary\OfficeLibrary.csproj">
+      <Project>{5078ee21-8170-4e7e-a90e-a6ad1bf7793a}</Project>
+      <Name>OfficeLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RetryLibrary\RetryLibrary.csproj">
-      <Project>{2bb3fff2-8010-4e79-a60c-5153fc99b259}</Project>
+      <Project>{70408112-a4d0-4373-bcb9-3378eae48612}</Project>
       <Name>RetryLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharePointLibrary\SharePointLibrary.csproj">
+      <Project>{600f0413-f052-43ba-ae0e-ffd8b7a8df5d}</Project>
+      <Name>SharePointLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\WindowsFormsLibrary\WindowsFormsLibrary.csproj">
       <Project>{d2bdb1cb-dc00-413e-a895-30075f92edb4}</Project>
@@ -120,13 +142,29 @@
       <Name>WpfLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\XmlLibrary\XmlLibrary.csproj">
-      <Project>{9050afb5-bcc8-4fb6-b578-527782a76ffa}</Project>
+      <Project>{ff4dc098-d3fd-45e8-9665-8bdf388f286b}</Project>
       <Name>XmlLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\UserInfos.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EPPlus">
+      <Version>4.5.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
@@ -148,6 +186,10 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(ProjectDir)"
+xcopy /Y /I /S "Resources\*" "$(TargetDir)Resources"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
