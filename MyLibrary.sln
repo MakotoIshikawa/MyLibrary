@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetLibrary", "NetLibrary\Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetryLibrary", "RetryLibrary\RetryLibrary.csproj", "{2BB3FFF2-8010-4E79-A60C-5153FC99B259}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointLibrary", "SharePointLibrary\SharePointLibrary.csproj", "{600F0413-F052-43BA-AE0E-FFD8B7A8DF5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{2BB3FFF2-8010-4E79-A60C-5153FC99B259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BB3FFF2-8010-4E79-A60C-5153FC99B259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BB3FFF2-8010-4E79-A60C-5153FC99B259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{600F0413-F052-43BA-AE0E-FFD8B7A8DF5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{600F0413-F052-43BA-AE0E-FFD8B7A8DF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{600F0413-F052-43BA-AE0E-FFD8B7A8DF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{600F0413-F052-43BA-AE0E-FFD8B7A8DF5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

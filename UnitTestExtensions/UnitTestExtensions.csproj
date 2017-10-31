@@ -70,6 +70,7 @@
     <Compile Include="UnitTestJson.cs" />
     <Compile Include="UnitTestLuis.cs" />
     <Compile Include="UnitTestAzure.cs" />
+    <Compile Include="UnitTestSharePoint.cs" />
     <Compile Include="UnitTestXml.cs" />
     <Compile Include="UnitTestExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,6 +111,10 @@
     <ProjectReference Include="..\RetryLibrary\RetryLibrary.csproj">
       <Project>{2bb3fff2-8010-4e79-a60c-5153fc99b259}</Project>
       <Name>RetryLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharePointLibrary\SharePointLibrary.csproj">
+      <Project>{600f0413-f052-43ba-ae0e-ffd8b7a8df5d}</Project>
+      <Name>SharePointLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\WindowsFormsLibrary\WindowsFormsLibrary.csproj">
       <Project>{d2bdb1cb-dc00-413e-a895-30075f92edb4}</Project>
