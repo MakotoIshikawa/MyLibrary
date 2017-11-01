@@ -26,6 +26,12 @@ namespace SharePointLibrary.Extensions {
 			}
 		}
 
+		/// <summary>
+		/// 内部名を指定して、フィールドの値を取得します。
+		/// </summary>
+		/// <param name="this">SPListItem</param>
+		/// <param name="name">フィールドの内部名</param>
+		/// <returns>フィールドの値を返します。</returns>
 		public static object GetFieldValue(this SPListItem @this, string name) {
 			try {
 				return @this[name];

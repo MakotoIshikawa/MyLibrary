@@ -35,7 +35,7 @@ namespace SharePointLibrary.Extensions
         /// </summary>
         /// <param name="web">SPWeb</param>
         /// <param name="listTitle">リスト名</param>
-        /// <param name="item">列名と値の連想配列</param>
+        /// <param name="items">列名と値の連想配列</param>
         public static void AddItemsOneByOne(this SPWeb web, string listTitle, params Dictionary<string, object>[] items)
         {
             var list = web.Lists.TryGetList(listTitle);
@@ -50,7 +50,7 @@ namespace SharePointLibrary.Extensions
         /// </summary>
         /// <param name="web">SPWeb</param>
         /// <param name="listTitle">リスト名</param>
-        /// <param name="item">列名と値の連想配列</param>
+        /// <param name="items">列名と値の連想配列</param>
         public static string AddItemsByBatch(this SPWeb web, string listTitle, params Dictionary<string, object>[] items)
         {
             var list = web.Lists.TryGetList(listTitle);
