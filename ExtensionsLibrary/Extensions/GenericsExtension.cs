@@ -195,10 +195,15 @@ namespace ExtensionsLibrary.Extensions {
 		/// </summary>
 		/// <typeparam name="T">インスタンスの型</typeparam>
 		/// <param name="this">対象のインスタンス</param>
+		/// <param name="predicate">フィルターする条件</param>
 		/// <returns>Dictionary を返します。</returns>
-		public static Dictionary<string, object> ToPropertyDictionary<T>(this T @this) {
-			var ps = @this.GetProperties();
-			return ps.ToDictionary(p => p.Name, p => p.GetValue(@this));
+		public static Dictionary<string, object> ToPropertyDictionary<T>(this T @this, Func<PropertyInfo, bool> predicate = null) {
+			var properties = @this.GetProperties();
+			if (predicate == null) {
+				return properties.ToDictionary(p => p.Name, p => p.GetValue(@this));
+			}
+
+			return properties.Where(predicate).ToDictionary(p => p.Name, p => p.GetValue(@this));
 		}
 
 		/// <summary>
@@ -308,10 +313,15 @@ namespace ExtensionsLibrary.Extensions {
 		/// </summary>
 		/// <typeparam name="T">インスタンスの型</typeparam>
 		/// <param name="this">対象のインスタンス</param>
+		/// <param name="predicate">フィルターする条件</param>
 		/// <returns>Dictionary を返します。</returns>
-		public static Dictionary<string, object> ToFieldDictionary<T>(this T @this) {
-			var ps = @this.GetFields();
-			return ps.ToDictionary(p => p.Name, p => p.GetValue(@this));
+		public static Dictionary<string, object> ToFieldDictionary<T>(this T @this, Func<FieldInfo, bool> predicate = null) {
+			var fields = @this.GetFields();
+			if (predicate == null) {
+				return fields.ToDictionary(p => p.Name, p => p.GetValue(@this));
+			}
+
+			return fields.Where(predicate).ToDictionary(p => p.Name, p => p.GetValue(@this));
 		}
 
 		/// <summary>

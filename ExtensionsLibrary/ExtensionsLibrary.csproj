@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompareSelector.cs" />
+    <Compile Include="Extensions\AttributeExtension.cs" />
     <Compile Include="Extensions\DataTableExtension.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\DictionaryExtension.cs" />
