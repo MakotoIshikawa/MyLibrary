@@ -119,9 +119,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <param name="encoding">エンコーディング</param>
 		/// <returns>MemoryStream の新しいインスタンスを返します。</returns>
-		public static MemoryStream CreateStream(this string @this, Encoding encoding) {
-			return new MemoryStream(encoding.GetBytes(@this));
-		}
+		public static MemoryStream CreateStream(this string @this, Encoding encoding)
+			=> new MemoryStream(encoding.GetBytes(@this));
 
 		#endregion
 
@@ -133,9 +132,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <returns>null または空の文字列 ("") の場合は true。
 		/// それ以外の場合は false。</returns>
-		public static bool IsEmpty(this string @this) {
-			return string.IsNullOrEmpty(@this);
-		}
+		public static bool IsEmpty(this string @this)
+			=> string.IsNullOrEmpty(@this);
 
 		/// <summary>
 		/// 指定された文字列が null または空であるか、空白文字だけで構成されているかどうかを示します。
@@ -143,9 +141,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <returns>null または または空の文字列 ("") であるか、空白文字だけで構成されている場合は true。
 		/// それ以外の場合は false。</returns>
-		public static bool IsWhiteSpace(this string @this) {
-			return string.IsNullOrWhiteSpace(@this);
-		}
+		public static bool IsWhiteSpace(this string @this)
+			=> string.IsNullOrWhiteSpace(@this);
 
 		#endregion
 
@@ -174,9 +171,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// </summary>
 		/// <param name="this">文字列</param>
 		/// <returns>Base64 の数字でエンコードされた文字列を返します。</returns>
-		public static string ToBase64(this string @this) {
-			return @this.ToBase64(Encoding.UTF8);
-		}
+		public static string ToBase64(this string @this)
+			=> @this.ToBase64(Encoding.UTF8);
 
 		/// <summary>
 		/// エンコードを指定して、
@@ -198,9 +194,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// </summary>
 		/// <param name="this">Base64 数字エンコード文字列</param>
 		/// <returns>変換された文字列を返します。</returns>
-		public static string FromBase64(this string @this) {
-			return @this.FromBase64(Encoding.UTF8);
-		}
+		public static string FromBase64(this string @this)
+			=> @this.FromBase64(Encoding.UTF8);
 
 		/// <summary>
 		/// エンコードを指定して、
@@ -226,9 +221,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// </summary>
 		/// <param name="this">文字列</param>
 		/// <returns>null 場合 string.Empty を返します。</returns>
-		public static string GetValueOrEmpty(this string @this) {
-			return @this.IsEmpty() ? string.Empty : @this;
-		}
+		public static string GetValueOrEmpty(this string @this)
+			=> @this ?? string.Empty;
 
 		#endregion
 
@@ -240,9 +234,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">string</param>
 		/// <param name="length">取り出す文字数</param>
 		/// <returns>取り出した文字列を返します。</returns>
-		public static string Left(this string @this, int length) {
-			return (new string(@this.Take(length).ToArray())).TrimEnd();
-		}
+		public static string Left(this string @this, int length)
+			=> (new string(@this.Take(length).ToArray())).TrimEnd();
 
 		/// <summary>
 		/// 指定された位置から文字列を取得します。
@@ -250,9 +243,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">string</param>
 		/// <param name="start">開始位置</param>
 		/// <returns>取り出した文字列を返します。</returns>
-		public static string Mid(this string @this, int start) {
-			return (new string(@this.Skip(start - 1).ToArray())).TrimEnd();
-		}
+		public static string Mid(this string @this, int start)
+			=> (new string(@this.Skip(start - 1).ToArray())).TrimEnd();
 
 		/// <summary>
 		/// 指定された位置から、指定された文字数分の文字列を取得します。
@@ -261,9 +253,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="start">開始位置</param>
 		/// <param name="length">取り出す文字数</param>
 		/// <returns>取り出した文字列を返します。</returns>
-		public static string Mid(this string @this, int start, int length) {
-			return (new string(@this.Skip(start - 1).Take(length).ToArray())).TrimEnd();
-		}
+		public static string Mid(this string @this, int start, int length)
+			=> (new string(@this.Skip(start - 1).Take(length).ToArray())).TrimEnd();
 
 		/// <summary>
 		/// 文字列の右端から指定された文字数分の文字列を取得します。

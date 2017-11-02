@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.SharePoint;
 using ExtensionsLibrary.Extensions;
+using System.Collections.Generic;
 
 namespace SharePointLibrary.Extensions {
 	/// <summary>
@@ -83,6 +85,23 @@ namespace SharePointLibrary.Extensions {
 		/// <returns>フィールドの DateTime 値を返します。</returns>
 		public static DateTime? GetFieldDateTime(this SPListItem @this, string name) {
 			return @this.GetFieldText(name).ToNullable(v => Convert.ToDateTime(v));
+		}
+
+		#endregion
+
+		#region 更新
+
+		/// <summary>
+		/// 列名と値の連想配列を指定して、
+		/// リスト項目に加えられた変更をデータベースに更新します。
+		/// </summary>
+		/// <param name="this">SPListItem</param>
+		/// <param name="item">列名と値の連想配列</param>
+		/// <returns>SPListItem のインスタンスを返します。</returns>
+		public static SPListItem Update(this SPListItem @this, Dictionary<string, object> item) {
+			item.ToList().ForEach(kv => @this[kv.Key] = kv.Value);
+			@this.Update();
+			return @this;
 		}
 
 		#endregion
