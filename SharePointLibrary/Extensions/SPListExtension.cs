@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using ExtensionsLibrary.Extensions;
 using Microsoft.SharePoint;
 using SharePointLibrary.Helper;
 using SharePointLibrary.Model;
@@ -42,11 +45,17 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="items">列名と値の連想配列</param>
 		/// <returns></returns>
 		public static string AddItemsByBatch(this SPList list, params Dictionary<string, object>[] items) {
-			var bat = new InsertBatch(list.ID, items);
-			var xml = bat.ToString();
+			var sb = new StringBuilder();
+			var chunks = items.MakeChunksPerSize(5000);
+			foreach (var chunk in chunks) {
+				var bat = new InsertBatch(list.ID, chunk.ToArray());
+				var xml = bat.ToString();
 
-			var ret = list.ParentWeb.ProcessBatchData(xml);
-			return ret;
+				var ret = list.ParentWeb.ProcessBatchData(xml);
+				sb.AppendLine(ret);
+			}
+
+			return sb.ToString();
 		}
 
 		#endregion
@@ -87,12 +96,56 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="items">リストアイテムの配列</param>
 		/// <returns>結果を含む文字列を返します。</returns>
 		public static string UpdateItemsByBatch(this SPList list, params IdentifiedListItem[] items) {
-			var bat = new UpdateBatch(list.ID, items);
-			var xml = bat.ToString();
+			var sb = new StringBuilder();
+			var chunks = items.MakeChunksPerSize(5000);
+			foreach (var chunk in chunks) {
+				var bat = new UpdateBatch(list.ID, chunk.ToArray());
+				var xml = bat.ToString();
 
-			var ret = list.ParentWeb.ProcessBatchData(xml);
-			return ret;
+				var ret = list.ParentWeb.ProcessBatchData(xml);
+				sb.AppendLine(ret);
+			}
+
+			return sb.ToString();
 		}
+
+		#region UpdateItemsByBatch
+
+		/// <summary>
+		/// 指定した条件で抽出した
+		/// リストのアイテムを共通の値に更新します。(バッチ処理)
+		/// </summary>
+		/// <param name="list">SPList</param>
+		/// <param name="query"></param>
+		/// <param name="cels">共通の変更値</param>
+		public static void UpdateItemsByBatch(this SPList list, SPQuery query, Dictionary<string, object> cels)
+			=> list.UpdateItemsByBatchSub(query, ui => ui.Select(i => new IdentifiedListItem(i.ID, cels)));
+
+		private static void UpdateItemsByBatchSub(this SPList @this, SPQuery query, Func<IEnumerable<SPListItem>, IEnumerable<IdentifiedListItem>> func) {
+			var items = @this.GetListItems(query);
+			var itemInfos = func?.Invoke(items)?.ToArray();
+			@this.UpdateItemsByBatch(itemInfos);
+		}
+
+		#endregion
+
+		#region UpdateAllItemsByBatch
+
+		/// <summary>
+		/// 全てのリストのアイテムを共通の値に更新します。(バッチ処理)
+		/// </summary>
+		/// <param name="list">SPList</param>
+		/// <param name="cels">共通の変更値</param>
+		public static void UpdateAllItemsByBatch(this SPList list, Dictionary<string, object> cels)
+			=> list.UpdateAllItemsByBatchSub(ui => ui.Select(i => new IdentifiedListItem(i.ID, cels)));
+
+		private static void UpdateAllItemsByBatchSub(this SPList @this, Func<IEnumerable<SPListItem>, IEnumerable<IdentifiedListItem>> func) {
+			var items = @this.GetListItems("ID");
+			var itemInfos = func?.Invoke(items)?.ToArray();
+			@this.UpdateItemsByBatch(itemInfos);
+		}
+
+		#endregion
 
 		#endregion
 
@@ -106,11 +159,17 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="itemIds">アイテムIDの配列</param>
 		/// <returns>結果を含む文字列を返します。</returns>
 		public static string DeleteByBatch(this SPList list, params int[] itemIds) {
-			var bat = new DeleteBatch(list.ID, itemIds);
-			var xml = bat.ToString();
+			var sb = new StringBuilder();
+			var chunks = itemIds.MakeChunksPerSize(5000);
+			foreach (var chunk in chunks) {
+				var bat = new DeleteBatch(list.ID, itemIds);
+				var xml = bat.ToString();
 
-			var ret = list.ParentWeb.ProcessBatchData(xml);
-			return ret;
+				var ret = list.ParentWeb.ProcessBatchData(xml);
+				sb.AppendLine(ret);
+			}
+
+			return sb.ToString();
 		}
 
 		/// <summary>
@@ -153,6 +212,30 @@ namespace SharePointLibrary.Extensions {
 
 		#region 取得
 
+		#region リストアイテム取得
+
+		/// <summary>
+		/// 条件を指定して、
+		/// リストアイテムのコレクションを取得します。
+		/// </summary>
+		/// <param name="list">SPList</param>
+		/// <param name="query">条件</param>
+		/// <returns>リストアイテムのコレクションを返します。</returns>
+		public static IEnumerable<SPListItem> GetListItems(this SPList list, SPQuery query)
+			=> list?.GetItems(query)?.Cast<SPListItem>();
+
+		/// <summary>
+		/// 取得するフィールドを指定して、
+		/// リストアイテムのコレクションを取得します。
+		/// </summary>
+		/// <param name="list">SPList</param>
+		/// <param name="fields">取得するフィールド</param>
+		/// <returns>リストアイテムのコレクションを返します。</returns>
+		public static IEnumerable<SPListItem> GetListItems(this SPList list, params string[] fields)
+			=> list?.GetItems(fields)?.Cast<SPListItem>();
+
+		#endregion
+
 		#region ID取得
 
 		/// <summary>
@@ -161,7 +244,7 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="list">SPList</param>
 		/// <returns>リストアイテムのIDのコレクションを返します。</returns>
 		public static IEnumerable<int> GetItemIds(this SPList list)
-			=> list.GetItems("ID")?.Cast<SPListItem>()?.Select(i => i.ID);
+			=> list.GetListItems("ID")?.Select(i => i.ID);
 
 		/// <summary>
 		/// 条件を指定して、
@@ -171,7 +254,7 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="query">条件</param>
 		/// <returns>リストアイテムのIDのコレクションを返します。</returns>
 		public static IEnumerable<int> GetItemIds(this SPList list, SPQuery query)
-			=> list.GetItems(query)?.Cast<SPListItem>()?.Select(i => i.ID);
+			=> list.GetListItems(query)?.Select(i => i.ID);
 
 		#endregion
 
