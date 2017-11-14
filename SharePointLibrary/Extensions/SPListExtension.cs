@@ -118,13 +118,14 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="list">SPList</param>
 		/// <param name="query"></param>
 		/// <param name="cels">共通の変更値</param>
-		public static void UpdateItemsByBatch(this SPList list, SPQuery query, Dictionary<string, object> cels)
+		/// <returns>結果を含む文字列を返します。</returns>
+		public static string UpdateItemsByBatch(this SPList list, SPQuery query, Dictionary<string, object> cels)
 			=> list.UpdateItemsByBatchSub(query, ui => ui.Select(i => new IdentifiedListItem(i.ID, cels)));
 
-		private static void UpdateItemsByBatchSub(this SPList @this, SPQuery query, Func<IEnumerable<SPListItem>, IEnumerable<IdentifiedListItem>> func) {
+		private static string UpdateItemsByBatchSub(this SPList @this, SPQuery query, Func<IEnumerable<SPListItem>, IEnumerable<IdentifiedListItem>> func) {
 			var items = @this.GetListItems(query);
 			var itemInfos = func?.Invoke(items)?.ToArray();
-			@this.UpdateItemsByBatch(itemInfos);
+			return @this.UpdateItemsByBatch(itemInfos);
 		}
 
 		#endregion
@@ -136,13 +137,14 @@ namespace SharePointLibrary.Extensions {
 		/// </summary>
 		/// <param name="list">SPList</param>
 		/// <param name="cels">共通の変更値</param>
-		public static void UpdateAllItemsByBatch(this SPList list, Dictionary<string, object> cels)
+		/// <returns>結果を含む文字列を返します。</returns>
+		public static string UpdateAllItemsByBatch(this SPList list, Dictionary<string, object> cels)
 			=> list.UpdateAllItemsByBatchSub(ui => ui.Select(i => new IdentifiedListItem(i.ID, cels)));
 
-		private static void UpdateAllItemsByBatchSub(this SPList @this, Func<IEnumerable<SPListItem>, IEnumerable<IdentifiedListItem>> func) {
+		private static string UpdateAllItemsByBatchSub(this SPList @this, Func<IEnumerable<SPListItem>, IEnumerable<IdentifiedListItem>> func) {
 			var items = @this.GetListItems("ID");
 			var itemInfos = func?.Invoke(items)?.ToArray();
-			@this.UpdateItemsByBatch(itemInfos);
+			return @this.UpdateItemsByBatch(itemInfos);
 		}
 
 		#endregion
