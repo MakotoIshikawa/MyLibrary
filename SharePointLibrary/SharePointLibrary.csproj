@@ -53,6 +53,7 @@
     <Compile Include="Extensions\IdentifiedListItemExtension.cs" />
     <Compile Include="Extensions\SPListExtension.cs" />
     <Compile Include="Extensions\SPListItemExtension.cs" />
+    <Compile Include="Extensions\SPWebExtension.cs" />
     <Compile Include="Helper\DeleteBatch.cs" />
     <Compile Include="Helper\InsertBatch.cs" />
     <Compile Include="Helper\Primitive\BaseBatchData.cs" />
