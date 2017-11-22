@@ -488,10 +488,9 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="size">サイズ</param>
 		/// <returns></returns>
 		public static IEnumerable<IEnumerable<T>> MakeChunksPerSize<T>(this IEnumerable<T> @this, int size) {
-			var elements = @this;
-			while (elements.Any()) {
-				yield return elements.Take(size);
-				elements = elements.Skip(size);
+			while (@this.Any()) {
+				yield return @this.Take(size);
+				@this = @this.Skip(size);
 			}
 		}
 

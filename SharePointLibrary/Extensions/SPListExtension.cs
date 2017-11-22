@@ -36,6 +36,8 @@ namespace SharePointLibrary.Extensions {
 		public static void AddItemsOneByOne(this SPList list, params Dictionary<string, object>[] items)
 			=> items.ToList().ForEach(i => list.AddItem(i));
 
+		#region AddItemsByBatch
+
 		/// <summary>
 		/// 列名と値の連想配列を指定して、
 		/// リストにアイテムを追加します。(バッチ処理)
@@ -43,15 +45,21 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="list">SPList</param>
 		/// <param name="items">列名と値の連想配列</param>
 		/// <returns>処理の結果を返します。</returns>
-		public static IEnumerable<string> AddItemsByBatch(this SPList list, params Dictionary<string, object>[] items) {
+		public static IEnumerable<string> AddItemsByBatch(this SPList list, params Dictionary<string, object>[] items)
+			=> list.AddItemsByBatchSub(items).ToList();
+
+		private static IEnumerable<string> AddItemsByBatchSub(this SPList list, IEnumerable<Dictionary<string, object>> items) {
 			var chunks = items.MakeChunksPerSize(5000);
-			foreach (var chunk in chunks) {
+			foreach (var chunk in chunks)
+			{
 				var bat = new InsertBatch(list.ID, chunk.ToArray());
 				var xml = bat.ToString();
 
 				yield return list.ParentWeb.ProcessBatchData(xml);
 			}
 		}
+
+		#endregion
 
 		#endregion
 
@@ -83,6 +91,9 @@ namespace SharePointLibrary.Extensions {
 		public static void UpdateItemsOneByOne(this SPList list, params IdentifiedListItem[] items)
 			=> items.ToList().ForEach(i => list.UpdateItem(i));
 
+
+		#region UpdateItemsByBatch
+
 		/// <summary>
 		/// 列名と値の連想配列を指定して、
 		/// リストのアイテムを更新します。(バッチ処理)
@@ -90,17 +101,19 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="list">SPList</param>
 		/// <param name="items">リストアイテムの配列</param>
 		/// <returns>結果を含む文字列を返します。</returns>
-		public static IEnumerable<string> UpdateItemsByBatch(this SPList list, params IdentifiedListItem[] items) {
+		public static IEnumerable<string> UpdateItemsByBatch(this SPList list, params IdentifiedListItem[] items)
+			=> list.UpdateItemsByBatchSub(items).ToList();
+
+		private static IEnumerable<string> UpdateItemsByBatchSub(this SPList list, IEnumerable<IdentifiedListItem> items) {
 			var chunks = items.MakeChunksPerSize(5000);
-			foreach (var chunk in chunks) {
+			foreach (var chunk in chunks)
+			{
 				var bat = new UpdateBatch(list.ID, chunk.ToArray());
 				var xml = bat.ToString();
 
 				yield return list.ParentWeb.ProcessBatchData(xml);
 			}
 		}
-
-		#region UpdateItemsByBatch
 
 		/// <summary>
 		/// 指定した条件で抽出した
@@ -144,6 +157,8 @@ namespace SharePointLibrary.Extensions {
 
 		#region 削除
 
+		#region DeleteByBatch
+
 		/// <summary>
 		/// 削除対象のアイテムIDの配列を指定して、
 		/// リストのアイテムを削除します。(バッチ処理)
@@ -151,9 +166,13 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="list">SPList</param>
 		/// <param name="itemIds">アイテムIDの配列</param>
 		/// <returns>結果を含む文字列を返します。</returns>
-		public static IEnumerable<string> DeleteByBatch(this SPList list, params int[] itemIds) {
+		public static IEnumerable<string> DeleteByBatch(this SPList list, params int[] itemIds)
+			=> list.DeleteByBatchSub(itemIds).ToList();
+
+		private static IEnumerable<string> DeleteByBatchSub(this SPList list, IEnumerable<int> itemIds) {
 			var chunks = itemIds.MakeChunksPerSize(5000);
-			foreach (var chunk in chunks) {
+			foreach (var chunk in chunks)
+			{
 				var bat = new DeleteBatch(list.ID, itemIds);
 				var xml = bat.ToString();
 
@@ -179,6 +198,8 @@ namespace SharePointLibrary.Extensions {
 
 			return ret;
 		}
+
+		#endregion
 
 		/// <summary>
 		/// リストの全てのアイテムを削除します。(バッチ処理)
