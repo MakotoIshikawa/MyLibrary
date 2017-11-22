@@ -353,7 +353,7 @@ namespace ExtensionsLibrary.Extensions {
 
 			var ret = @this.Left(digits);
 
-			return @this.Length > digits ? @this + suffixes : @this;
+			return @this.Length > digits ? ret + suffixes : ret;
 		}
 
 		#endregion
