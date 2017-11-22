@@ -337,6 +337,27 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
+		#region 省略
+
+		/// <summary>
+		/// 指定した桁数を超える場合に、文字列を省略します。
+		/// </summary>
+		/// <param name="this">string</param>
+		/// <param name="digits">桁数</param>
+		/// <param name="suffixes">接尾辞</param>
+		/// <returns>省略した文字列を返します。</returns>
+		public static string OmitGreaterThan(string @this, int digits = 100, string suffixes = "...") {
+			if (@this.IsWhiteSpace()) {
+				return string.Empty;
+			}
+
+			var ret = @this.Left(digits);
+
+			return @this.Length > digits ? @this + suffixes : @this;
+		}
+
+		#endregion
+
 		#endregion
 	}
 }
