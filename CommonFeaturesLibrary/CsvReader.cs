@@ -181,7 +181,7 @@ namespace CommonFeaturesLibrary {
 		/// <param name="tableName">テーブル名</param>
 		/// <returns>データテーブルを返します。</returns>
 		public DataTable ToDataTable(string tableName) {
-			var rows = this.ReadToEnd();
+			var rows = this.ReadToEnd().ToList();
 			var tbl = rows.ToDataTable(tableName);
 			return tbl;
 		}
