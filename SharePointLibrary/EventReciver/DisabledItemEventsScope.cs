@@ -29,9 +29,8 @@ namespace SharePointLibrary.EventReciver {
 		/// <summary>
 		/// アンマネージ リソースの解放およびリセットに関連付けられているアプリケーション定義のタスクを実行します。
 		/// </summary>
-		public void Dispose() {
-			this.EventFiringEnabled = _oldValue;
-		}
+		public void Dispose()
+			=> this.EventFiringEnabled = this._oldValue;
 
 		#endregion
 	}
