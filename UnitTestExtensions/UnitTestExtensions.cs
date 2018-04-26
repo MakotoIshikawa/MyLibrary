@@ -10,6 +10,15 @@ using UnitTestExtensions.Data;
 namespace UnitTestExtensions {
 	[TestClass]
 	public partial class UnitTestExtensions {
+		#region プロパティ
+
+		/// <summary>
+		/// リソースフォルダのディレクトリ情報を取得します。
+		/// </summary>
+		public static DirectoryInfo Resources => new DirectoryInfo(@"..\..\..\..\..\..\..\..\UnitTestExtensions\Resources");
+
+		#endregion
+
 		#region メソッド
 
 		#region DataTableExtension
@@ -92,11 +101,11 @@ namespace UnitTestExtensions {
 		[Owner(nameof(ExtensionsLibrary))]
 		[TestCategory(nameof(ExtensionsLibrary.Extensions.DirectoryInfoExtension))]
 		public void ディレクトリ内ファイル取得() {
-			var fullPath = $@"C:\work";
-			var dir = new DirectoryInfo(fullPath);
+			var dir = Resources;
 			var files = dir.GetFileInfos(true, ".htm", ".html");
 
 			Assert.IsTrue(files.Any());
+			Assert.IsTrue(files.Any(f => f.Extension == ".csv"));
 			Assert.IsFalse(files.Any(f => f.Extension == ".htm"));
 			Assert.IsFalse(files.Any(f => f.Extension == ".html"));
 		}
