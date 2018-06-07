@@ -31,8 +31,6 @@ namespace WpfLibrary.Extensions {
 		/// <typeparam name="TElement">子要素の型</typeparam>
 		/// <param name="this">Panel</param>
 		/// <returns>子要素のコレクションを返します。</returns>
-		public static IEnumerable<TElement> GetElements<TElement>(this Panel @this) where TElement : UIElement {
-			return @this.Children.OfType<TElement>();
-		}
+		public static IEnumerable<TElement> GetElements<TElement>(this Panel @this) where TElement : UIElement => @this.Children.OfType<TElement>();
 	}
 }

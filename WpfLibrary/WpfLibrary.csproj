@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\PageInfo.cs" />
+    <Compile Include="Extensions\DependencyObjectExtension.cs" />
     <Compile Include="Extensions\ControlsExtension.cs" />
     <Compile Include="Extensions\DataGridExtension.cs" />
     <Compile Include="Extensions\HeaderedItemsControlExtension.cs" />
