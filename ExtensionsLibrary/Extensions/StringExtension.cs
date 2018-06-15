@@ -297,19 +297,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">string</param>
 		/// <param name="format">書式</param>
 		/// <returns>TimeSpan を返します。</returns>
-		public static TimeSpan? ToTimeSpan(this string @this, string format = null) {
-			if (format.IsEmpty()) {
-				if (!TimeSpan.TryParse(@this, out var result)) {
-					return null;
-				}
-				return result;
-			} else {
-				if (!TimeSpan.TryParseExact(@this, format, null, TimeSpanStyles.None, out var result)) {
-					return null;
-				}
-				return result;
-			}
-		}
+		public static TimeSpan? ToTimeSpan(this string @this, string format = null)
+			=> @this.ToDateTime(format)?.TimeOfDay;
 
 		#endregion
 
