@@ -15,7 +15,7 @@ namespace UnitTestExtensions {
 		/// <summary>
 		/// リソースフォルダのディレクトリ情報を取得します。
 		/// </summary>
-		public static DirectoryInfo Resources => new DirectoryInfo(@"..\..\..\..\..\..\..\..\UnitTestExtensions\Resources");
+		public static DirectoryInfo Resources => new DirectoryInfo(@".");
 
 		#endregion
 
@@ -44,6 +44,7 @@ namespace UnitTestExtensions {
 		[TestMethod]
 		[Owner(nameof(CommonFeaturesLibrary))]
 		[TestCategory(nameof(CommonFeaturesLibrary.Extensions.FileInfoExtension))]
+		[DeploymentItem(@"Resources")]
 		public void CSV読込() {
 			var dir = Resources.FullName;
 			var file = new FileInfo(Path.Combine(dir, @"UserInfos.csv") );

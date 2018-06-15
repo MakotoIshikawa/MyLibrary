@@ -15,7 +15,7 @@ namespace UnitTestExtensions {
 		/// <summary>
 		/// リソースフォルダのディレクトリ情報を取得します。
 		/// </summary>
-		public static DirectoryInfo Resources => new DirectoryInfo(@"..\..\..\..\..\..\..\..\UnitTestExtensions\Resources");
+		public static DirectoryInfo Resources => new DirectoryInfo(@".");
 
 		#endregion
 
@@ -100,6 +100,7 @@ namespace UnitTestExtensions {
 		[TestMethod]
 		[Owner(nameof(ExtensionsLibrary))]
 		[TestCategory(nameof(ExtensionsLibrary.Extensions.DirectoryInfoExtension))]
+		[DeploymentItem(@"Resources")]
 		public void ディレクトリ内ファイル取得() {
 			var dir = Resources;
 			var files = dir.GetFileInfos(true, ".htm", ".html");
@@ -254,7 +255,6 @@ namespace UnitTestExtensions {
 				Assert.IsTrue(ret);
 			}
 		}
-
 
 		[TestMethod]
 		[Owner(nameof(ExtensionsLibrary))]
