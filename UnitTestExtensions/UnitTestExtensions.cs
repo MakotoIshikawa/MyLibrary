@@ -255,6 +255,35 @@ namespace UnitTestExtensions {
 			}
 		}
 
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.StringExtension))]
+		public void 時刻変換() {
+			{
+				var str = "13:30";
+
+				// 期待値
+				var expected = new TimeSpan(13, 30, 0);
+
+				// 実際値
+				var actual = str.ToDateTime("HH:mm")?.TimeOfDay;
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "13:30";
+
+				// 期待値
+				var expected = new TimeSpan(13, 30, 0);
+
+				// 実際値
+				var actual = str.ToTimeSpan("HH:mm");
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
 		#endregion
 
 		#region TupleExtension

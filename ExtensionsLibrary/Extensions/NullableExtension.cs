@@ -37,8 +37,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
 		public static short? ToNullableShort(this string @this) {
-			short result;
-			if (short.TryParse(@this, out result)) {
+			if (short.TryParse(@this, out var result)) {
 				return result;
 			}
 			return null;
@@ -54,8 +53,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
 		public static int? ToNullableInt(this string @this) {
-			int result;
-			if (int.TryParse(@this, out result)) {
+			if (int.TryParse(@this, out var result)) {
 				return result;
 			}
 			return null;
@@ -71,8 +69,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
 		public static long? ToNullableLong(this string @this) {
-			long result;
-			if (long.TryParse(@this, out result)) {
+			if (long.TryParse(@this, out var result)) {
 				return result;
 			}
 			return null;
@@ -88,8 +85,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
 		public static uint? ToNullableUint(this string @this) {
-			uint result;
-			if (uint.TryParse(@this, out result)) {
+			if (uint.TryParse(@this, out var result)) {
 				return result;
 			}
 			return null;
@@ -105,8 +101,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
 		public static float? ToNullableFloat(this string @this) {
-			float result;
-			if (float.TryParse(@this, out result)) {
+			if (float.TryParse(@this, out var result)) {
 				return result;
 			}
 			return null;
@@ -122,8 +117,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
 		public static double? ToNullableDouble(this string @this) {
-			double result;
-			if (double.TryParse(@this, out result)) {
+			if (double.TryParse(@this, out var result)) {
 				return result;
 			}
 			return null;
@@ -139,8 +133,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
 		public static decimal? ToNullableDecimal(this string @this) {
-			decimal result;
-			if (decimal.TryParse(@this, out result)) {
+			if (decimal.TryParse(@this, out var result)) {
 				return result;
 			}
 			return null;
@@ -156,8 +149,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">文字列</param>
 		/// <returns>Nullable 値に変換した値を返します。</returns>
 		public static bool? ToNullableBool(this string @this) {
-			bool result;
-			if (bool.TryParse(@this, out result)) {
+			if (bool.TryParse(@this, out var result)) {
 				return result;
 			}
 			return null;

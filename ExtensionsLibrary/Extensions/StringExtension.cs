@@ -279,14 +279,32 @@ namespace ExtensionsLibrary.Extensions {
 		/// <returns>DateTime を返します。</returns>
 		public static DateTime? ToDateTime(this string @this, string format = null) {
 			if (format.IsEmpty()) {
-				DateTime result;
-				if (!DateTime.TryParse(@this, out result)) {
+				if (!DateTime.TryParse(@this, out var result)) {
 					return null;
 				}
 				return result;
 			} else {
-				DateTime result;
-				if (!DateTime.TryParseExact(@this, format, null, DateTimeStyles.None, out result)) {
+				if (!DateTime.TryParseExact(@this, format, null, DateTimeStyles.None, out var result)) {
+					return null;
+				}
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// 文字列を TimeSpan に変換します。
+		/// </summary>
+		/// <param name="this">string</param>
+		/// <param name="format">書式</param>
+		/// <returns>TimeSpan を返します。</returns>
+		public static TimeSpan? ToTimeSpan(this string @this, string format = null) {
+			if (format.IsEmpty()) {
+				if (!TimeSpan.TryParse(@this, out var result)) {
+					return null;
+				}
+				return result;
+			} else {
+				if (!TimeSpan.TryParseExact(@this, format, null, TimeSpanStyles.None, out var result)) {
 					return null;
 				}
 				return result;
