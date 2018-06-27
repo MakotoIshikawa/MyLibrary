@@ -3,7 +3,7 @@ using CommonFeaturesLibrary.Providers.Primitive;
 
 namespace CommonFeaturesLibrary.Providers.Access {
 	/// <summary>
-	/// Excel ファイル用のデータベースの Connection を提供するクラスです。
+	/// Access ファイル用のデータベースの Connection を提供するクラスです。
 	/// </summary>
 	public class AccessConnection : FileConnectionBase {
 		#region コンストラクタ
