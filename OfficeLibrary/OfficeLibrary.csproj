@@ -49,10 +49,17 @@
   <ItemGroup>
     <Compile Include="ExcelManager.cs" />
     <Compile Include="Extensions\EPPlusExtension.cs" />
+    <Compile Include="Primitives\ExcelManagerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExtensionsLibrary\ExtensionsLibrary.csproj">
+      <Project>{d37920d6-23c2-42a2-a593-32f8687fd320}</Project>
+      <Name>ExtensionsLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
