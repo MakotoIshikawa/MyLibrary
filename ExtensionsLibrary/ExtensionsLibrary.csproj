@@ -45,6 +45,7 @@
     <Compile Include="Extensions\DirectoryInfoExtension.cs" />
     <Compile Include="Extensions\EnumerableExtension.cs" />
     <Compile Include="Extensions\EnumExtension.cs" />
+    <Compile Include="Extensions\ExpressionExtension.cs" />
     <Compile Include="Extensions\FileInfoExtension.cs" />
     <Compile Include="Extensions\GenericsExtension.cs" />
     <Compile Include="Extensions\LinkedListExtension.cs" />
