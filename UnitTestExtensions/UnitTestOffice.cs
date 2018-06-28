@@ -10,6 +10,12 @@ using OfficeOpenXml.Style;
 namespace UnitTestExtensions {
 	[TestClass]
 	public partial class UnitTestOffice {
+		#region フィールド
+
+		private string _root = @"C:\Excel";
+
+		#endregion
+
 		#region メソッド
 
 		[TestMethod]
@@ -17,7 +23,7 @@ namespace UnitTestExtensions {
 		[WorkItem(1)]
 		[TestCategory("コンストラクタ")]
 		public void ExcelManagerTest() {
-			var xlsx = new ExcelManager(@"C:\Excel\test.xlsx");
+			var xlsx = new ExcelManager($@"{this._root}\test.xlsx");
 
 			Assert.AreEqual("Sheet1", xlsx.SheetName);
 			Assert.AreEqual(1, xlsx.Position);
@@ -29,7 +35,7 @@ namespace UnitTestExtensions {
 		[WorkItem(2)]
 		[ExpectedException(typeof(System.ArgumentException))]
 		public void ExcelManagerTest1() {
-			var xlsx = new ExcelManager(@"C:\Excel\test.xlsx", "XXXXX");
+			var xlsx = new ExcelManager($@"{this._root}\test.xlsx", "XXXXX");
 		}
 
 		[TestMethod]
@@ -38,7 +44,7 @@ namespace UnitTestExtensions {
 		[WorkItem(3)]
 		[ExpectedException(typeof(System.ArgumentException))]
 		public void ExcelManagerTest2() {
-			var xlsx = new ExcelManager(@"C:\Excel\test.xlsx", -1);
+			var xlsx = new ExcelManager($@"{this._root}\test.xlsx", -1);
 		}
 
 		[TestMethod]
@@ -47,7 +53,7 @@ namespace UnitTestExtensions {
 		[WorkItem(4)]
 		[ExpectedException(typeof(System.ArgumentException))]
 		public void ExcelManagerTest3() {
-			var xlsx = new ExcelManager(@"C:\Excel\test.xlsx", 99);
+			var xlsx = new ExcelManager($@"{this._root}\test.xlsx", 99);
 		}
 
 		[TestMethod]
@@ -55,7 +61,13 @@ namespace UnitTestExtensions {
 		[TestCategory("コンストラクタ")]
 		[WorkItem(5)]
 		public void ExcelManagerTest4() {
-			var xlsx = new ExcelManager(@"C:\Excel\test02.xlsx", new FileInfo(@"C:\Excel\test01.xlsx"));
+			var destDir = @"tmp2";
+			var xltm = new ExcelManager($@"{this._root}\{destDir}\勤怠実績_tm.xlsm", new FileInfo($@"{this._root}\KinmuJisseki.xltm"));
+			var xlsm = new ExcelManager($@"{this._root}\{destDir}\勤怠実績_sm.xlsm", new FileInfo($@"{this._root}\KinmuJisseki.xlsm"));
+			var xltx = new ExcelManager($@"{this._root}\{destDir}\勤怠実績_tx.xlsx", new FileInfo($@"{this._root}\KinmuJisseki.xltx"));
+			var xlsx = new ExcelManager($@"{this._root}\{destDir}\勤怠実績_sx.xlsx", new FileInfo($@"{this._root}\KinmuJisseki.xlsx"));
+			var xlsx2 = new ExcelManager($@"{this._root}\{destDir}\勤怠実績表.xlsm", new FileInfo($@"{this._root}\KintaiJissekiList.xltm"));
+			var xlsx3 = new ExcelManager($@"{this._root}\{destDir}\交番表.xlsm", new FileInfo($@"{this._root}\Koubanhyou.xltm"));
 		}
 
 		[TestMethod]
@@ -63,7 +75,7 @@ namespace UnitTestExtensions {
 		[TestCategory("追加")]
 		[WorkItem(5)]
 		public void ワークシート追加() {
-			var xlsx = new ExcelManager(@"C:\Excel\test.xlsx");
+			var xlsx = new ExcelManager($@"{this._root}\test.xlsx");
 			var cnt = xlsx.SheetCount;
 
 			var sheet = xlsx.AddSheet();
@@ -77,12 +89,12 @@ namespace UnitTestExtensions {
 		[TestCategory("追加")]
 		[WorkItem(5)]
 		public void ワークシート追加名前指定() {
-			var xlsx = new ExcelManager(@"C:\Excel\Book1.xlsx", "シート１");
+			var xlsx = new ExcelManager($@"{this._root}\Book1.xlsx", "シート1");
 			var cnt = xlsx.SheetCount;
-
-			var sheet = xlsx.AddSheet("シート２");
-
 			cnt++;
+
+			var sheet = xlsx.AddSheet($"シート{cnt}");
+
 			Assert.AreEqual(cnt, xlsx.SheetCount);
 		}
 
@@ -90,7 +102,7 @@ namespace UnitTestExtensions {
 		[Owner("Excel 出力")]
 		[TestCategory("更新処理")]
 		public void セル更新() {
-			var xlsx = new ExcelManager(@"C:\Excel\test.xlsx");
+			var xlsx = new ExcelManager($@"{this._root}\test.xlsx");
 			xlsx.Position = xlsx.SheetCount;
 			xlsx.UpdateSheet(sheet => {
 				sheet.Cells["A1"].Value = "ネタ";
@@ -155,7 +167,7 @@ namespace UnitTestExtensions {
 
 		[TestMethod]
 		public void 更新データ確認() {
-			var xlsx = new ExcelManager(@"C:\Excel\test.xlsx");
+			var xlsx = new ExcelManager($@"{this._root}\test.xlsx");
 			xlsx.Position = xlsx.SheetCount;
 			var intRow = 1;
 			{

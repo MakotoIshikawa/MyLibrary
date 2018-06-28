@@ -102,7 +102,6 @@ namespace CommonFeaturesLibrary.Providers.Primitive {
 			ProvideCommand(connectionString, selectCommandText, action);
 		}
 
-
 		/// <summary>
 		/// データリーダーを提供します。
 		/// </summary>
