@@ -22,6 +22,10 @@ namespace OfficeLibrary.Primitives {
 		/// <param name="file">ファイル情報</param>
 		protected ExcelManagerBase(FileInfo file) {
 			this.File = file;
+
+			if (!file.Directory.Exists) {
+				file.Directory.Create();
+			}
 		}
 
 		/// <summary>
@@ -30,9 +34,15 @@ namespace OfficeLibrary.Primitives {
 		/// <param name="newFile">ファイル情報</param>
 		/// <param name="template">テンプレートファイル情報</param>
 		protected ExcelManagerBase(FileInfo newFile, FileInfo template) : this(newFile) {
+#if true
+			using (var xlsx = new ExcelPackage(newFile, template)) {
+				xlsx.Save();
+			}
+#else
 			using (var xlsx = new ExcelPackage(template, true)) {
 				xlsx.SaveAs(newFile);
 			}
+#endif
 		}
 
 		#endregion
