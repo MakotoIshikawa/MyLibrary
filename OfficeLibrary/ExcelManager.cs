@@ -153,10 +153,14 @@ namespace OfficeLibrary {
 		/// </summary>
 		/// <returns>追加したワークシートのシート番号と名前を返します。</returns>
 		public Tuple<int, string> AddSheet() => this.Fetch(x => {
-			var sheet = x.Workbook.Add();
-			x.Save();
+			try {
+				var sheet = x.Workbook.Add();
+				x.Save();
 
-			return Tuple.Create(sheet.Index, sheet.Name);
+				return Tuple.Create(sheet.Index, sheet.Name);
+			} catch (InvalidOperationException ex) {
+				throw new InvalidOperationException($"同名のワークシートが既に存在します。", ex);
+			}
 		});
 
 		/// <summary>
@@ -166,10 +170,14 @@ namespace OfficeLibrary {
 		/// <param name="name">シート名</param>
 		/// <returns>追加したワークシートのシート番号と名前を返します。</returns>
 		public Tuple<int, string> AddSheet(string name) => this.Fetch(x => {
-			var sheet = x.Workbook.Add(name);
-			x.Save();
+			try {
+				var sheet = x.Workbook.Add(name);
+				x.Save();
 
-			return Tuple.Create(sheet.Index, sheet.Name);
+				return Tuple.Create(sheet.Index, sheet.Name);
+			} catch (InvalidOperationException ex) {
+				throw new ArgumentException($"この名前のワークシートは既に存在します。{nameof(name)}={name}", nameof(name), ex);
+			}
 		});
 
 		#endregion
