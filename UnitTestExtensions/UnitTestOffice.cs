@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using ExtensionsLibrary.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ObjectAnalysisProject.Extensions;
 using OfficeLibrary;
+using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using OfficeOpenXml.Table;
 
 namespace UnitTestExtensions {
 	[TestClass]
@@ -166,6 +171,8 @@ namespace UnitTestExtensions {
 		}
 
 		[TestMethod]
+		[Owner("Excel 出力")]
+		[TestCategory("確認")]
 		public void 更新データ確認() {
 			var xlsx = new ExcelManager($@"{this._root}\test.xlsx");
 			xlsx.Position = xlsx.SheetCount;
@@ -189,6 +196,45 @@ namespace UnitTestExtensions {
 				var expected = "小計";
 				var actual = xlsx[$"D{intRow}"];
 				Assert.AreEqual(expected, actual);
+			}
+		}
+
+		[TestMethod]
+		[Owner("Excel 出力")]
+		[TestCategory("出力テスト")]
+		public void LoadFromCollection_MemberList_Test() {
+			var ls = Enumerable.Range(1, 10).Select(i => new {
+				Col1 = i,
+				Col2 = i * 10,
+				Col3 = $"{(i * 10)}E4",
+				Col4 = DateTime.Now,
+			}).ToList();
+
+			var file = new FileInfo($@"{this._root}\LoadFromCollection_MemberList_Test.xlsx");
+			if (file.Exists) {
+				file.Delete();
+			}
+
+			var printHeaders = true;
+			var tableStyle = TableStyles.Dark1;
+			var memberFlags = BindingFlags.Public | BindingFlags.Instance;
+
+			// Col1 を含めない
+			var members = ls.First().GetType().GetProperties().Cast<MemberInfo>()
+				.Where(pi => pi.Name != "Col1")
+				.ToArray();
+
+			var tbl = ls.ToDataTable();
+			tbl.TableName = "テストテーブル";
+
+			using (var pck = new ExcelPackage(file)) {
+				var sheet1 = pck.Workbook.Worksheets.Add("Sheet1");
+				sheet1.Cells.LoadFromCollection(ls, printHeaders, tableStyle, memberFlags, members);
+
+				var sheet2 = pck.Workbook.Worksheets.Add("Sheet2");
+				sheet2.Cells.LoadFromDataTable(tbl, true, TableStyles.Light1);
+
+				pck.Save();
 			}
 		}
 
