@@ -55,6 +55,7 @@
     <Compile Include="Extensions\NullableExtension.cs" />
     <Compile Include="Extensions\ObjectExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Extensions\TimeSpanExtension.cs" />
     <Compile Include="Extensions\TupleExtension.cs" />
     <Compile Include="Extensions\TypeExtension.cs" />
     <Compile Include="Extensions\UriExtension.cs" />

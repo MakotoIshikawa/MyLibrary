@@ -286,6 +286,27 @@ namespace UnitTestExtensions {
 
 		#endregion
 
+		#region TimeSpanExtension
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.TimeSpanExtension))]
+		public void 時分変換() {
+			{
+				var tim = new TimeSpan(128, 70, 0);
+
+				// 期待値
+				var expected = "129:10";
+
+				// 実際値
+				var actual = tim.ToHourAndMinString();
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
+		#endregion
+
 		#region TupleExtension
 
 		#endregion
