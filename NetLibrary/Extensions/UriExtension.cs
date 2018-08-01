@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using JsonLibrary.Extensions;
 using Newtonsoft.Json.Linq;
 
 namespace NetLibrary.Extensions {
@@ -54,16 +54,17 @@ namespace NetLibrary.Extensions {
 		/// <typeparam name="TResult">戻り値の型</typeparam>
 		/// <param name="this">Uri</param>
 		/// <param name="enc">文字エンコーディング</param>
+		/// <param name="ignoreNull">null 値を無視するかどうか</param>
 		/// <param name="setting">HttpClient の設定を行うメソッド</param>
 		/// <returns>デシリアライズ JSON オブジェクトを返します。</returns>
-		public static async Task<TResult> GetJsonAsync<TResult>(this Uri @this, Encoding enc, Action<HttpClient> setting = null) {
+		public static async Task<TResult> GetJsonAsync<TResult>(this Uri @this, Encoding enc, bool ignoreNull = true, Action<HttpClient> setting = null) {
 			using (var client = new HttpClient()) {
 				setting?.Invoke(client);
 
 				var response = await client.GetAsync(@this);
 				response.EnsureSuccessStatusCode();
 
-				return await response.Content.ReadAsJsonAsync<TResult>(enc);
+				return await response.Content.ReadAsJsonAsync<TResult>(enc, ignoreNull);
 			}
 		}
 
@@ -73,14 +74,15 @@ namespace NetLibrary.Extensions {
 		/// </summary>
 		/// <typeparam name="TResult">戻り値の型</typeparam>
 		/// <param name="this">Uri</param>
+		/// <param name="ignoreNull">null 値を無視するかどうか</param>
 		/// <param name="setting">HttpClient の設定を行うメソッド</param>
 		/// <returns>デシリアライズ JSON オブジェクトを返します。</returns>
-		public static async Task<TResult> GetJsonAsync<TResult>(this Uri @this, Action<HttpClient> setting = null) {
+		public static async Task<TResult> GetJsonAsync<TResult>(this Uri @this, bool ignoreNull = true, Action<HttpClient> setting = null) {
 			using (var client = new HttpClient()) {
 				setting?.Invoke(client);
 
 				var jsonText = await client.GetStringAsync(@this);
-				return JsonConvert.DeserializeObject<TResult>(jsonText);
+				return jsonText.Deserialize<TResult>(ignoreNull);
 			}
 		}
 
