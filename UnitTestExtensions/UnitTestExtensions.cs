@@ -293,6 +293,17 @@ namespace UnitTestExtensions {
 		[TestCategory(nameof(ExtensionsLibrary.Extensions.TimeSpanExtension))]
 		public void 時分変換() {
 			{
+				var tim = new TimeSpan(9, 0, 0);
+
+				// 期待値
+				var expected = "09:00";
+
+				// 実際値
+				var actual = tim.ToHourAndMinString();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
 				var tim = new TimeSpan(128, 70, 0);
 
 				// 期待値
@@ -300,6 +311,34 @@ namespace UnitTestExtensions {
 
 				// 実際値
 				var actual = tim.ToHourAndMinString();
+
+				Assert.AreEqual(expected, actual);
+			}
+		}
+
+		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(ExtensionsLibrary.Extensions.TimeSpanExtension))]
+		public void ミリ秒変換() {
+			{
+				var tim = new TimeSpan(0, 9, 0, 0, 500);
+
+				// 期待値
+				var expected = "09:00:00.500";
+
+				// 実際値
+				var actual = tim.ToMilliSecondString();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var tim = new TimeSpan(0, 128, 70, 0, 1200);
+
+				// 期待値
+				var expected = "129:10:01.200";
+
+				// 実際値
+				var actual = tim.ToMilliSecondString();
 
 				Assert.AreEqual(expected, actual);
 			}

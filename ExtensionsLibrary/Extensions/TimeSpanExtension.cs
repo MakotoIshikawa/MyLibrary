@@ -15,10 +15,18 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">TimeSpan</param>
 		/// <returns>時分 (HH:mm) 文字列を返します。</returns>
 		public static string ToHourAndMinString(this TimeSpan @this)
-			=> $"{@this.Days * 24 + @this.Hours}:{@this.Minutes}";
+			=> $"{@this.Days * 24 + @this.Hours:00}:{@this.Minutes:00}";
+
+		/// <summary>
+		/// ミリ秒まで表示する時刻文字列に変換します。
+		/// </summary>
+		/// <param name="this">TimeSpan</param>
+		/// <returns>ミリ秒まで表示する時刻文字列を返します。</returns>
+		public static string ToMilliSecondString(this TimeSpan @this)
+			=> @this.ToHourAndMinString() + $":{@this.Seconds:00}.{@this.Milliseconds}";
 
 		#endregion
-		
+
 		#endregion
 	}
 }
