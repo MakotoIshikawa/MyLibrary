@@ -282,6 +282,72 @@ namespace UnitTestExtensions {
 
 				Assert.AreEqual(expected, actual);
 			}
+			{
+				var str = "08:00";
+
+				// 期待値
+				var expected = new TimeSpan(8, 0, 0);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "9:00";
+
+				// 期待値
+				var expected = new TimeSpan(9, 0, 0);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "1.00:00";
+
+				// 期待値
+				var expected = new TimeSpan(24, 0, 0);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "24:00";
+
+				// 期待値
+				var expected = new TimeSpan(24, 0, 0);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "32:30:50";
+
+				// 期待値
+				var expected = new TimeSpan(32, 30, 50);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
+			{
+				var str = "32:30:50.200";
+
+				// 期待値
+				var expected = new TimeSpan(1, 8, 30, 50, 200);
+
+				// 実際値
+				var actual = str.ToTimeSpan();
+
+				Assert.AreEqual(expected, actual);
+			}
 		}
 
 		#endregion
