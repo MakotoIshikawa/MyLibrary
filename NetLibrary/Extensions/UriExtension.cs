@@ -129,6 +129,55 @@ namespace NetLibrary.Extensions {
 
 		#endregion
 
+		#region POST
+
+		/// <summary>
+		/// POST 要求を非同期操作として送信します。
+		/// </summary>
+		/// <typeparam name="T">要求の内容を格納した値の型</typeparam>
+		/// <param name="this">Uri</param>
+		/// <param name="value">要求の内容を格納した値</param>
+		/// <returns>HTTP 応答メッセージを返します。</returns>
+		public static async Task<HttpResponseMessage> PostAsync<T>(this Uri @this, T value) {
+			using (var client = new HttpClient()) {
+				return await client.PostAsync(@this, value);
+			}
+		}
+
+		#endregion
+
+		#region PUT
+
+		/// <summary>
+		/// PUT 要求を非同期操作として送信します。
+		/// </summary>
+		/// <typeparam name="T">要求の内容を格納した値の型</typeparam>
+		/// <param name="this">Uri</param>
+		/// <param name="value">要求の内容を格納した値</param>
+		/// <returns>HTTP 応答メッセージを返します。</returns>
+		public static async Task<HttpResponseMessage> PutAsync<T>(this Uri @this, T value) {
+			using (var client = new HttpClient()) {
+				return await client.PutAsync(@this, value);
+			}
+		}
+
+		#endregion
+
+		#region DELETE
+
+		/// <summary>
+		/// DELETE 要求を非同期操作として送信します。
+		/// </summary>
+		/// <param name="this">Uri</param>
+		/// <returns>HTTP 応答メッセージを返します。</returns>
+		public static async Task<HttpResponseMessage> DeleteAsync(this Uri @this) {
+			using (var client = new HttpClient()) {
+				return await client.DeleteAsync(@this);
+			}
+		}
+
+		#endregion
+
 		#endregion
 	}
 }
