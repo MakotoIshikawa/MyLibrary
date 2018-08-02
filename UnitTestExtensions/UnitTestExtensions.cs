@@ -468,10 +468,10 @@ namespace UnitTestExtensions {
 		[TestCategory(nameof(ExtensionsLibrary.Extensions.TimeSpanExtension))]
 		public void ミリ秒変換() {
 			{
-				var tim = new TimeSpan(0, 9, 0, 0, 500);
+				var tim = new TimeSpan(0, 9, 0, 0, 050);
 
 				// 期待値
-				var expected = "09:00:00.500";
+				var expected = "09:00:00.050";
 
 				// 実際値
 				var actual = tim.ToMilliSecondString();

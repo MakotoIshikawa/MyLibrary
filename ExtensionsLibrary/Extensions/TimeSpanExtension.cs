@@ -31,12 +31,20 @@ namespace ExtensionsLibrary.Extensions {
 			=> $"{@this.GetHours():00}:{@this.Minutes:00}";
 
 		/// <summary>
+		/// 秒まで表示する時刻文字列に変換します。
+		/// </summary>
+		/// <param name="this">TimeSpan</param>
+		/// <returns>秒まで表示する時刻文字列を返します。</returns>
+		public static string ToSecondString(this TimeSpan @this)
+			=> @this.ToHourAndMinString() + $":{@this.Seconds:00}";
+
+		/// <summary>
 		/// ミリ秒まで表示する時刻文字列に変換します。
 		/// </summary>
 		/// <param name="this">TimeSpan</param>
 		/// <returns>ミリ秒まで表示する時刻文字列を返します。</returns>
 		public static string ToMilliSecondString(this TimeSpan @this)
-			=> @this.ToHourAndMinString() + $":{@this.Seconds:00}.{@this.Milliseconds}";
+			=> @this.ToSecondString() + $".{@this.Milliseconds:000}";
 
 		#endregion
 
