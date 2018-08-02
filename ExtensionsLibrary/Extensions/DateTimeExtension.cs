@@ -109,6 +109,54 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
+		#region 切り上げ
+
+		/// <summary>
+		/// 指定した間隔(分)で、
+		/// DateTime 値を切り上げます。
+		/// </summary>
+		/// <param name="this">DateTime</param>
+		/// <param name="interval">間隔(分)</param>
+		/// <returns>切り上げた値を返します。</returns>
+		public static DateTime RoundUpAtMinute(this DateTime @this, double interval)
+			=> @this.RoundUp(TimeSpan.FromMinutes(interval));
+
+		/// <summary>
+		/// 指定した間隔で、
+		/// DateTime 値を切り上げます。
+		/// </summary>
+		/// <param name="this">DateTime</param>
+		/// <param name="interval">間隔</param>
+		/// <returns>切り上げた値を返します。</returns>
+		public static DateTime RoundUp(this DateTime @this, TimeSpan interval)
+			=> new DateTime(((@this.Ticks + interval.Ticks - 1) / interval.Ticks) * interval.Ticks, @this.Kind);
+
+		#endregion
+
+		#region 切り捨て
+
+		/// <summary>
+		/// 指定した間隔(分)で、
+		/// DateTime 値を切り捨てます。
+		/// </summary>
+		/// <param name="this">DateTime</param>
+		/// <param name="interval">間隔(分)</param>
+		/// <returns>切り捨てた値を返します。</returns>
+		public static DateTime RoundDownAtMinute(this DateTime @this, double interval)
+			=> @this.RoundDown(TimeSpan.FromMinutes(interval));
+
+		/// <summary>
+		/// 指定した間隔で、
+		/// DateTime 値を切り捨てます。
+		/// </summary>
+		/// <param name="this">DateTime</param>
+		/// <param name="interval">間隔</param>
+		/// <returns>切り捨てた値を返します。</returns>
+		public static DateTime RoundDown(this DateTime @this, TimeSpan interval)
+			=> new DateTime((((@this.Ticks + interval.Ticks) / interval.Ticks) - 1) * interval.Ticks, @this.Kind);
+
+		#endregion
+
 		#endregion
 	}
 }
