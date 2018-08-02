@@ -7,6 +7,19 @@ namespace ExtensionsLibrary.Extensions {
 	public static partial class TimeSpanExtension {
 		#region メソッド
 
+		#region [時]値取得
+
+		/// <summary>
+		/// 日数も考慮し、
+		/// 時分 (HH:mm) の[時]部分の値を取得します。
+		/// </summary>
+		/// <param name="this">TimeSpan</param>
+		/// <returns>[時]部分の値を返します。</returns>
+		public static int GetHours(this TimeSpan @this)
+			=> @this.Days * 24 + @this.Hours;
+
+		#endregion
+
 		#region 文字列変換
 
 		/// <summary>
@@ -15,7 +28,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">TimeSpan</param>
 		/// <returns>時分 (HH:mm) 文字列を返します。</returns>
 		public static string ToHourAndMinString(this TimeSpan @this)
-			=> $"{@this.Days * 24 + @this.Hours:00}:{@this.Minutes:00}";
+			=> $"{@this.GetHours():00}:{@this.Minutes:00}";
 
 		/// <summary>
 		/// ミリ秒まで表示する時刻文字列に変換します。
