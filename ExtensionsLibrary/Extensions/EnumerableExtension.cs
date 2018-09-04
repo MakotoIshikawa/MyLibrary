@@ -18,7 +18,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">Enumerable</param>
 		/// <param name="action">メソッド</param>
 		public static void ForEach<T>(this IEnumerable<T> @this, Action<T> action) {
-			foreach (T item in @this) {
+			foreach (var item in @this) {
 				action(item);
 			}
 		}
@@ -29,7 +29,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">Enumerable</param>
 		/// <param name="func">戻り値を返すメソッド</param>
 		public static void ForEach<T>(this IEnumerable<T> @this, Func<T, bool> func) {
-			foreach (T item in @this) {
+			foreach (var item in @this) {
 				if (!(func?.Invoke(item) ?? false)) {
 					break;
 				}
@@ -43,7 +43,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="action">メソッド</param>
 		public static void ForEach<T>(this IEnumerable<T> @this, Action<T, int> action) {
 			var counter = 0;
-			foreach (T item in @this) {
+			foreach (var item in @this) {
 				action(item, counter++);
 			}
 		}
@@ -55,7 +55,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="func">戻り値を返すメソッド</param>
 		public static void ForEach<T>(this IEnumerable<T> @this, Func<T, int, bool> func) {
 			var counter = 0;
-			foreach (T item in @this) {
+			foreach (var item in @this) {
 				if (!(func?.Invoke(item, counter++) ?? false)) {
 					break;
 				}

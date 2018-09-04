@@ -23,7 +23,7 @@ namespace WpfLibrary.Extensions {
 		/// <param name="this">DataGrid</param>
 		/// <returns>行のコレクションを返します。</returns>
 		public static IEnumerable<DataGridRow> GetRows(this DataGrid @this) {
-			for (int i = 0; i < @this.Items.Count; i++) {
+			for (var i = 0; i < @this.Items.Count; i++) {
 				var row = @this.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow;
 				if (row == null) {
 					continue;
