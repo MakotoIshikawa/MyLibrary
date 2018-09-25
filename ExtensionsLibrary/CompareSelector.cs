@@ -47,9 +47,8 @@ namespace ExtensionsLibrary {
 		/// </summary>
 		/// <param name="obj">ハッシュ コードが返される対象のオブジェクト</param>
 		/// <returns>指定したオブジェクトのハッシュ コード</returns>
-		public int GetHashCode(T obj) {
-			return this._selector(obj).GetHashCode();
-		}
+		public int GetHashCode(T obj)
+			=> this._selector(obj).GetHashCode();
 
 		#endregion
 	}

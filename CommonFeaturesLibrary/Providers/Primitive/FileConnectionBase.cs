@@ -81,9 +81,8 @@ namespace CommonFeaturesLibrary.Providers.Primitive {
 		/// <param name="connectionString">接続文字列</param>
 		/// <param name="selectCommandText">SQL SELECT文またはストアドプロシージャである文字列</param>
 		/// <param name="action">データベースアダプターを操作するメソッド</param>
-		protected virtual void ProvideDataAdapter(string connectionString, string selectCommandText, Action<DbDataAdapter> action) {
-			FileProvider.ProvideDataAdapterByOleDb(connectionString, selectCommandText, action);
-		}
+		protected virtual void ProvideDataAdapter(string connectionString, string selectCommandText, Action<DbDataAdapter> action)
+			=> FileProvider.ProvideDataAdapterByOleDb(connectionString, selectCommandText, action);
 
 		/// <summary>
 		/// DbCommand を構築します。
@@ -108,9 +107,8 @@ namespace CommonFeaturesLibrary.Providers.Primitive {
 		/// <param name="connectionString">接続文字列</param>
 		/// <param name="selectCommandText">SQL SELECT文またはストアドプロシージャである文字列</param>
 		/// <param name="action">データリーダーを操作するメソッド</param>
-		protected virtual void ProvideCommand(string connectionString, string selectCommandText, Action<DbCommand> action) {
-			FileProvider.ProvideCommandByOleDb(connectionString, selectCommandText, action);
-		}
+		protected virtual void ProvideCommand(string connectionString, string selectCommandText, Action<DbCommand> action)
+			=> FileProvider.ProvideCommandByOleDb(connectionString, selectCommandText, action);
 
 		#endregion
 

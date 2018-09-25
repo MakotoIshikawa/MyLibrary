@@ -48,9 +48,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="dbType"></param>
 		/// <param name="size"></param>
 		/// <param name="sourceColumn"></param>
-		public static void Add(this List<SqlParameter> @this, string parameterName, SqlDbType dbType, int size, string sourceColumn) {
-			@this.Add(new SqlParameter(parameterName, dbType, size, sourceColumn));
-		}
+		public static void Add(this List<SqlParameter> @this, string parameterName, SqlDbType dbType, int size, string sourceColumn)
+			=> @this.Add(new SqlParameter(parameterName, dbType, size, sourceColumn));
 
 		/// <summary>
 		/// SqlParameter のリストに要素を追加します。
@@ -66,9 +65,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="sourceColumn">sourceColumn</param>
 		/// <param name="sourceVersion">sourceVersion</param>
 		/// <param name="value">値</param>
-		public static void Add(this List<SqlParameter> @this, string parameterName, SqlDbType dbType, int size, ParameterDirection direction, bool isNullable, byte precision, byte scale, string sourceColumn, DataRowVersion sourceVersion, object value) {
-			@this.Add(new SqlParameter(parameterName, dbType, size, direction, isNullable, precision, scale, sourceColumn, sourceVersion, value));
-		}
+		public static void Add(this List<SqlParameter> @this, string parameterName, SqlDbType dbType, int size, ParameterDirection direction, bool isNullable, byte precision, byte scale, string sourceColumn, DataRowVersion sourceVersion, object value)
+			=> @this.Add(new SqlParameter(parameterName, dbType, size, direction, isNullable, precision, scale, sourceColumn, sourceVersion, value));
 
 		#endregion
 

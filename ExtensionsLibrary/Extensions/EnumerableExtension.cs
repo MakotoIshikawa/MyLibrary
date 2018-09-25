@@ -110,9 +110,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="separator">区切り記号として使用する文字列</param>
 		/// <returns>values のメンバーから成る、separator 文字列で区切られた文字列。
 		/// values にメンバーがない場合、メソッドは String.Emptyを返します。</returns>
-		public static string Join<T>(this IEnumerable<T> @this, string separator = null) {
-			return string.Join(separator, @this);
-		}
+		public static string Join<T>(this IEnumerable<T> @this, string separator = null)
+			=> string.Join(separator, @this);
 
 		/// <summary>
 		/// シーケンスを連結します。各メンバーの間には、指定した区切り記号が挿入されます。
@@ -123,9 +122,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="selector">各要素に適用する変換関数</param>
 		/// <param name="separator">区切り記号として使用する文字列</param>
 		/// <returns>連結したシーケンスを返します。</returns>
-		public static string Join<TSource, TResult>(this IEnumerable<TSource> @this, Func<TSource, TResult> selector, string separator = null) {
-			return @this.Select(selector).Join(separator);
-		}
+		public static string Join<TSource, TResult>(this IEnumerable<TSource> @this, Func<TSource, TResult> selector, string separator = null)
+			=> @this.Select(selector).Join(separator);
 
 		#endregion
 
@@ -170,9 +168,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">重複する要素を削除する対象となるシーケンス</param>
 		/// <param name="compareSelector">比較する値を返すメソッド</param>
 		/// <returns>ソース シーケンスの一意の要素を格納するコレクション</returns>
-		public static IEnumerable<TSource> Distinct<TSource, TComparable>(this IEnumerable<TSource> @this, Func<TSource, TComparable> compareSelector) where TComparable : IComparable {
-			return @this.Distinct(new CompareSelector<TSource, TComparable>(compareSelector));
-		}
+		public static IEnumerable<TSource> Distinct<TSource, TComparable>(this IEnumerable<TSource> @this, Func<TSource, TComparable> compareSelector) where TComparable : IComparable
+			=> @this.Distinct(new CompareSelector<TSource, TComparable>(compareSelector));
 
 		#endregion
 
@@ -208,9 +205,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">作成元のコレクション</param>
 		/// <param name="keySelector">各要素からキーを抽出する関数</param>
 		/// <returns>キーと値を格納している Dictionary を返します。</returns>
-		public static Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this IEnumerable<TSource> @this, Func<TSource, int, TKey> keySelector) {
-			return @this.Select((v, i) => new { Index = i, Value = v, }).ToDictionary(v => keySelector(v.Value, v.Index), v => v.Value);
-		}
+		public static Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this IEnumerable<TSource> @this, Func<TSource, int, TKey> keySelector)
+			=> @this.Select((v, i) => new { Index = i, Value = v, }).ToDictionary(v => keySelector(v.Value, v.Index), v => v.Value);
 
 		/// <summary>
 		/// 指定されたキー セレクター関数および要素セレクター関数に従って、
@@ -223,9 +219,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="keySelector">各要素からキーを抽出する関数</param>
 		/// <param name="elementSelector">各要素から結果の要素値を生成する変換関数</param>
 		/// <returns>入力シーケンスから選択された TElement 型の値を格納する Dictionary を返します。</returns>
-		public static Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>(this IEnumerable<TSource> @this, Func<TSource, int, TKey> keySelector, Func<TSource, int, TElement> elementSelector) {
-			return @this.Select((v, i) => new { Index = i, Value = v, }).ToDictionary(v => keySelector(v.Value, v.Index), v => elementSelector(v.Value, v.Index));
-		}
+		public static Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>(this IEnumerable<TSource> @this, Func<TSource, int, TKey> keySelector, Func<TSource, int, TElement> elementSelector)
+			=> @this.Select((v, i) => new { Index = i, Value = v, }).ToDictionary(v => keySelector(v.Value, v.Index), v => elementSelector(v.Value, v.Index));
 
 		/// <summary>
 		/// 連想配列に変換します。
@@ -234,9 +229,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <typeparam name="TValue">値の型</typeparam>
 		/// <param name="this">キー、値ペアのコレクション</param>
 		/// <returns>変換した連想配列を返します。</returns>
-		public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> @this) {
-			return @this.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-		}
+		public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> @this)
+			=> @this.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
 		#endregion
 
@@ -249,9 +243,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">列挙</param>
 		/// <returns>
 		/// IEnumerable の要素のコピーを格納する ObjectArray 配列。</returns>
-		public static List<T> ToList<T>(this Array @this) {
-			return @this.Cast<T>().ToList();
-		}
+		public static List<T> ToList<T>(this Array @this)
+			=> @this.Cast<T>().ToList();
 
 		/// <summary>
 		/// IEnumerable の要素を新しい System.Object 配列にコピーします。
@@ -260,9 +253,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">列挙</param>
 		/// <returns>
 		/// IEnumerable の要素のコピーを格納する System.Object 配列。</returns>
-		public static T[] ToArray<T>(this Array @this) {
-			return @this.Cast<T>().ToArray();
-		}
+		public static T[] ToArray<T>(this Array @this)
+			=> @this.Cast<T>().ToArray();
 
 		#endregion
 
@@ -279,9 +271,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <returns>
 		/// IEnumerable 全体内で item が見つかった場合は、最初に見つかった位置の 0 から始まるインデックス。
 		/// それ以外の場合は -1。</returns>
-		public static int IndexOf<T>(this IEnumerable<T> @this, T item) {
-			return @this.ToList().IndexOf(item);
-		}
+		public static int IndexOf<T>(this IEnumerable<T> @this, T item)
+			=> @this.ToList().IndexOf(item);
 
 		#endregion
 
@@ -323,9 +314,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// </summary>
 		/// <param name="this">コレクション</param>
 		/// <param name="index">要素の、0 から始まるインデックス番号。</param>
-		public static void RemoveAfter<TSource>(this IList<TSource> @this, int index) {
-			@this.Remove((item, i) => (i >= index));
-		}
+		public static void RemoveAfter<TSource>(this IList<TSource> @this, int index)
+			=> @this.Remove((item, i) => (i >= index));
 
 		#endregion
 
@@ -362,9 +352,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="inner">最初のシーケンスに結合するシーケンス。</param>
 		/// <param name="resultSelector">一致する 2 つの要素から結果の要素を作成する関数。</param>
 		/// <returns>2 つのシーケンスに対して内部結合を実行したシーケンスを返します。</returns>
-		public static IEnumerable<TResult> JoinOnIndex<TOuter, TInner, TResult>(this IEnumerable<TOuter> @this, IEnumerable<TInner> inner, Func<TOuter, TInner, TResult> resultSelector) {
-			return @this.JoinOnIndex(inner).Select(i => resultSelector(i.Item1, i.Item2));
-		}
+		public static IEnumerable<TResult> JoinOnIndex<TOuter, TInner, TResult>(this IEnumerable<TOuter> @this, IEnumerable<TInner> inner, Func<TOuter, TInner, TResult> resultSelector)
+			=> @this.JoinOnIndex(inner).Select(i => resultSelector(i.Item1, i.Item2));
 
 		#endregion
 

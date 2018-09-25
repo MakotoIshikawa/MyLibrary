@@ -56,17 +56,15 @@ namespace AzureLibrary.Helpers {
 		/// ブロック BLOB からデータをダウンロードします。
 		/// </summary>
 		/// <returns>データテーブルを返します。</returns>
-		public DataTable DownloadDataTable() {
-			return this.Download(s => s.GetCsvTable(this.BlobName));
-		}
+		public DataTable DownloadDataTable()
+			=> this.Download(s => s.GetCsvTable(this.BlobName));
 
 		/// <summary>
 		/// ブロック BLOB からデータをダウンロードします。
 		/// </summary>
 		/// <returns>データテーブルを返します。</returns>
-		public async Task<DataTable> DownloadDataTableAsync() {
-			return await this.DownloadAsync(s => s.GetCsvTableAsync(this.BlobName));
-		}
+		public async Task<DataTable> DownloadDataTableAsync()
+			=> await this.DownloadAsync(s => s.GetCsvTableAsync(this.BlobName));
 
 		/// <summary>
 		/// 接続文字列とコンテナー名、BLOB 名を指定して、
@@ -161,17 +159,15 @@ namespace AzureLibrary.Helpers {
 		/// ブロック BLOB を取得します。
 		/// </summary>
 		/// <returns>ブロック BLOB を返します。</returns>
-		public CloudBlockBlob GetBlockBlob() {
-			return AzureUtility.GetBlockBlob(this.ConnectionString, this.ContainerName, this.BlobName);
-		}
+		public CloudBlockBlob GetBlockBlob()
+			=> AzureUtility.GetBlockBlob(this.ConnectionString, this.ContainerName, this.BlobName);
 
 		/// <summary>
 		/// ブロック BLOB を取得します。
 		/// </summary>
 		/// <returns>ブロック BLOB を返します。</returns>
-		public async Task<CloudBlockBlob> GetBlockBlobAsync() {
-			return await AzureUtility.GetBlockBlobAsync(this.ConnectionString, this.ContainerName, this.BlobName);
-		}
+		public async Task<CloudBlockBlob> GetBlockBlobAsync()
+			=> await AzureUtility.GetBlockBlobAsync(this.ConnectionString, this.ContainerName, this.BlobName);
 
 		#endregion
 
@@ -181,17 +177,15 @@ namespace AzureLibrary.Helpers {
 		/// 追加 BLOB を取得します。
 		/// </summary>
 		/// <returns>追加 BLOB を返します。</returns>
-		public CloudAppendBlob GetAppendBlob() {
-			return AzureUtility.GetAppendBlob(this.ConnectionString, this.ContainerName, this.BlobName);
-		}
+		public CloudAppendBlob GetAppendBlob()
+			=> AzureUtility.GetAppendBlob(this.ConnectionString, this.ContainerName, this.BlobName);
 
 		/// <summary>
 		/// 追加 BLOB を取得します。
 		/// </summary>
 		/// <returns>追加 BLOB を返します。</returns>
-		public async Task<CloudAppendBlob> GetAppendBlobAsync() {
-			return await AzureUtility.GetAppendBlobAsync(this.ConnectionString, this.ContainerName, this.BlobName);
-		}
+		public async Task<CloudAppendBlob> GetAppendBlobAsync()
+			=> await AzureUtility.GetAppendBlobAsync(this.ConnectionString, this.ContainerName, this.BlobName);
 
 		#endregion
 
@@ -204,9 +198,8 @@ namespace AzureLibrary.Helpers {
 		/// Blob コンテナーを取得します。
 		/// </summary>
 		/// <returns>Blob コンテナーを返します。</returns>
-		public CloudBlobContainer GetContainer() {
-			return AzureUtility.GetContainer(this.ConnectionString, this.ContainerName);
-		}
+		public CloudBlobContainer GetContainer()
+			=> AzureUtility.GetContainer(this.ConnectionString, this.ContainerName);
 
 		#endregion
 

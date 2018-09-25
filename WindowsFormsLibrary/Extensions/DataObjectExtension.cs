@@ -9,25 +9,25 @@ namespace WindowsFormsLibrary.Extensions {
 	/// DataObject を拡張するメソッドを提供します。
 	/// </summary>
 	public static partial class DataObjectExtension {
+		#region メソッド
+
 		/// <summary>
 		/// ディレクトリ情報の列挙を取得します。
 		/// </summary>
 		/// <param name="this">DataObject</param>
 		/// <returns>ディレクトリ情報の列挙を</returns>
-		public static IEnumerable<DirectoryInfo> GetDirectories(this IDataObject @this) {
-			return @this.GetFileSystemInfos(paths => paths.Select(p => new DirectoryInfo(p)))
+		public static IEnumerable<DirectoryInfo> GetDirectories(this IDataObject @this)
+			=> @this.GetFileSystemInfos(paths => paths.Select(p => new DirectoryInfo(p)))
 				.Where(i => i.Exists);
-		}
 
 		/// <summary>
 		/// ファイル情報の列挙を取得します。
 		/// </summary>
 		/// <param name="this">DataObject</param>
 		/// <returns>ファイル情報の列挙を</returns>
-		public static IEnumerable<FileInfo> GetFiles(this IDataObject @this) {
-			return @this.GetFileSystemInfos(paths => paths.Select(p => new FileInfo(p)))
+		public static IEnumerable<FileInfo> GetFiles(this IDataObject @this)
+			=> @this.GetFileSystemInfos(paths => paths.Select(p => new FileInfo(p)))
 				.Where(i => i.Exists);
-		}
 
 		private static IEnumerable<TFileSystemInfo> GetFileSystemInfos<TFileSystemInfo>(this IDataObject @this, Func<string[], IEnumerable<TFileSystemInfo>> conversion) where TFileSystemInfo : FileSystemInfo {
 			var format = DataFormats.FileDrop;
@@ -38,6 +38,8 @@ namespace WindowsFormsLibrary.Extensions {
 			var paths = (string[])@this.GetData(format);
 			return conversion?.Invoke(paths);
 		}
+
+		#endregion
 	}
 }
 

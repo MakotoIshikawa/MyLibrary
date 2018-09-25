@@ -17,9 +17,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">DirectoryInfo</param>
 		/// <param name="fileName">ファイル名</param>
 		/// <returns>ファイル情報を返します。</returns>
-		public static FileInfo CreateFileInfo(this DirectoryInfo @this, string fileName) {
-			return new FileInfo(Path.Combine(@this.FullName, fileName));
-		}
+		public static FileInfo CreateFileInfo(this DirectoryInfo @this, string fileName)
+			=> new FileInfo(Path.Combine(@this.FullName, fileName));
 
 		/// <summary>
 		/// ディレクトリー名を指定して、
@@ -93,9 +92,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">FileInfo</param>
 		/// <param name="attribute">属性</param>
 		/// <returns>属性を持っていれば true を返します。</returns>
-		public static bool HasAttribute(this FileSystemInfo @this, FileAttributes attribute) {
-			return (@this.Attributes & attribute) == attribute;
-		}
+		public static bool HasAttribute(this FileSystemInfo @this, FileAttributes attribute)
+			=> (@this.Attributes & attribute) == attribute;
 
 		#endregion
 

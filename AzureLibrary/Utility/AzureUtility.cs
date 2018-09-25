@@ -28,9 +28,8 @@ namespace AzureLibrary.Utility {
 		/// <param name="containerName">コンテナー名</param>
 		/// <param name="blobName">BLOB 名</param>
 		/// <returns>ブロック BLOB を返します。</returns>
-		public static CloudBlockBlob GetBlockBlob(string connectionString, string containerName, string blobName) {
-			return GetBlob(connectionString, containerName, (c) => c.GetBlockBlobReference(blobName));
-		}
+		public static CloudBlockBlob GetBlockBlob(string connectionString, string containerName, string blobName)
+			=> GetBlob(connectionString, containerName, (c) => c.GetBlockBlobReference(blobName));
 
 		/// <summary>
 		/// ブロック BLOB を取得します。
@@ -39,10 +38,9 @@ namespace AzureLibrary.Utility {
 		/// <param name="containerName">コンテナー名</param>
 		/// <param name="blobName">BLOB 名</param>
 		/// <returns>ブロック BLOB を返します。</returns>
-		public static async Task<CloudBlockBlob> GetBlockBlobAsync(string connectionString, string containerName, string blobName) {
-			return await GetBlobAsync(connectionString, containerName,
+		public static async Task<CloudBlockBlob> GetBlockBlobAsync(string connectionString, string containerName, string blobName)
+			=> await GetBlobAsync(connectionString, containerName,
 				async (c) => await Task.Run(() => c.GetBlockBlobReference(blobName)));
-		}
 
 		#endregion
 
@@ -55,8 +53,8 @@ namespace AzureLibrary.Utility {
 		/// <param name="containerName">コンテナー名</param>
 		/// <param name="blobName">BLOB 名</param>
 		/// <returns>追加 BLOB を返します。</returns>
-		public static CloudAppendBlob GetAppendBlob(string connectionString, string containerName, string blobName) {
-			return GetBlob(connectionString, containerName, (c) => {
+		public static CloudAppendBlob GetAppendBlob(string connectionString, string containerName, string blobName)
+			=> GetBlob(connectionString, containerName, (c) => {
 				var blob = c.GetAppendBlobReference(blobName);
 				if (!blob.Exists()) {
 					blob.CreateOrReplace();
@@ -64,7 +62,6 @@ namespace AzureLibrary.Utility {
 
 				return blob;
 			});
-		}
 
 		/// <summary>
 		/// 追加 BLOB を取得します。
@@ -73,8 +70,8 @@ namespace AzureLibrary.Utility {
 		/// <param name="containerName">コンテナー名</param>
 		/// <param name="blobName">BLOB 名</param>
 		/// <returns>追加 BLOB を返します。</returns>
-		public static async Task<CloudAppendBlob> GetAppendBlobAsync(string connectionString, string containerName, string blobName) {
-			return await GetBlobAsync(connectionString, containerName, async (c) => {
+		public static async Task<CloudAppendBlob> GetAppendBlobAsync(string connectionString, string containerName, string blobName)
+			=> await GetBlobAsync(connectionString, containerName, async (c) => {
 				var blob = c.GetAppendBlobReference(blobName);
 				if (!blob.Exists()) {
 					await blob.CreateOrReplaceAsync();
@@ -82,7 +79,6 @@ namespace AzureLibrary.Utility {
 
 				return blob;
 			});
-		}
 
 		#endregion
 

@@ -101,9 +101,8 @@ namespace CommonFeaturesLibrary {
 		/// ストリームの現在位置から末尾までのストリームの残り部分。
 		/// 現在の位置がストリームの末尾である場合は、空の配列が返されます。
 		/// </returns>
-		public Task<List<List<string>>> ReadToEndAsync() {
-			return Task.Run(() => this.ReadToEnd().ToList());
-		}
+		public Task<List<List<string>>> ReadToEndAsync()
+			=> Task.Run(() => this.ReadToEnd().ToList());
 
 		/// <summary>
 		/// 現在のストリームから 1 レコード分の文字を読み取り、そのデータを文字配列として返します。
@@ -167,9 +166,8 @@ namespace CommonFeaturesLibrary {
 		/// 現在のストリームから非同期的に 1 レコード分の文字を読み取り、そのデータを文字配列として返します。
 		/// </summary>
 		/// <returns>入力ストリームからの次のレコード。入力ストリームの末尾に到達した場合は null。</returns>
-		public Task<List<string>> ReadRowAsync() {
-			return Task.Run(() => this.ReadRow());
-		}
+		public Task<List<string>> ReadRowAsync()
+			=> Task.Run(() => this.ReadRow());
 
 		#endregion
 
@@ -203,9 +201,8 @@ namespace CommonFeaturesLibrary {
 		/// CsvReader オブジェクトと、その基になるストリームを閉じ、
 		/// リーダーに関連付けられたすべてのシステムリソースを解放します。
 		/// </summary>
-		public void Close() {
-			this._reader?.Close();
-		}
+		public void Close()
+			=> this._reader?.Close();
 
 		#region IDisposable
 

@@ -46,9 +46,8 @@ namespace LuisLibrary.Helpers {
 		/// </summary>
 		/// <param name="talk">会話</param>
 		/// <returns>解析結果を返します。</returns>
-		public async Task<LuisResponseRoot> AnalyzeAsync(string talk) {
-			return await LuisUtility.AnalyzeAsync(this.AppId, this.EndpointKey, talk);
-		}
+		public async Task<LuisResponseRoot> AnalyzeAsync(string talk)
+			=> await LuisUtility.AnalyzeAsync(this.AppId, this.EndpointKey, talk);
 
 		#endregion
 	}

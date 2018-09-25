@@ -16,18 +16,16 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="this">IdentifiedListItem のリスト</param>
 		/// <param name="id">ID</param>
 		/// <param name="cells">列名と値の連想配列</param>
-		public static void Add(this List<IdentifiedListItem> @this, int id, Dictionary<string, object> cells) {
-			@this.Add(new IdentifiedListItem(id, cells));
-		}
+		public static void Add(this List<IdentifiedListItem> @this, int id, Dictionary<string, object> cells)
+			=> @this.Add(new IdentifiedListItem(id, cells));
 
 		/// <summary>
 		/// 末尾にオブジェクトを追加します。
 		/// </summary>
 		/// <param name="this">IdentifiedListItem のリスト</param>
 		/// <param name="cells">列名と値の連想配列</param>
-		public static void Add(this List<IdentifiedListItem> @this, Dictionary<string, object> cells) {
-			@this.Add(new IdentifiedListItem(cells));
-		}
+		public static void Add(this List<IdentifiedListItem> @this, Dictionary<string, object> cells)
+			=> @this.Add(new IdentifiedListItem(cells));
 
 		#endregion
 

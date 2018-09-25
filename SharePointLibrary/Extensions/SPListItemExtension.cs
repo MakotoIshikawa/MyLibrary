@@ -83,9 +83,8 @@ namespace SharePointLibrary.Extensions {
 		/// <param name="this">SPListItem</param>
 		/// <param name="name">フィールドの内部名</param>
 		/// <returns>フィールドの DateTime 値を返します。</returns>
-		public static DateTime? GetFieldDateTime(this SPListItem @this, string name) {
-			return @this.GetFieldText(name).ToNullable(v => Convert.ToDateTime(v));
-		}
+		public static DateTime? GetFieldDateTime(this SPListItem @this, string name)
+			=> @this.GetFieldText(name).ToNullable(v => Convert.ToDateTime(v));
 
 		#endregion
 

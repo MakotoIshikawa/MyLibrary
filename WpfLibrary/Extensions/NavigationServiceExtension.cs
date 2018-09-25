@@ -17,9 +17,8 @@ namespace WpfLibrary.Extensions {
 		/// </summary>
 		/// <param name="this">NavigationService</param>
 		/// <param name="uriString">URI 文字列</param>
-		public static void SetNavigate(this NavigationService @this, string uriString) {
-			@this.Navigate(new Uri(uriString, UriKind.Relative));
-		}
+		public static void SetNavigate(this NavigationService @this, string uriString)
+			=> @this.Navigate(new Uri(uriString, UriKind.Relative));
 
 		/// <summary>
 		/// ページ情報のコレクションを指定して、

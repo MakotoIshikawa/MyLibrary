@@ -22,9 +22,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">値を取得するインスタンス</param>
 		/// <param name="func">値を取得するメソッド</param>
 		/// <returns>null かどうかを判定して値を返します。</returns>
-		public static TResult GetValueOrDefault<T, TResult>(this T @this, Func<T, TResult> func) {
-			return @this.GetValueOrDefault(func, default(TResult));
-		}
+		public static TResult GetValueOrDefault<T, TResult>(this T @this, Func<T, TResult> func)
+			=> @this.GetValueOrDefault(func, default(TResult));
 
 		/// <summary>
 		/// null かどうかを判定して値を取得します。
@@ -372,10 +371,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">IConvertible インターフェイスを実装するオブジェクト。</param>
 		/// <param name="typeCode">返すオブジェクトの型。</param>
 		/// <returns>基になる型が typeCode であり、@this と等価の値を持つオブジェクト。</returns>
-		public static TConvertible ChangeType<TConvertible>(this TConvertible @this, TypeCode typeCode)
-			where TConvertible : IConvertible {
-			return (TConvertible)Convert.ChangeType(@this, typeCode);
-		}
+		public static TConvertible ChangeType<TConvertible>(this TConvertible @this, TypeCode typeCode) where TConvertible : IConvertible
+			=> (TConvertible)Convert.ChangeType(@this, typeCode);
 
 		#endregion
 

@@ -21,9 +21,8 @@ namespace ObjectAnalysisProject.Extensions {
 		/// <param name="this">データテーブル</param>
 		/// <param name="selector">各要素に適用する変換関数。</param>
 		/// <returns>source の各要素に対して変換関数を呼び出した結果として得られる要素を含む IEnumerable(T)</returns>
-		public static IEnumerable<TResult> Select<TResult>(this DataTable @this, Func<DataRow, int, TResult> selector) {
-			return @this.Select().Select(selector);
-		}
+		public static IEnumerable<TResult> Select<TResult>(this DataTable @this, Func<DataRow, int, TResult> selector)
+			=> @this.Select().Select(selector);
 
 		/// <summary>
 		/// データテーブルのデータ行を新しいフォームに射影します。
@@ -32,9 +31,8 @@ namespace ObjectAnalysisProject.Extensions {
 		/// <param name="this">データテーブル</param>
 		/// <param name="selector">各要素に適用する変換関数。</param>
 		/// <returns>source の各要素に対して変換関数を呼び出した結果として得られる要素を含む IEnumerable(T)</returns>
-		public static IEnumerable<TResult> Select<TResult>(this DataTable @this, Func<DataRow, TResult> selector) {
-			return @this.Select().Select(selector);
-		}
+		public static IEnumerable<TResult> Select<TResult>(this DataTable @this, Func<DataRow, TResult> selector)
+			=> @this.Select().Select(selector);
 
 		#endregion
 
@@ -46,9 +44,8 @@ namespace ObjectAnalysisProject.Extensions {
 		/// <param name="this">データテーブル</param>
 		/// <param name="predicate">各要素が条件を満たしているかどうかをテストする関数。</param>
 		/// <returns>条件を満たす、入力シーケンスの要素を含む IEnumerable(DataRow)</returns>
-		public static IEnumerable<DataRow> Where(this DataTable @this, Func<DataRow, bool> predicate) {
-			return @this.Select().Where(predicate);
-		}
+		public static IEnumerable<DataRow> Where(this DataTable @this, Func<DataRow, bool> predicate)
+			=> @this.Select().Where(predicate);
 
 		/// <summary>
 		/// 述語に基づいて値のデータテーブルのデータ行をフィルター処理します。
@@ -56,9 +53,8 @@ namespace ObjectAnalysisProject.Extensions {
 		/// <param name="this">データテーブル</param>
 		/// <param name="predicate">各要素が条件を満たしているかどうかをテストする関数。</param>
 		/// <returns>条件を満たす、入力シーケンスの要素を含む IEnumerable(DataRow)</returns>
-		public static IEnumerable<DataRow> Where(this DataTable @this, Func<DataRow, int, bool> predicate) {
-			return @this.Select().Where(predicate);
-		}
+		public static IEnumerable<DataRow> Where(this DataTable @this, Func<DataRow, int, bool> predicate)
+			=> @this.Select().Where(predicate);
 
 		#endregion
 
@@ -70,9 +66,8 @@ namespace ObjectAnalysisProject.Extensions {
 		/// <param name="this">データテーブル</param>
 		/// <param name="columnIndex">列インデックス</param>
 		/// <returns>列データの列挙を返します。</returns>
-		public static IEnumerable<Object> GetColumns(this DataTable @this, int columnIndex) {
-			return @this.Select(row => row[columnIndex]);
-		}
+		public static IEnumerable<Object> GetColumns(this DataTable @this, int columnIndex)
+			=> @this.Select(row => row[columnIndex]);
 
 		/// <summary>
 		/// 列の名前を指定して、
@@ -80,9 +75,8 @@ namespace ObjectAnalysisProject.Extensions {
 		/// <param name="this">データテーブル</param>
 		/// <param name="columnName">列名</param>
 		/// <returns>列データの列挙を返します。</returns>
-		public static IEnumerable<Object> GetColumns(this DataTable @this, string columnName) {
-			return @this.Select(row => row[columnName]);
-		}
+		public static IEnumerable<Object> GetColumns(this DataTable @this, string columnName)
+			=> @this.Select(row => row[columnName]);
 
 		/// <summary>
 		/// 列スキーマを指定して、
@@ -90,9 +84,8 @@ namespace ObjectAnalysisProject.Extensions {
 		/// <param name="this">データテーブル</param>
 		/// <param name="column">列スキーマ</param>
 		/// <returns>列データの列挙を返します。</returns>
-		public static IEnumerable<Object> GetColumns(this DataTable @this, DataColumn column) {
-			return @this.Select(row => row[column]);
-		}
+		public static IEnumerable<Object> GetColumns(this DataTable @this, DataColumn column)
+			=> @this.Select(row => row[column]);
 
 		#endregion
 

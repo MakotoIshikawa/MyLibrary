@@ -17,9 +17,8 @@ namespace XmlLibrary.Extensions {
 		/// <param name="this">変化するインスタンス</param>
 		/// <param name="useNamespace">名前空間を使用するかどうか</param>
 		/// <returns>XML 文字列をかえします。</returns>
-		public static string ToXmlString<T>(this T @this, bool useNamespace = true) {
-			return @this.ToXmlString(Encoding.UTF8, useNamespace);
-		}
+		public static string ToXmlString<T>(this T @this, bool useNamespace = true)
+			=> @this.ToXmlString(Encoding.UTF8, useNamespace);
 
 		/// <summary>
 		/// XML 文字列に変換します。

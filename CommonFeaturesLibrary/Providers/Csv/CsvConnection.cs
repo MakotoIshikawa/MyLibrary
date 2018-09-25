@@ -35,14 +35,10 @@ namespace CommonFeaturesLibrary.Providers.Csv {
 		/// <summary>
 		/// 接続文字列を取得します。(オーバーライド)
 		/// </summary>
-		public override string ConnectionString {
-			get {
-				return
-				  this.ConnectionType == ConnectionTypes.Odbc
-				  ? this.File.GetConnectionStringOfCsvByOdbc()
-				  : this.File.GetConnectionStringOfCsvByOleDb(this.Hdr, this.Imex);
-			}
-		}
+		public override string ConnectionString
+			=> this.ConnectionType == ConnectionTypes.Odbc
+				? this.File.GetConnectionStringOfCsvByOdbc()
+				: this.File.GetConnectionStringOfCsvByOleDb(this.Hdr, this.Imex);
 
 		/// <summary>
 		/// 最初の行が列名かどうかを表す値
@@ -63,9 +59,8 @@ namespace CommonFeaturesLibrary.Providers.Csv {
 		/// </summary>
 		/// <param name="selects">Select 句</param>
 		/// <returns>SELECT 文を返します。</returns>
-		public override string GetSelectCommandText(params string[] selects) {
-			return this.File.GetSelectCommandTextOfCsv(selects);
-		}
+		public override string GetSelectCommandText(params string[] selects)
+			=> this.File.GetSelectCommandTextOfCsv(selects);
 
 		/// <summary>
 		/// データベースアダプターを提供します。(オーバーライド)

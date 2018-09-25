@@ -29,9 +29,8 @@ namespace CommonFeaturesLibrary.Providers.Access {
 		/// <summary>
 		/// 接続文字列を取得します。(オーバーライド)
 		/// </summary>
-		public override string ConnectionString {
-			get { return this.File.GetConnectionStringByAccess(this.Imex); }
-		}
+		public override string ConnectionString
+			=> this.File.GetConnectionStringByAccess(this.Imex);
 
 		/// <summary>
 		/// テーブル名
@@ -47,9 +46,8 @@ namespace CommonFeaturesLibrary.Providers.Access {
 		/// </summary>
 		/// <param name="selects">Select 句</param>
 		/// <returns>SELECT 文を返します。</returns>
-		public override string GetSelectCommandText(params string[] selects) {
-			return this.File.GetSelectCommandTextOfAccess(this.TableName, selects);
-		}
+		public override string GetSelectCommandText(params string[] selects)
+			=> this.File.GetSelectCommandTextOfAccess(this.TableName, selects);
 
 		#endregion
 	}

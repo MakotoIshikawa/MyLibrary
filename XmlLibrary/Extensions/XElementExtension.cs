@@ -32,9 +32,8 @@ namespace XmlLibrary.Extensions {
 		/// <param name="name">取得する XML 属性 の XName</param>
 		/// <returns>指定した名前 XName を持つ XML 属性。
 		/// 指定した名前を持つ属性がない場合は T 型の default 値を返します。</returns>
-		public static T AttributeValue<T>(this XElement @this, string name) where T : IConvertible {
-			return @this.AttributeValue(name, default(T));
-		}
+		public static T AttributeValue<T>(this XElement @this, string name) where T : IConvertible
+			=> @this.AttributeValue(name, default(T));
 
 		/// <summary>
 		/// 指定した XName を持つ、この XElement の XML 属性 の値を返します。
@@ -76,9 +75,8 @@ namespace XmlLibrary.Extensions {
 		/// <returns>指定した要素のすべてのテキストコンテンツを格納している文字列を返します。
 		/// 複数のテキスト ノードがある場合は、連結されます。
 		/// XElement が null の場合、T 型の default 値を返します。</returns>
-		public static T ElementValue<T>(this XElement @this, string name) where T : IConvertible {
-			return @this.ElementValue(name, default(T));
-		}
+		public static T ElementValue<T>(this XElement @this, string name) where T : IConvertible
+			=> @this.ElementValue(name, default(T));
 
 		/// <summary>
 		/// 指定した XName の最初の子要素から連結されたテキストコンテンツを取得します。
@@ -133,9 +131,8 @@ namespace XmlLibrary.Extensions {
 		/// <param name="expression">XPath 式を含む文字列</param>
 		/// <returns>
 		/// XML 要素の文字列を T 型に変換して返します。</returns>
-		public static T XPathSelectElementValue<T>(this XNode @this, string expression) where T : IConvertible {
-			return @this.XPathSelectElementValue(expression, default(T));
-		}
+		public static T XPathSelectElementValue<T>(this XNode @this, string expression) where T : IConvertible
+			=> @this.XPathSelectElementValue(expression, default(T));
 
 		/// <summary>
 		/// XPath 式を使用して XML 要素の値を取得します。
@@ -161,9 +158,8 @@ namespace XmlLibrary.Extensions {
 		/// <param name="this">XML 要素</param>
 		/// <returns>
 		/// この要素のすべてのテキストコンテンツを格納している文字列を返します。</returns>
-		public static string GetString(this XElement @this) {
-			return @this?.Value ?? string.Empty;
-		}
+		public static string GetString(this XElement @this)
+			=> @this?.Value ?? string.Empty;
 
 		/// <summary>
 		/// 現在の属性の文字列を取得します。
@@ -171,9 +167,8 @@ namespace XmlLibrary.Extensions {
 		/// <param name="this">XML 属性</param>
 		/// <returns>
 		/// 現在の属性の値を格納している文字列を返します。</returns>
-		public static string GetString(this XAttribute @this) {
-			return @this?.Value ?? string.Empty;
-		}
+		public static string GetString(this XAttribute @this)
+			=> @this?.Value ?? string.Empty;
 
 		#endregion
 
@@ -187,9 +182,8 @@ namespace XmlLibrary.Extensions {
 		/// <param name="defaultValue">default 値</param>
 		/// <returns>
 		/// この要素のすべてのテキストコンテンツを格納している文字列を T 型に変換して返します。</returns>
-		public static T GetValue<T>(this XElement @this, T defaultValue) where T : IConvertible {
-			return (@this != null) ? @this.Value.ChangeType<T>() : defaultValue;
-		}
+		public static T GetValue<T>(this XElement @this, T defaultValue) where T : IConvertible
+			=> (@this != null) ? @this.Value.ChangeType<T>() : defaultValue;
 
 		/// <summary>
 		/// 現在の属性の値を取得します。
@@ -200,9 +194,8 @@ namespace XmlLibrary.Extensions {
 		/// <returns>
 		/// 現在の属性の値を格納している文字列を T 型に変換して返します。
 		/// 属性が null の場合、defaultValue を返します。</returns>
-		public static T GetValue<T>(this XAttribute @this, T defaultValue) where T : IConvertible {
-			return (@this != null) ? @this.Value.ChangeType<T>() : defaultValue;
-		}
+		public static T GetValue<T>(this XAttribute @this, T defaultValue) where T : IConvertible
+			=> (@this != null) ? @this.Value.ChangeType<T>() : defaultValue;
 
 		#endregion
 
@@ -216,9 +209,8 @@ namespace XmlLibrary.Extensions {
 		/// <returns>型が T であり、value と等価の値を持つオブジェクト。
 		/// または value が null で、T が値型ではない場合は、null 参照。
 		/// </returns>
-		public static T ChangeType<T>(this object @this) where T : IConvertible {
-			return (@this.GetType() is T) ? (T)@this : (T)Convert.ChangeType(@this, typeof(T));
-		}
+		public static T ChangeType<T>(this object @this) where T : IConvertible
+			=> (@this.GetType() is T) ? (T)@this : (T)Convert.ChangeType(@this, typeof(T));
 
 		#endregion
 
@@ -250,9 +242,8 @@ namespace XmlLibrary.Extensions {
 		/// <param name="this">要素名を格納する XName。</param>
 		/// <param name="content">要素の内容。</param>
 		/// <returns>XElement クラスの新しいインスタンスを返します。</returns>
-		public static XElement CreateXElement(this XName @this, string content) {
-			return XElement.Parse($"<{@this}>{content}</{@this}>");
-		}
+		public static XElement CreateXElement(this XName @this, string content)
+			=> XElement.Parse($"<{@this}>{content}</{@this}>");
 
 		#endregion
 

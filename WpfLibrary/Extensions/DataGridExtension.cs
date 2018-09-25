@@ -7,6 +7,8 @@ namespace WpfLibrary.Extensions {
 	/// DataGrid を拡張するメソッドを提供します。
 	/// </summary>
 	public static partial class DataGridExtension {
+		#region メソッド
+
 		/// <summary>
 		/// １行セルリストをコレクションとして取得します。
 		/// </summary>
@@ -24,12 +26,10 @@ namespace WpfLibrary.Extensions {
 		/// <returns>行のコレクションを返します。</returns>
 		public static IEnumerable<DataGridRow> GetRows(this DataGrid @this) {
 			for (var i = 0; i < @this.Items.Count; i++) {
-				var row = @this.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow;
-				if (row == null) {
-					continue;
+				var item = @this.ItemContainerGenerator.ContainerFromIndex(i);
+				if (item is DataGridRow row) {
+					yield return row;
 				}
-
-				yield return row;
 			}
 		}
 
@@ -39,10 +39,11 @@ namespace WpfLibrary.Extensions {
 		/// <param name="this">DataGridRow</param>
 		/// <param name="columns">列情報</param>
 		/// <returns>セルのコレクションを返します。</returns>
-		public static IEnumerable<DataGridCell> GetCells(this DataGridRow @this, IEnumerable<DataGridColumn> columns) {
-			return columns.Select(c => c.GetCellContent(@this))
+		public static IEnumerable<DataGridCell> GetCells(this DataGridRow @this, IEnumerable<DataGridColumn> columns)
+			=> columns.Select(c => c.GetCellContent(@this))
 				.Where(e => e != null)
 				.Select(e => e.Parent as DataGridCell);
-		}
+
+		#endregion
 	}
 }
