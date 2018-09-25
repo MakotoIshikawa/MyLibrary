@@ -72,7 +72,7 @@ namespace CommonFeaturesLibrary.Providers.Primitive {
 			var connectionString = this.ConnectionString;
 			var selectCommandText = this.GetSelectCommandText(selects);
 
-			ProvideDataAdapter(connectionString, selectCommandText, action);
+			this.ProvideDataAdapter(connectionString, selectCommandText, action);
 		}
 
 		/// <summary>
@@ -99,7 +99,7 @@ namespace CommonFeaturesLibrary.Providers.Primitive {
 			var connectionString = this.ConnectionString;
 			var selectCommandText = this.GetSelectCommandText(selects);
 
-			ProvideCommand(connectionString, selectCommandText, action);
+			this.ProvideCommand(connectionString, selectCommandText, action);
 		}
 
 		/// <summary>

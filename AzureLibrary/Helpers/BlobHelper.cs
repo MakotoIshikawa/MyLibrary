@@ -65,7 +65,7 @@ namespace AzureLibrary.Helpers {
 		/// </summary>
 		/// <returns>データテーブルを返します。</returns>
 		public async Task<DataTable> DownloadDataTableAsync() {
-			return await DownloadAsync(s => s.GetCsvTableAsync(this.BlobName));
+			return await this.DownloadAsync(s => s.GetCsvTableAsync(this.BlobName));
 		}
 
 		/// <summary>
@@ -113,7 +113,7 @@ namespace AzureLibrary.Helpers {
 		/// </summary>
 		/// <param name="content">アップロードするテキストを含む文字列</param>
 		public void OutputLog(string content) {
-			var appendBlob = GetAppendBlob();
+			var appendBlob = this.GetAppendBlob();
 			appendBlob.AppendLine(content);
 		}
 
@@ -123,7 +123,7 @@ namespace AzureLibrary.Helpers {
 		/// <param name="content">アップロードするテキストを含む文字列</param>
 		/// <returns>Task を返します。(非同期)</returns>
 		public async Task OutputLogAsync(string content) {
-			var appendBlob = await GetAppendBlobAsync();
+			var appendBlob = await this.GetAppendBlobAsync();
 			await appendBlob.AppendLineAsync(content);
 		}
 

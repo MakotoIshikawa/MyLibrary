@@ -218,7 +218,7 @@ namespace OfficeLibrary {
 		/// <param name="fetch">値を取り出すメソッド</param>
 		/// <returns>抽出した値を返します。</returns>
 		public TResult FetchValueFromSheet<TResult>(Func<ExcelWorksheet, TResult> fetch)
-			=> FetchValueFromSheet(this.Position, fetch);
+			=> this.FetchValueFromSheet(this.Position, fetch);
 
 		/// <summary>
 		/// ワークシートから値を取り出します。
