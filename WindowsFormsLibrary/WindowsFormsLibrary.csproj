@@ -48,6 +48,12 @@
     <Compile Include="Forms\Primitives\FormEditText.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Primitives\FormImportDirectoryBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Primitives\FormImportDirectoryBase.Designer.cs">
+      <DependentUpon>FormImportDirectoryBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +69,11 @@
       <Project>{be1bb940-f59e-4440-add0-603bd9915a02}</Project>
       <Name>ObjectAnalysisProject</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\Primitives\FormImportDirectoryBase.resx">
+      <DependentUpon>FormImportDirectoryBase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
