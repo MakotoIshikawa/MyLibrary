@@ -40,6 +40,7 @@
     <Compile Include="CsvReader.cs" />
     <Compile Include="DuplicateBootCheck.cs" />
     <Compile Include="Extensions\FileInfoExtension.cs" />
+    <Compile Include="Extensions\ListAddExtension.cs" />
     <Compile Include="FileVersionManager.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

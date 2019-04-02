@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using ExtensionsLibrary.Extensions;
 
-namespace ExtensionsLibrary.Extensions {
+namespace CommonFeaturesLibrary.Extensions {
 	/// <summary>
 	/// ジェネリックのリストに要素を追加する拡張メソッドを提供します。
 	/// </summary>
