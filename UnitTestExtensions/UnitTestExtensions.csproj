@@ -112,7 +112,7 @@
       <Name>ExtensionsLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\JsonLibrary\JsonLibrary.csproj">
-      <Project>{b81b68d9-a7fa-49d9-86c3-ad3d609f4226}</Project>
+      <Project>{a1057257-861d-4fb9-b5bd-21e93c4847f3}</Project>
       <Name>JsonLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\LuisLibrary\LuisLibrary.csproj">
