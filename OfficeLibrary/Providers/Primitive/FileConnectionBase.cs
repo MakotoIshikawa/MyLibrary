@@ -2,9 +2,9 @@
 using System.Data;
 using System.Data.Common;
 using System.IO;
-using CommonFeaturesLibrary.Providers.Enums;
+using OfficeLibrary.Providers.Enums;
 
-namespace CommonFeaturesLibrary.Providers.Primitive {
+namespace OfficeLibrary.Providers.Primitive {
 	/// <summary>
 	/// ファイル用のデータベース Connection の抽象クラスです。
 	/// </summary>

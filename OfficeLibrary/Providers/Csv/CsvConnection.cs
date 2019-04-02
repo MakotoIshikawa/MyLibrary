@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data.Common;
 using System.IO;
-using CommonFeaturesLibrary.Providers.Enums;
-using CommonFeaturesLibrary.Providers.Primitive;
+using OfficeLibrary.Providers.Enums;
+using OfficeLibrary.Providers.Primitive;
 
-namespace CommonFeaturesLibrary.Providers.Csv {
+namespace OfficeLibrary.Providers.Csv {
 	/// <summary>
 	/// Csv ファイル用のデータベースの Connection を提供するクラスです。
 	/// </summary>

@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using ExtensionsLibrary.Extensions;
 
-namespace CommonFeaturesLibrary.Extensions {
+namespace OfficeLibrary.Extensions {
 	/// <summary>
 	/// ジェネリックのリストに要素を追加する拡張メソッドを提供します。
 	/// </summary>

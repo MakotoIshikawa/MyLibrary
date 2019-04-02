@@ -1,4 +1,4 @@
-﻿namespace CommonFeaturesLibrary.Providers.Enums {
+﻿namespace OfficeLibrary.Providers.Enums {
 	/// <summary>
 	/// データベース接続タイプの列挙体です。
 	/// </summary>

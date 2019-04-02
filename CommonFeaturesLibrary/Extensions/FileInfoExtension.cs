@@ -1,6 +1,4 @@
-﻿using System.Data;
-using System.IO;
-using CommonFeaturesLibrary.Providers.Csv;
+﻿using System.IO;
 using ExtensionsLibrary.Extensions;
 
 namespace CommonFeaturesLibrary.Extensions {
@@ -27,23 +25,6 @@ namespace CommonFeaturesLibrary.Extensions {
 			var ext = @this.Extension;
 			var name = @this.Name.CommentOut(@this.Extension);
 			return $@"{dir}\{name} ({version}){ext}";
-		}
-
-		#endregion
-
-		#region LoadDataTable
-
-		/// <summary>
-		/// CSV ファイルからデータを読み込みます。
-		/// </summary>
-		/// <param name="file"></param>
-		/// <returns>読み込んだデータテーブルを返します。</returns>
-		public static DataTable LoadDataTable(this FileInfo file) {
-			var csv = new CsvConnection(file);
-
-			var table = new DataTable();
-			csv.Connect(a => a.Fill(table));
-			return table;
 		}
 
 		#endregion

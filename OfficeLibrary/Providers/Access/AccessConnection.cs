@@ -1,7 +1,7 @@
 ﻿using System.IO;
-using CommonFeaturesLibrary.Providers.Primitive;
+using OfficeLibrary.Providers.Primitive;
 
-namespace CommonFeaturesLibrary.Providers.Access {
+namespace OfficeLibrary.Providers.Access {
 	/// <summary>
 	/// Access ファイル用のデータベースの Connection を提供するクラスです。
 	/// </summary>

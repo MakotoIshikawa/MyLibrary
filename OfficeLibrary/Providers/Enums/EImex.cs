@@ -1,4 +1,4 @@
-﻿namespace CommonFeaturesLibrary.Providers.Enums {
+﻿namespace OfficeLibrary.Providers.Enums {
 	/// <summary>
 	/// IMEXに関する列挙型です。
 	/// </summary>

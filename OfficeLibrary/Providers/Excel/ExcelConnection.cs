@@ -1,8 +1,8 @@
 ﻿using System.IO;
-using CommonFeaturesLibrary.Providers.Csv;
-using CommonFeaturesLibrary.Providers.Enums;
+using OfficeLibrary.Providers.Csv;
+using OfficeLibrary.Providers.Enums;
 
-namespace CommonFeaturesLibrary.Providers.Excel {
+namespace OfficeLibrary.Providers.Excel {
 	/// <summary>
 	/// Excel ファイル用のデータベースの Connection を提供するクラスです。
 	/// </summary>

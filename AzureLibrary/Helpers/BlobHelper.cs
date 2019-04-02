@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using AzureLibrary.Extensions;
 using AzureLibrary.Utility;
-using CommonFeaturesLibrary;
+using CommonFeaturesLibrary.Extensions;
 using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace AzureLibrary.Helpers {

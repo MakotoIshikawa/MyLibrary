@@ -6,10 +6,10 @@ using System.Data.OleDb;
 using System.IO;
 using System.Linq;
 using System.Text;
-using CommonFeaturesLibrary.Providers.Enums;
+using OfficeLibrary.Providers.Enums;
 using ExtensionsLibrary.Extensions;
 
-namespace CommonFeaturesLibrary.Providers {
+namespace OfficeLibrary.Providers {
 	/// <summary>
 	/// ファイルにアクセスするメソッドを提供します。
 	/// </summary>
