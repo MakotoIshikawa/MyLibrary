@@ -132,7 +132,7 @@
       <Name>OfficeLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\RetryLibrary\RetryLibrary.csproj">
-      <Project>{2bb3fff2-8010-4e79-a60c-5153fc99b259}</Project>
+      <Project>{70408112-a4d0-4373-bcb9-3378eae48612}</Project>
       <Name>RetryLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\SharePointLibrary\SharePointLibrary.csproj">
