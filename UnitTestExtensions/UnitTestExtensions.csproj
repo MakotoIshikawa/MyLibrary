@@ -116,7 +116,7 @@
       <Name>JsonLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\LuisLibrary\LuisLibrary.csproj">
-      <Project>{37a74f13-c54a-4d7c-8972-72ac1f0d4fa5}</Project>
+      <Project>{89051b4e-0ee4-4951-ae21-3d160f3febbd}</Project>
       <Name>LuisLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\NetLibrary\NetLibrary.csproj">
