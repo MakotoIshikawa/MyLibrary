@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <!-- MSTest の実行設定: https://docs.microsoft.com/ja-jp/visualstudio/test/configure-unit-tests-by-using-a-dot-runsettings-file#mstest-run-settings -->
+  <MSTest>
+    <!-- テストメソッドで指定した配置項目が配置ディレクトリにコピーするかどうか -->
+    <DeploymentEnabled>False</DeploymentEnabled>
+    <!-- Trace.WriteLine を使用して、テストメソッドからデバッグトレースに書き込むかどうか -->
+    <CaptureTraceOutput>True</CaptureTraceOutput>
+    <!-- テストの実行後に配置ディレクトリを削除するかどうか -->
+    <DeleteDeploymentDirectoryAfterTestRunIsComplete>False</DeleteDeploymentDirectoryAfterTestRunIsComplete>
+    <!-- 結果不確定のテストを失敗として表示するかどうか -->
+    <MapInconclusiveToFailed>True</MapInconclusiveToFailed>
+    <!-- 単体テストを検索して実行する追加のアセンブリへのパス -->
+    <AssemblyResolution>
+      <Directory path="D:\myfolder\bin\" includeSubDirectories="false"/>
+    </AssemblyResolution>
+  </MSTest>
+</RunSettings>
