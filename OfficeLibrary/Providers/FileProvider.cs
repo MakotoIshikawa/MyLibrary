@@ -116,19 +116,21 @@ namespace OfficeLibrary.Providers {
 		/// <param name="imex">IMEX</param>
 		/// <returns>CSV ファイル形式の接続文字列を返します。</returns>
 		public static string GetConnectionStringOfCsvByOleDb(this FileInfo @this, bool hdr, EImex? imex) {
-			var cmd = new DbConnectionStringBuilder();
-			//cmd["Provider"] = "Microsoft.Jet.OLEDB.4.0";
-			cmd["Provider"] = "Microsoft.ACE.OLEDB.12.0";
-			cmd["Data Source"] = @this.DirectoryName;
+			var cmd = new DbConnectionStringBuilder {
+				//["Provider"] = "Microsoft.Jet.OLEDB.4.0",
+				["Provider"] = "Microsoft.ACE.OLEDB.12.0",
+				["Data Source"] = @this.DirectoryName
+			};
 
 			var properties = new StringBuilder();
 
 			var fileKind = "text";
 			properties.Append(fileKind).Append(";");
 
-			var sb = new DbConnectionStringBuilder();
-			sb["HDR"] = hdr ? "Yes" : "No";
-			sb["FMT"] = "Delimited";
+			var sb = new DbConnectionStringBuilder {
+				["HDR"] = hdr ? "Yes" : "No",
+				["FMT"] = "Delimited"
+			};
 
 			if (imex.HasValue) {
 				sb["IMEX"] = (short)imex;
@@ -151,17 +153,19 @@ namespace OfficeLibrary.Providers {
 		/// <param name="imex">IMEX</param>
 		/// <returns>Excel ファイル形式の接続文字列を返します。</returns>
 		public static string GetConnectionStringByExcel(this FileInfo @this, bool hdr, EImex? imex) {
-			var cmd = new DbConnectionStringBuilder();
-			//cmd["Provider"] = "Microsoft.Jet.OLEDB.4.0";
-			cmd["Provider"] = "Microsoft.ACE.OLEDB.12.0";
-			cmd["Data Source"] = @this.FullName;
+			var cmd = new DbConnectionStringBuilder {
+				//["Provider"] = "Microsoft.Jet.OLEDB.4.0",
+				["Provider"] = "Microsoft.ACE.OLEDB.12.0",
+				["Data Source"] = @this.FullName
+			};
 
 			var properties = new StringBuilder();
 			var fileKind = "Excel 8.0";
 			properties.Append(fileKind).Append(";");
 
-			var sb = new DbConnectionStringBuilder();
-			sb["HDR"] = hdr ? "Yes" : "No";
+			var sb = new DbConnectionStringBuilder {
+				["HDR"] = hdr ? "Yes" : "No"
+			};
 
 			if (imex.HasValue) {
 				sb["IMEX"] = (short)imex;
@@ -183,10 +187,11 @@ namespace OfficeLibrary.Providers {
 		/// <param name="imex">IMEX</param>
 		/// <returns>Access ファイル形式の接続文字列を返します。</returns>
 		public static string GetConnectionStringByAccess(this FileInfo @this, EImex? imex) {
-			var cmd = new DbConnectionStringBuilder();
-			//cmd["Provider"] = "Microsoft.Jet.OLEDB.4.0";
-			cmd["Provider"] = "Microsoft.ACE.OLEDB.12.0";
-			cmd["Data Source"] = @this.FullName;
+			var cmd = new DbConnectionStringBuilder {
+				//["Provider"] = "Microsoft.Jet.OLEDB.4.0",
+				["Provider"] = "Microsoft.ACE.OLEDB.12.0",
+				["Data Source"] = @this.FullName
+			};
 
 			var sb = new DbConnectionStringBuilder();
 			if (imex.HasValue) {
