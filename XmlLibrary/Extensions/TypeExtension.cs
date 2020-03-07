@@ -1,31 +1,19 @@
 ﻿using System;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using System.Reflection;
 
 namespace XmlLibrary.Extensions {
 	/// <summary>
-	/// Type を拡張するメソッドを提供します。
+	/// <see cref="Type"/> を拡張するメソッドを提供します。
 	/// </summary>
 	public static partial class TypeExtension {
 		/// <summary>
 		/// 指定した型宣言から、要素名を取得します。
 		/// </summary>
-		/// <param name="this">型宣言</param>
+		/// <param name="this"><see cref="Type"/></param>
 		/// <returns>要素名を返します。</returns>
-		public static XName GetElementName(this Type @this) {
-			var attr = @this.GetAttribute<XmlRootAttribute>();
-			return attr.ElementName;
-		}
-
-		/// <summary>
-		/// 指定した型宣言から、属性オブジェクトを取得します。
-		/// </summary>
-		/// <typeparam name="TAttribute">Attribute を継承する型</typeparam>
-		/// <param name="this">型宣言</param>
-		/// <returns>属性オブジェクトを返します。</returns>
-		public static TAttribute GetAttribute<TAttribute>(this Type @this) where TAttribute : Attribute {
-			var attribute = (TAttribute)Attribute.GetCustomAttribute(@this, typeof(TAttribute));
-			return attribute;
-		}
+		public static XName GetElementName(this Type @this)
+			=> @this.GetCustomAttribute<XmlRootAttribute>()?.ElementName;
 	}
 }
