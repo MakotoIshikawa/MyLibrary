@@ -89,23 +89,34 @@ namespace ExtensionsLibrary.Extensions {
 		/// <typeparam name="T">インスタンスの型</typeparam>
 		/// <param name="this">this</param>
 		/// <returns>メンバー情報を返します。</returns>
-		public static IEnumerable<Tuple<string, Type, object>> GetMembers<T>(this T @this) {
+		public static IEnumerable<(string Name, Type Type, object Value)> GetMembers<T>(this T @this) {
 			var type = @this.GetType();
 			var fields = type.GetFields();
 			var properties = type.GetProperties().Where(p => p.Name != type.GetIndexerName());
 
-			var member =
-				fields.Select(f => new { f.Name, Type = f.FieldType, Value = f.GetValue(@this), })
-				.Union(properties.Select(p => new { p.Name, Type = p.PropertyType, Value = p.GetValue(@this), }))
+			var ms =
+				fields.Select(f => new { f.Name, Type = f.FieldType, Value = f.GetValue(@this) })
+				.Union(properties.Select(p => new { p.Name, Type = p.PropertyType, Value = p.GetValue(@this) }))
 				.ToList();
 
-			if (@this is string) {
-				member.Add(new { Name = "Value", Type = typeof(string), Value = (object)@this });
-			} else if (typeof(T).IsPrimitive) {
-				member.Add(new { Name = "Value", Type = typeof(T), Value = (object)@this });
+			switch (@this) {
+			case string s:
+				ms.Add(new { Name = "Value", Type = s.GetType(), Value = (object)s });
+				return ms.Select(m => (m.Name, m.Type, m.Value));
+			case decimal d:
+				ms.Add(new { Name = "Value", Type = d.GetType(), Value = (object)d });
+				return ms.Select(m => (m.Name, m.Type, m.Value));
+			case DateTime d:
+				ms.Add(new { Name = "Value", Type = d.GetType(), Value = (object)d });
+				return ms.Select(m => (m.Name, m.Type, m.Value));
+			case var v when v.GetType().IsPrimitive:
+				ms.Add(new { Name = "Value", Type = v.GetType(), Value = (object)v });
+				return ms.Select(m => (m.Name, m.Type, m.Value));
+			case var v when v.GetType().IsEnum:
+				return ms.Select(m => (Name: m.Name is "value__" ? "Value" : m.Name, m.Type, m.Value));
+			default:
+				return ms.Select(m => (m.Name, m.Type, m.Value));
 			}
-
-			return member.Select(m => Tuple.Create(m.Name, m.Type, m.Value));
 		}
 
 		#endregion
@@ -135,11 +146,9 @@ namespace ExtensionsLibrary.Extensions {
 		/// <returns>値を返します。</returns>
 		public static object GetPropertyValue<T>(this T @this, string name) {
 			var info = @this.GetPropertyInfo(name);
-			if (!info.CanRead) {
-				return null;
-			}
-
-			return info.GetValue(@this);
+			return !info.CanRead
+				? null
+				: info.GetValue(@this);
 		}
 
 		#endregion
