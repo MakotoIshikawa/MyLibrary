@@ -19,7 +19,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="action">メソッド</param>
 		public static void ForEach<T>(this IEnumerable<T> @this, Action<T> action) {
 			foreach (var item in @this) {
-				action(item);
+				action?.Invoke(item);
 			}
 		}
 

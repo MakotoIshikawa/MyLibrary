@@ -161,13 +161,21 @@ namespace WindowsFormsLibrary.Forms.Primitives {
 
 		#endregion
 
+		/// <summary />
 		protected Button btnRun;
+		/// <summary />
 		protected TextBox txtFilePath;
+		/// <summary />
 		protected Button btnReference;
+		/// <summary />
 		protected DataGridView gridDirectories;
+		/// <summary />
 		protected FolderBrowserDialog folderDialog;
+		/// <summary />
 		protected SplitContainer splitContainer;
+		/// <summary />
 		protected ListBox listMessage;
+		/// <summary />
 		protected NotifyIcon notifyIcon;
 	}
 }
