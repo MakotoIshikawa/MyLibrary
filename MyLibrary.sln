@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2018
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectAnalysisProject", "ObjectAnalysisProject\ObjectAnalysisProject.csproj", "{BE1BB940-F59E-4440-ADD0-603BD9915A02}"
 EndProject
@@ -25,17 +25,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelLibrary", "ExcelLibrar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonFeaturesLibrary", "CommonFeaturesLibrary\CommonFeaturesLibrary.csproj", "{72A0933E-88DE-48C4-A3E4-E1C8FDB13065}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandardLibrary", "StandardLibrary\StandardLibrary.csproj", "{3F202923-28DF-480F-8AEE-504291B7F3B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmlLibrary", "XmlLibrary\XmlLibrary.csproj", "{FF4DC098-D3FD-45E8-9665-8BDF388F286B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlLibrary", "XmlLibrary\XmlLibrary.csproj", "{FF4DC098-D3FD-45E8-9665-8BDF388F286B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RetryLibrary", "RetryLibrary\RetryLibrary.csproj", "{70408112-A4D0-4373-BCB9-3378EAE48612}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetryLibrary", "RetryLibrary\RetryLibrary.csproj", "{70408112-A4D0-4373-BCB9-3378EAE48612}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonLibrary", "JsonLibrary\JsonLibrary.csproj", "{A1057257-861D-4FB9-B5BD-21E93C4847F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonLibrary", "JsonLibrary\JsonLibrary.csproj", "{A1057257-861D-4FB9-B5BD-21E93C4847F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetLibrary", "NetLibrary\NetLibrary.csproj", "{C429B47B-5393-47AE-AE7C-5D4657018800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetLibrary", "NetLibrary\NetLibrary.csproj", "{C429B47B-5393-47AE-AE7C-5D4657018800}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuisLibrary", "LuisLibrary\LuisLibrary.csproj", "{89051B4E-0EE4-4951-AE21-3D160F3FEBBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuisLibrary", "LuisLibrary\LuisLibrary.csproj", "{89051B4E-0EE4-4951-AE21-3D160F3FEBBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionsLibraryTests", "ExtensionsLibraryTests\ExtensionsLibraryTests.csproj", "{3A64457F-937E-4C66-8ABE-87BEFE2F50AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,10 +87,6 @@ Global
 		{72A0933E-88DE-48C4-A3E4-E1C8FDB13065}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72A0933E-88DE-48C4-A3E4-E1C8FDB13065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72A0933E-88DE-48C4-A3E4-E1C8FDB13065}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F202923-28DF-480F-8AEE-504291B7F3B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F202923-28DF-480F-8AEE-504291B7F3B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F202923-28DF-480F-8AEE-504291B7F3B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F202923-28DF-480F-8AEE-504291B7F3B9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FF4DC098-D3FD-45E8-9665-8BDF388F286B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FF4DC098-D3FD-45E8-9665-8BDF388F286B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF4DC098-D3FD-45E8-9665-8BDF388F286B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -111,6 +107,10 @@ Global
 		{89051B4E-0EE4-4951-AE21-3D160F3FEBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89051B4E-0EE4-4951-AE21-3D160F3FEBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89051B4E-0EE4-4951-AE21-3D160F3FEBBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A64457F-937E-4C66-8ABE-87BEFE2F50AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A64457F-937E-4C66-8ABE-87BEFE2F50AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A64457F-937E-4C66-8ABE-87BEFE2F50AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A64457F-937E-4C66-8ABE-87BEFE2F50AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
