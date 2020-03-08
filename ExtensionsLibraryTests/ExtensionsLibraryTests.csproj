@@ -17,4 +17,10 @@
     <ProjectReference Include="..\ExtensionsLibrary\ExtensionsLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\UserInfos.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
