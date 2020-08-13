@@ -1,14 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExtensionsLibrary.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.IO;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ExtensionsLibrary.Extensions.Tests {
-	[TestClass()]
+	[TestClass]
 	public class DirectoryInfoExtensionTests {
 		#region プロパティ
 
@@ -20,18 +16,25 @@ namespace ExtensionsLibrary.Extensions.Tests {
 		#endregion
 
 		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(DirectoryInfoExtension))]
+		[TestCategory(nameof(DirectoryInfoExtension.CreateFileInfo))]
 		public void CreateFileInfoTest() {
 			throw new NotImplementedException();
 		}
 
 		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(DirectoryInfoExtension))]
+		[TestCategory(nameof(DirectoryInfoExtension.CreateChild))]
 		public void CreateChildTest() {
 			throw new NotImplementedException();
 		}
 
 		[TestMethod]
 		[Owner(nameof(ExtensionsLibrary))]
-		[TestCategory(nameof(ExtensionsLibrary.Extensions.DirectoryInfoExtension))]
+		[TestCategory(nameof(DirectoryInfoExtension))]
+		[TestCategory(nameof(DirectoryInfoExtension.GetFileInfos))]
 		[DeploymentItem(nameof(Resources))]
 		public void GetFileInfosTest() {
 			var dir = Resources;
@@ -44,11 +47,17 @@ namespace ExtensionsLibrary.Extensions.Tests {
 		}
 
 		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(DirectoryInfoExtension))]
+		[TestCategory(nameof(DirectoryInfoExtension.IsHidden))]
 		public void IsHiddenTest() {
 			throw new NotImplementedException();
 		}
 
 		[TestMethod]
+		[Owner(nameof(ExtensionsLibrary))]
+		[TestCategory(nameof(DirectoryInfoExtension))]
+		[TestCategory(nameof(DirectoryInfoExtension.HasAttribute))]
 		public void HasAttributeTest() {
 			throw new NotImplementedException();
 		}
