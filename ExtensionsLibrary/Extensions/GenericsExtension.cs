@@ -12,7 +12,7 @@ namespace ExtensionsLibrary.Extensions {
 
 		#region 値取得
 
-		#region GetValueOrDefault (オーバーロード +2)
+		#region GetValueOrDefault (+1 オーバーロード)
 
 		/// <summary>
 		/// null かどうかを判定して値を取得します。
@@ -23,7 +23,7 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="func">値を取得するメソッド</param>
 		/// <returns>null かどうかを判定して値を返します。</returns>
 		public static TResult GetValueOrDefault<T, TResult>(this T @this, Func<T, TResult> func)
-			=> @this.GetValueOrDefault(func, default(TResult));
+			=> @this.GetValueOrDefault(func, default);
 
 		/// <summary>
 		/// null かどうかを判定して値を取得します。
@@ -36,11 +36,9 @@ namespace ExtensionsLibrary.Extensions {
 		/// <returns>null かどうかを判定して値を返します。</returns>
 		public static TResult GetValueOrDefault<T, TResult>(this T @this, Func<T, TResult> func, TResult defaultValue) {
 			try {
-				if (func == null) {
-					throw new NullReferenceException();
-				}
-
-				return func(@this);
+				return (func != null)
+					? func(@this)
+					: defaultValue;
 			} catch {
 				return defaultValue;
 			}
@@ -81,43 +79,62 @@ namespace ExtensionsLibrary.Extensions {
 
 		#endregion
 
+		#region 型コード取得
+
+		/// <summary>
+		/// 基になる <see cref="TypeCode"/> を取得します。
+		/// </summary>
+		/// <typeparam name="T">インスタンスの型</typeparam>
+		/// <param name="this">インスタンス</param>
+		/// <returns>基になる <see cref="TypeCode"/> を返します。
+		/// <paramref name="this"/> が null の場合は <see cref="TypeCode.Empty"/>。</returns>
+		public static TypeCode GetTypeCode<T>(this T @this) {
+			return @this.GetType().GetTypeCode();
+		}
+
+		#endregion
+
 		#region メンバ情報取得
 
 		/// <summary>
 		/// パブリックなフィールドとプロパティの情報を取得します。
 		/// </summary>
 		/// <typeparam name="T">インスタンスの型</typeparam>
-		/// <param name="this">this</param>
+		/// <param name="this">インスタンス</param>
 		/// <returns>メンバー情報を返します。</returns>
-		public static IEnumerable<(string Name, Type Type, object Value)> GetMembers<T>(this T @this) {
+		public static IEnumerable<(string Name, Type Type, object Value, TypeCode Code)> GetMembers<T>(this T @this) {
 			var type = @this.GetType();
 			var fields = type.GetFields();
-			var properties = type.GetProperties().Where(p => p.Name != type.GetIndexerName());
+			var properties = type.GetPropertiesWithoutIndexer();
 
 			var ms =
-				fields.Select(f => new { f.Name, Type = f.FieldType, Value = f.GetValue(@this) })
-				.Union(properties.Select(p => new { p.Name, Type = p.PropertyType, Value = p.GetValue(@this) }))
+				fields.Select(f => new { f.Name, Type = f.FieldType, Value = f.GetValue(@this), Code = f.FieldType.GetTypeCode(), })
+				.Union(properties.Select(p => new { p.Name, Type = p.PropertyType, Value = p.GetValue(@this), Code = p.PropertyType.GetTypeCode(), }))
 				.ToList();
 
 			switch (@this) {
-			case string s:
-				ms.Add(new { Name = "Value", Type = s.GetType(), Value = (object)s });
-				return ms.Select(m => (m.Name, m.Type, m.Value));
-			case decimal d:
-				ms.Add(new { Name = "Value", Type = d.GetType(), Value = (object)d });
-				return ms.Select(m => (m.Name, m.Type, m.Value));
-			case DateTime d:
-				ms.Add(new { Name = "Value", Type = d.GetType(), Value = (object)d });
-				return ms.Select(m => (m.Name, m.Type, m.Value));
-			case var v when v.GetType().IsPrimitive:
-				ms.Add(new { Name = "Value", Type = v.GetType(), Value = (object)v });
-				return ms.Select(m => (m.Name, m.Type, m.Value));
 			case var v when v.GetType().IsEnum:
-				return ms.Select(m => (Name: m.Name is "value__" ? "Value" : m.Name, m.Type, m.Value));
-			default:
-				return ms.Select(m => (m.Name, m.Type, m.Value));
+				return ms.Select(m => (Name: m.Name is "value__" ? "Value" : m.Name, m.Type, m.Value, m.Code));
+			case string _:
+			case decimal _:
+			case DateTime _:
+			case var v when v.GetType().IsPrimitive:
+				ms.Add(new { Name = "Value", Type = type, Value = (object)@this, Code = @this.GetTypeCode(), });
+				break;
 			}
+
+			return ms.Select(m => (m.Name, m.Type, m.Value, m.Code));
 		}
+
+		/// <summary>
+		/// パブリックなフィールドとプロパティの情報の文字列を取得します。
+		/// </summary>
+		/// <typeparam name="T">インスタンスの型</typeparam>
+		/// <param name="this">インスタンス</param>
+		/// <param name="nullShow">NULL を表示するかどうか</param>
+		/// <returns>メンバー情報の文字列を返します。</returns>
+		public static string GetMembersString<T>(this T @this, bool nullShow = false)
+			=> @this.GetMembers().ToString(nullShow);
 
 		#endregion
 
@@ -130,10 +147,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">対象のインスタンス</param>
 		/// <param name="name">プロパティ名</param>
 		/// <returns>プロパティ情報を返します。</returns>
-		public static PropertyInfo GetPropertyInfo<T>(this T @this, string name) {
-			var type = @this.GetType();
-			return type.GetProperty(name);
-		}
+		public static PropertyInfo GetPropertyInfo<T>(this T @this, string name)
+			=> @this.GetType().GetProperty(name);
 
 		#region 値取得
 
@@ -146,9 +161,9 @@ namespace ExtensionsLibrary.Extensions {
 		/// <returns>値を返します。</returns>
 		public static object GetPropertyValue<T>(this T @this, string name) {
 			var info = @this.GetPropertyInfo(name);
-			return !info.CanRead
-				? null
-				: info.GetValue(@this);
+			return info.CanRead
+				? info.GetValue(@this)
+				: null;
 		}
 
 		#endregion
@@ -180,10 +195,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <typeparam name="T">インスタンスの型</typeparam>
 		/// <param name="this">対象のインスタンス</param>
 		/// <returns>プロパティ情報のコレクションを返します。</returns>
-		public static IEnumerable<PropertyInfo> GetProperties<T>(this T @this) {
-			var type = @this.GetType();
-			return type.GetProperties();
-		}
+		public static IEnumerable<PropertyInfo> GetPropertyInfos<T>(this T @this)
+			=> @this.GetType().GetProperties();
 
 		/// <summary>
 		/// プロパティ名と値の KeyValuePair のコレクションを指定して、
@@ -206,12 +219,30 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="predicate">フィルターする条件</param>
 		/// <returns>Dictionary を返します。</returns>
 		public static Dictionary<string, object> ToPropertyDictionary<T>(this T @this, Func<PropertyInfo, bool> predicate = null) {
-			var properties = @this.GetProperties();
-			if (predicate == null) {
-				return properties.ToDictionary(p => p.Name, p => p.GetValue(@this));
-			}
+			var properties = @this.GetPropertyInfos();
+			return predicate == null
+				? properties.ToDictionary(p => p.Name, p => p.GetValue(@this))
+				: properties.Where(predicate).ToDictionary(p => p.Name, p => p.GetValue(@this));
+		}
 
-			return properties.Where(predicate).ToDictionary(p => p.Name, p => p.GetValue(@this));
+		/// <summary>
+		/// プロパティの情報を列挙します。
+		/// </summary>
+		/// <typeparam name="T">インスタンスの型</typeparam>
+		/// <param name="this">対象のインスタンス</param>
+		/// <param name="predicate">フィルターする条件</param>
+		/// <returns>プロパティの情報の列挙を返します。</returns>
+		public static IEnumerable<(string Name, Type Type, object Value, TypeCode Code)> GetProperties<T>(this T @this, Func<PropertyInfo, bool> predicate = null) {
+			var properties = (predicate is null)
+				? @this.GetPropertyInfos()
+				: @this.GetPropertyInfos().Where(predicate);
+
+			return
+				from p in properties
+				let typ = p.PropertyType
+				let val = p.GetValue(@this)
+				let tcd = typ.GetTypeCode()
+				select (p.Name, Type: typ, Value: val, Code: tcd);
 		}
 
 		/// <summary>
@@ -221,19 +252,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">インスタンス</param>
 		/// <param name="nullShow">NULL を表示するかどうか</param>
 		/// <returns>プロパティ情報の文字列を返します。</returns>
-		public static string GetPropertiesString<T>(this T @this, bool nullShow = false) {
-			var dic = @this.ToPropertyDictionary();
-			if (nullShow) {
-				return dic
-					.Select(p => new { Name = p.Key, Value = p.Value.GetValueOrDefault(v => v.ToString(), "null"), })
-					.Select(p => $"{p.Name} = {p.Value}").Join(", ");
-			} else {
-				return dic
-					.Select(p => new { Name = p.Key, Value = p.Value.GetValueOrDefault(v => v.ToString()), })
-					.Where(p => !p.Value.IsEmpty())
-					.Select(p => $"{p.Name} = {p.Value}").Join(", ");
-			}
-		}
+		public static string GetPropertiesString<T>(this T @this, bool nullShow = false)
+			=> @this.GetProperties().ToString(nullShow);
 
 		#endregion
 
@@ -246,10 +266,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">対象のインスタンス</param>
 		/// <param name="name">フィールド名</param>
 		/// <returns>フィールド情報を返します。</returns>
-		public static FieldInfo GetFieldInfo<T>(this T @this, string name) {
-			var type = @this.GetType();
-			return type.GetField(name);
-		}
+		public static FieldInfo GetFieldInfo<T>(this T @this, string name)
+			=> @this.GetType().GetField(name);
 
 		#region 値取得
 
@@ -262,11 +280,9 @@ namespace ExtensionsLibrary.Extensions {
 		/// <returns>値を返します。</returns>
 		public static object GetFieldValue<T>(this T @this, string name) {
 			var info = @this.GetFieldInfo(name);
-			if (!info.IsPublic) {
-				return null;
-			}
-
-			return info.GetValue(@this);
+			return info.IsPublic
+				? info.GetValue(@this)
+				: null;
 		}
 
 		#endregion
@@ -298,10 +314,8 @@ namespace ExtensionsLibrary.Extensions {
 		/// <typeparam name="T">インスタンスの型</typeparam>
 		/// <param name="this">対象のインスタンス</param>
 		/// <returns>フィールド情報のコレクションを返します。</returns>
-		public static IEnumerable<FieldInfo> GetFields<T>(this T @this) {
-			var type = @this.GetType();
-			return type.GetFields();
-		}
+		public static IEnumerable<FieldInfo> GetFieldInfos<T>(this T @this)
+			=> @this.GetType().GetFields();
 
 		/// <summary>
 		/// フィールド名と値の KeyValuePair のコレクションを指定して、
@@ -324,12 +338,30 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="predicate">フィルターする条件</param>
 		/// <returns>Dictionary を返します。</returns>
 		public static Dictionary<string, object> ToFieldDictionary<T>(this T @this, Func<FieldInfo, bool> predicate = null) {
-			var fields = @this.GetFields();
-			if (predicate == null) {
-				return fields.ToDictionary(p => p.Name, p => p.GetValue(@this));
-			}
+			var fields = @this.GetFieldInfos();
+			return predicate == null
+				? fields.ToDictionary(p => p.Name, p => p.GetValue(@this))
+				: fields.Where(predicate).ToDictionary(p => p.Name, p => p.GetValue(@this));
+		}
 
-			return fields.Where(predicate).ToDictionary(p => p.Name, p => p.GetValue(@this));
+		/// <summary>
+		/// フィールドの情報を列挙します。
+		/// </summary>
+		/// <typeparam name="T">インスタンスの型</typeparam>
+		/// <param name="this">対象のインスタンス</param>
+		/// <param name="predicate">フィルターする条件</param>
+		/// <returns>フィールドの情報の列挙を返します。</returns>
+		public static IEnumerable<(string Name, Type Type, object Value, TypeCode Code)> GetFields<T>(this T @this, Func<FieldInfo, bool> predicate = null) {
+			var fields = (predicate is null)
+				? @this.GetFieldInfos()
+				: @this.GetFieldInfos().Where(predicate);
+
+			return
+				from f in fields
+				let typ = f.FieldType
+				let val = f.GetValue(@this)
+				let tcd = typ.GetTypeCode()
+				select (f.Name, Type: typ, Value: val, Code: tcd);
 		}
 
 		/// <summary>
@@ -339,51 +371,27 @@ namespace ExtensionsLibrary.Extensions {
 		/// <param name="this">インスタンス</param>
 		/// <param name="nullShow">NULL を表示するかどうか</param>
 		/// <returns>フィールド情報の文字列を返します。</returns>
-		public static string GetFieldsString<T>(this T @this, bool nullShow = false) {
-			var dic = @this.ToFieldDictionary();
-			if (nullShow) {
-				return dic
-					.Select(p => new { Name = p.Key, Value = p.Value.GetValueOrDefault(v => v.ToString(), "null"), })
-					.Select(p => $"{p.Name} = {p.Value}").Join(", ");
-			} else {
-				return dic
-					.Select(p => new { Name = p.Key, Value = p.Value.GetValueOrDefault(v => v.ToString()), })
-					.Where(p => !p.Value.IsEmpty())
-					.Select(p => $"{p.Name} = {p.Value}").Join(", ");
-			}
-		}
+		public static string GetFieldsString<T>(this T @this, bool nullShow = false)
+			=> @this.GetFields().ToString(nullShow);
 
 		#endregion
 
-		#region ChangeType
+		private static string ToString(this IEnumerable<(string Name, Type Type, object Value, TypeCode Code)> @this, bool nullShow) {
+			var query =
+				from p in @this
+				let isNull = p.Value is null
+				let code = p.Code
+				let str = p.Value?.ToString() ?? "null"
+				let value = (code == TypeCode.String) ? $@"""{str}""" : str
+				select new {
+					NameValue = $"{p.Name} = {value}",
+					IsNull = isNull,
+				};
 
-		/// <summary>
-		/// 指定されたオブジェクトと等しい値を持つ、指定された型のオブジェクトを返します。
-		/// </summary>
-		/// <typeparam name="TConvertible">IConvertible 型</typeparam>
-		/// <param name="this">IConvertible インターフェイスを実装するオブジェクト。</param>
-		/// <param name="conversionType">返すオブジェクトの型。</param>
-		/// <returns>型が conversionType であり、@this と等価の値を持つオブジェクト。</returns>
-		public static TConvertible ChangeType<TConvertible>(this TConvertible @this, Type conversionType)
-			where TConvertible : IConvertible {
-			if (conversionType.IsNullable()) {
-				return (TConvertible)Convert.ChangeType(@this, conversionType.GenericTypeArguments.First());
-			}
-
-			return (TConvertible)Convert.ChangeType(@this, conversionType);
+			return nullShow
+				? query.Select(p => p.NameValue).Join(", ")
+				: query.Where(p => !p.IsNull).Select(p => p.NameValue).Join(", ");
 		}
-
-		/// <summary>
-		/// 指定したオブジェクトに等しい値を持つ指定した型のオブジェクトを返します。
-		/// </summary>
-		/// <typeparam name="TConvertible">IConvertible 型</typeparam>
-		/// <param name="this">IConvertible インターフェイスを実装するオブジェクト。</param>
-		/// <param name="typeCode">返すオブジェクトの型。</param>
-		/// <returns>基になる型が typeCode であり、@this と等価の値を持つオブジェクト。</returns>
-		public static TConvertible ChangeType<TConvertible>(this TConvertible @this, TypeCode typeCode) where TConvertible : IConvertible
-			=> (TConvertible)Convert.ChangeType(@this, typeCode);
-
-		#endregion
 
 		#endregion
 	}
