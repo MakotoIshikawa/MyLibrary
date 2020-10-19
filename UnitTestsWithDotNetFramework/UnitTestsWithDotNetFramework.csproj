@@ -53,6 +53,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ChainingAssertion.MSTest.cs" />
     <Compile Include="Extensions\ControlExtensionTests.cs" />
     <Compile Include="Extensions\CsvReaderExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
