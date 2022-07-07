@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitTestExtensions</RootNamespace>
     <AssemblyName>UnitTestExtensions</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -89,10 +89,6 @@
       <Project>{1e77b52a-fe74-488f-8f07-7f32ee7de7b9}</Project>
       <Name>AzureLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BotLibrary\BotLibrary.csproj">
-      <Project>{6d14cbfd-c76b-4e64-b752-17ea50eccc0b}</Project>
-      <Name>BotLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CommonFeaturesLibrary\CommonFeaturesLibrary.csproj">
       <Project>{72a0933e-88de-48c4-a3e4-e1c8fdb13065}</Project>
       <Name>CommonFeaturesLibrary</Name>
@@ -116,6 +112,10 @@
     <ProjectReference Include="..\NetLibrary\NetLibrary.csproj">
       <Project>{c429b47b-5393-47ae-ae7c-5d4657018800}</Project>
       <Name>NetLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotesAnalysisLibrary\NotesAnalysisLibrary.csproj">
+      <Project>{4EAE382D-47EF-44D3-A543-8018F868A8AC}</Project>
+      <Name>NotesAnalysisLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ObjectAnalysisProject\ObjectAnalysisProject.csproj">
       <Project>{be1bb940-f59e-4440-add0-603bd9915a02}</Project>
@@ -160,10 +160,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EPPlus">
-      <Version>4.5.3.1</Version>
+      <Version>5.7.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.1</Version>
+      <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <Choose>

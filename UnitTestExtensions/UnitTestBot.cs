@@ -12,7 +12,7 @@ namespace UnitTestExtensions {
 		#region メソッド
 
 		[TestMethod]
-		[Owner(nameof(BotLibrary))]
+		[Owner("BotLibrary")]
 		[TestCategory("変更")]
 		public void テストその１() {
 		}
