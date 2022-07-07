@@ -201,7 +201,7 @@ namespace NotesAnalysisLibrary.Data {
                             Num = i + 1,
                             Name = c.ColumnHeader.Title ?? "列名なし",
                             Alias = c.ItemName,
-                            Remarks = c.code?.Formula.Split('\n').Select(s => s.Trim()).Join("<br />")
+                            Remarks = c.Code?.Formula.Split('\n').Select(s => s.Trim()).Join("<br />")
                         }).ToList().ForEach(c => {
                             Console.WriteLine($"| {c.Num} | {c.Name} | {c.Alias} | {c.Remarks} |");
                         });

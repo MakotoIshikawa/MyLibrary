@@ -401,7 +401,7 @@ namespace NotesAnalysisLibrary.Data.View {
 
         /// <summary></summary>
         [XmlElement("code")]
-        public FormulaNode code { get; set; }
+        public FormulaNode Code { get; set; }
 
         /// <summary></summary>
         [XmlAttribute("sort")]
